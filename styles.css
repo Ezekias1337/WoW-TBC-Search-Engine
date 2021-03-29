@@ -1,0 +1,50 @@
+.bkground {
+    padding: 30px;
+    background-image: linear-gradient(to left, #B4D603, #E0910E);
+    color: #364447;
+}
+
+.bkground_dark {
+    padding: 5px;
+    background-color: #364447;
+    color: white;
+}
+
+.search {
+    padding: 5px;
+    background-color: #E0910E;
+    color: #364447
+    height: 800px;
+    width: 50%;
+    
+    
+}
+
+.execute_search {
+    padding: 5px;
+    background-color: #B4D603;
+    color: #364447
+}
+
+.Wallpaper_Illidan {
+    
+    padding: 5px;
+    background-image: url(../images/Cover_Photo.jpg);
+    opacity: 0.5;
+    background-size:auto;
+    background-position:center;
+    min-height: 500px;
+    color: #364447
+    
+}
+
+.TBC_Logo {
+    
+    padding: 75px;
+    background-image: url( ../images/BC_Logo.png);
+    background-size:contain;
+    background-position:center;
+    background-repeat: no-repeat;
+    
+    
+}
