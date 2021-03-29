@@ -2,10 +2,14 @@
     padding: 30px;
     background-image: linear-gradient(to left, #B4D603, #E0910E);
     color: #364447;
+    margin-bottom: 0px;
 }
 
 .bkground_dark {
-    padding: 5px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding: 0px;
     background-color: #364447;
     color: white;
 }
@@ -16,8 +20,8 @@
     color: #364447
     height: 800px;
     width: 50%;
-    
-    
+
+
 }
 
 .execute_search {
@@ -27,7 +31,7 @@
 }
 
 .Wallpaper_Illidan {
-    
+
     padding: 5px;
     background-image: url(../images/Cover_Photo.jpg);
     opacity: 0.5;
@@ -35,16 +39,24 @@
     background-position:center;
     min-height: 500px;
     color: #364447
-    
+
 }
 
 .TBC_Logo {
-    
+
     padding: 75px;
     background-image: url( ../images/BC_Logo.png);
     background-size:contain;
     background-position:center;
     background-repeat: no-repeat;
-    
-    
+
+
+}
+
+.Bottom_Nav_of_Site {
+
+  margin: 0px;
+  padding: 5px;
+  background-image: linear-gradient(to left, #B4D603, #E0910E);
+
 }
