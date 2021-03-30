@@ -1,8 +1,18 @@
+@font-face { 
+    font-family: Warcraft; src: url(../fonts/Warcraft.ttf); 
+} 
+      
+h1 {
+         
+    font-family: Warcraft
+}
+
 .bkground {
     padding: 30px;
-    background-image: linear-gradient(to left, #B4D603, #E0910E);
+    background-image: linear-gradient(to left, #B4D603, #364447);
     color: #364447;
     margin-bottom: 0px;
+    min-height: 200px;
 }
 
 .bkground_dark {
@@ -14,11 +24,13 @@
     color: white;
 }
 
-.search {
+input.search {
+    
     padding: 5px;
-    background-color: #E0910E;
-    color: #364447
-    height: 800px;
+    margin-top: 125px;
+    background-image: linear-gradient(to left, #E0910E, #B4D603, #364447);
+    color: #e1eef4;
+    height: 16px;
     width: 50%;
 
 
@@ -26,14 +38,15 @@
 
 .execute_search {
     padding: 5px;
-    background-color: #B4D603;
-    color: #364447
+    background-image: linear-gradient(to left, #364447, #E0910E);
+    color: #e1eef4;
+    
 }
 
 .Wallpaper_Illidan {
 
     padding: 5px;
-    background-image: url(../images/Cover_Photo.jpg);
+    background-image: url(../images/Illidan_Gif.gif);
     opacity: 0.5;
     background-size:auto;
     background-position:center;
@@ -57,6 +70,11 @@
 
   margin: 0px;
   padding: 5px;
-  background-image: linear-gradient(to left, #B4D603, #E0910E);
+  background-image: linear-gradient(to left, #364447, #E0910E);
 
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #e1eef4;
+    opacity: 1; /* Firefox */
+  }
