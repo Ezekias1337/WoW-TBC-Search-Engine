@@ -84,3 +84,8 @@ input.search {
     color: #B4D603;
     opacity: 1; /* Firefox */
   }
+
+  .groove {
+      border-style: groove;
+      border-color: #B4D603;
+    }
