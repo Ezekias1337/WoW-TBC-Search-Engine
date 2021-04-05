@@ -4,7 +4,8 @@
 
 h1, h2, h3, h4, h5 {
 
-    font-family: Warcraft
+    font-family: Warcraft;
+    color: #e1eef4;
 }
 
 .bkground {
@@ -77,9 +78,14 @@ input.search {
 }
 
 .Bottom_Links_Social {
-  margin: 0px;
-  padding: 154px;
+
+  padding-top: 30px;
   background-image: linear-gradient(#364447, #E0910E);
+  color: #e1eef4;
+  margin-left: 0px;
+  min-height: 150px;
+  min-width: 1025px;
+
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -93,5 +99,9 @@ input.search {
     }
 
   .navbariconstyling {
+    color: #B4D603;
+  }
+
+  a:link, a:visited {
     color: #B4D603;
   }
