@@ -2,14 +2,19 @@
 <html lang="en">
 
     <head>
+
+        <!-- Required meta tags always come first -->
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>World of Warcraft Burning Crusade Search Engine</title>
-        <link href="styles.css" rel="stylesheet" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <!-- Additional CSS must go after Bootstrap CSS -->
         <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css" />
         <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
+        <link href="styles.css" rel="stylesheet" />
         <link rel="shortcut icon" href="C:/Users/frank/Documents/NucampFolder/1st_Project_Wow/images/favicon.ico">
+        <title>World of Warcraft Burning Crusade Search Engine</title>
+
     </head>
 
     <body class="bkground_dark">
@@ -17,30 +22,62 @@
             <header class="bkground" style="height: 150px;">
                 <div class="container">
                     <div class="row">
-                        <div class="col col-sm-2">
+                        <div class="col mx-auto">
                             <div class="TBC_Logo"></div>
                             <a class="nav-link" href="#">
                             </a>
-                            <div class="col col-sm-2">
+                            <div class="col">
                                 <h1>Search Engine</h1>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </header>
 
+      <nav class="navbar navbar-expand-sm navbar-dark">
+       <div class="container">
+         <div class="row mx-auto">
+           <div class="col-3">
+
+               <a class="navbar-brand mr-5" href="#"><img src="images/BC_W_Logo.png" height="50" width="50" /></a>
+
+            </div>
+
+            <div class="col-6 m-2">
+               <button class="navbar-toggler pb-2" type="button" data-toggle="collapse" data-target="#bcNavbar">
+                   <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="bcNavbar">
+                   <ul class="navbar-nav mx-auto">
+                       <li class="nav-item active"><a class="nav-link" href="#"><i class="fa fa-home fa-lg"></i> Talent Trees</a>
+                       </li>
+                       <li class="nav-item"><a class="nav-link" href="aboutus.html"><i
+                                   class="fa fa-info fa-lg"></i>Spells</a></li>
+                       <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-list fa-lg"></i>Items</a></li>
+                       <li class="nav-item"><a class="nav-link" href="contactus.html"><i
+                                   class="fa fa-address-card fa-lg"></i>NPCs</a></li>
+                   </ul>
+               </div>
+             </div>
+          </div>
+       </div>
+   </nav>
+
+
+
+
             <div class="Wallpaper_Illidan img-responsive" style="height:1000px">
                 <div class="container">
                     <div class="row">
-                        <div class="col col-sm-2">
-                            <h5><input type="text" placeholder="Enter search here: " class="groove search">
-                                <button class="groove border fa fa-search execute_search" style="height: 30px; width: 60px;"></button>
+                        <div class="col-sm-12 mx-auto">
+                            <h5><input type="text" placeholder="Enter search here: " class="groove search" style="height:30 px;">
+                                <button class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
                             </h5>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="container Bottom_Nav_of_Site">
                 <div class="row">
@@ -53,8 +90,14 @@
             <div class="container Bottom_Links_Social">
 
 
-            </div>
+           </div>
 
-        </center>
+      </center>
+
+        <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
     </body>
 </html>

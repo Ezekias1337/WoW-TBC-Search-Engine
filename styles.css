@@ -29,7 +29,7 @@ input.search {
     padding: 5px;
     margin-top: 125px;
     opacity: 0.8;
-    height: 16px;
+    height: 35px;
     width: 50%;
     color: #B4D603;
     background: #364447;
@@ -37,6 +37,8 @@ input.search {
 
 .execute_search {
     padding: 5px;
+    height: 35px;
+    margin-top: 125px;
     opacity: 0.8;
     color: #B4D603;
     background: #364447;
@@ -62,7 +64,7 @@ input.search {
     background-size:contain;
     background-position:center;
     background-repeat: no-repeat;
-    
+
 
 }
 
@@ -89,3 +91,7 @@ input.search {
       border-style: groove;
       border-color: #B4D603;
     }
+
+  .navbariconstyling {
+    color: #B4D603;
+  }
