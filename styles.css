@@ -37,9 +37,9 @@ input.search {
 }
 
 .execute_search {
-    padding: 5px;
-    height: 35px;
-    margin-top: 125px;
+    padding-bottom: 4px;
+    height: 60px;
+    margin-bottom: 100px;
     opacity: 0.8;
     color: #B4D603;
     background: #364447;
