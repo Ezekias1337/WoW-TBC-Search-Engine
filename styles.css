@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5 {
     margin-top: 0;
     padding: 0px;
     background-color: #364447;
-    color: white;
+    color: #e1eef4;
 }
 
 input.search {
@@ -103,4 +103,8 @@ input.search {
 
   a:link, a:visited {
     color: #B4D603;
+  }
+
+  .talent-frame {
+    border: 1px solid #e1eef4;
   }
