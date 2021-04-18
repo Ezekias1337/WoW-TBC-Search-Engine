@@ -58,6 +58,20 @@ input.search {
 
 }
 
+.Wallpaper_Belf_Draenei {
+
+  padding: 5px;
+  background-image: url(../images/Belf_Draenei_BG.png);
+  opacity: 0.5;
+  background-size:auto;
+  background-position:center;
+  min-height: 500px;
+  color: #364447;
+  min-width: 2050px;
+  min-height: 1350px;
+
+}
+
 .TBC_Logo {
 
     padding: 75px;
@@ -107,4 +121,13 @@ input.search {
 
   .talent-frame {
     border: 1px solid #e1eef4;
+  }
+
+  .Items {
+    border-radius: 7px;
+    border: 1px solid #BEBFC1;
+  }
+
+  .tr {
+    margin-left: 20px;
   }

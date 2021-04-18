@@ -64,17 +64,31 @@
 
 
 
-            <div class="Wallpaper_Illidan img-fluid img-thumbnail">
-                <div class="container">
+            
+                <div class="container Wallpaper_Belf_Draenei img-fluid img-thumbnail" >
                     <div class="row">
                         <div class="col-sm-12 mx-auto">
                             <h5><input type="text" placeholder="Enter search here: " class="groove search" style="height:30 px;">
                                 <button class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
                             </h5>
                         </div>
+                        <div class="col-sm-7 mx-auto">
+                            <table class="table table-dark table-striped table-hover">
+                                <thead class="thead-light">
+                                  <tr>
+                                    <th scope="col">Results</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="weaponArmourResults" class="ml-3">
+                                  
+                                </tbody>
+                              </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+            
+
+            
 
 
             <div class="container Bottom_Nav_of_Site">
@@ -96,7 +110,7 @@
         <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        
+        <script src="weaponArmourAPI.js"></script>
         
 
     </body>
