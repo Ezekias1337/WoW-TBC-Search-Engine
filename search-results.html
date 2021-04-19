@@ -72,6 +72,17 @@
                                 <button class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
                             </h5>
                         </div>
+                        
+                        <div class="col-sm-7 mx-auto">
+                            <h3 style="color:black;">Filter By:</h3>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-dark buttonColoring">Items</button>
+                                <button type="button" class="btn btn-dark buttonColoring">Spells</button>
+                                <button type="button" class="btn btn-dark buttonColoring">Creatures</button>
+                                <button type="button" class="btn btn-dark buttonColoring">Quests</button>
+                              </div>
+                        </div>
+                        
                         <div class="col-sm-7 mx-auto">
                             <table class="table table-dark table-striped table-hover">
                                 <thead class="thead-light">
@@ -79,8 +90,10 @@
                                     <th scope="col">Results</th>
                                   </tr>
                                 </thead>
-                                <tbody class="ml-3" id="weaponArmourResults">
-                                  
+                                <tbody class="ml-3">
+                                  <tr id="weaponArmourResults">
+                                      
+                                  </tr>
                                 </tbody>
                               </table>
                         </div>
@@ -110,7 +123,7 @@
         <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="weaponArmourAPI.js"></script>
+        <script src="itemAPI.js"></script>
         
 
     </body>

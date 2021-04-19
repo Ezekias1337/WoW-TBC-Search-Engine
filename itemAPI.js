@@ -34,7 +34,7 @@ function fetchData(searchTerm) {
                             `ID: ${user.data.id}`
                         ];
                         for (let line of lines) {
-                            const p = document.createElement('p');
+                            const p = document.createElement('td');
                             p.innerText = line;
                             div.appendChild(p);
                         }

@@ -67,8 +67,9 @@ input.search {
   background-position:center;
   min-height: 500px;
   color: #364447;
-  min-width: 2050px;
+  min-width: 1550px;
   min-height: 1350px;
+  background-repeat: no-repeat;
 
 }
 
@@ -111,8 +112,9 @@ input.search {
       border-color: #B4D603;
     }
 
-  .navbariconstyling {
+  .navbariconstyling, .buttonColoring {
     color: #B4D603;
+    border: 1px solid #B4D603;
   }
 
   a:link, a:visited {
@@ -136,4 +138,10 @@ input.search {
   tbody img{
     
     margin: 20px;
+    border-radius: 7px;
+    border: 1px solid #BEBFC1;
   }
+
+  tr {
+    height: 70px;
+ }
