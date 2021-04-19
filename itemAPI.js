@@ -1,8 +1,5 @@
-/*let input = document.getElementById('searchbar').value
-    input = input.toLowerCase();*/
-
 function fetchData(searchTerm) {
-    fetch(`https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=USqf51VLP30OeT4M0bCGyJ95IISemvZ55t`)
+    fetch(`https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=USViCNOdIK4aqbJ1XwtWyWH4APp1jnLJCl`)
         .then(response => {
             if (!response.ok) {
                 throw Error("ERROR");
@@ -13,7 +10,7 @@ function fetchData(searchTerm) {
             const stats = document.getElementById('weaponArmourResults');
   
             Promise.all(data.results.map(user => {
-                return fetch(`https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-us&locale=en_US&access_token=USqf51VLP30OeT4M0bCGyJ95IISemvZ55t`,)
+                return fetch(`https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-us&locale=en_US&access_token=USViCNOdIK4aqbJ1XwtWyWH4APp1jnLJCl`,)
                     .then(innerRes => innerRes.json())
                     .then(innerResData => {
                         return {...user, ...innerResData}
@@ -58,4 +55,20 @@ function fetchData(searchTerm) {
         });
   }
 
-  fetchData(input);
+  function search(){
+    let input = document.getElementById("searchBar").value 
+    console.log(input);
+        if (input.length > 1) {
+            return input;
+        }
+    }
+
+    function searchExecute() {
+        let test = search();
+        fetchData(test);
+        console.log("Success")
+    }
+    
+    document.getElementById("searchBar").addEventListener("submit", searchExecute);
+
+    
