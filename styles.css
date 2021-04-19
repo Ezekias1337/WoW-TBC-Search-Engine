@@ -69,7 +69,7 @@ input.search {
   color: #364447;
   min-width: 1550px;
   min-height: 1350px;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 
 }
 
@@ -144,4 +144,8 @@ input.search {
 
   tr {
     height: 70px;
+ }
+
+ nav {
+   background-color: #364447;
  }
