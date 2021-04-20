@@ -1,5 +1,5 @@
 function fetchData(searchTerm) {
-    fetch(`https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=USViCNOdIK4aqbJ1XwtWyWH4APp1jnLJCl`)
+    fetch(`https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=USubAju2CXrUYDqmED49sjzv8dHT07RH8T`)
         .then(response => {
             if (!response.ok) {
                 throw Error("ERROR");
@@ -10,7 +10,7 @@ function fetchData(searchTerm) {
             const stats = document.getElementById('weaponArmourResults');
   
             Promise.all(data.results.map(user => {
-                return fetch(`https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-us&locale=en_US&access_token=USViCNOdIK4aqbJ1XwtWyWH4APp1jnLJCl`,)
+                return fetch(`https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-us&locale=en_US&access_token=USubAju2CXrUYDqmED49sjzv8dHT07RH8T`,)
                     .then(innerRes => innerRes.json())
                     .then(innerResData => {
                         return {...user, ...innerResData}
