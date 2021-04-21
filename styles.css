@@ -16,6 +16,15 @@ h1, h2, h3, h4, h5 {
     min-height: 275px;
 }
 
+.modal-header{
+  background-image: linear-gradient(#B4D603, #364447);
+  
+}
+
+.modal-body{
+  background-color: #364447;
+}
+
 .bkground_dark {
     margin-left: 0;
     margin-right: 0;
@@ -34,6 +43,31 @@ input.search {
     width: 50%;
     color: #B4D603;
     background: #364447;
+}
+
+#loginEmail, #loginPassword {
+  opacity: 0.8;
+  color: #B4D603;
+  background: #364447;
+}
+
+.form-control:focus {
+  border-color: #B4D603;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(180, 214, 3, 0.6);
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #B4D603!important;
+}
+
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(180, 214, 3, 1)
+}
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+  background-color: #B4D603; 
 }
 
 .execute_search {
@@ -127,6 +161,15 @@ input.search {
 
   a:link, a:visited {
     color: #B4D603;
+  }
+
+  .signIn {
+    background-color: #B4D603;
+    
+  }
+
+  .signIn:hover {
+    background-color: #90ab02;
   }
 
   .talent-frame {
