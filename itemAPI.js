@@ -71,4 +71,6 @@ function fetchData(searchTerm) {
     
     document.getElementById("searchBar").addEventListener("submit", searchExecute);
 
+    let urlItemString = window.location.search.slice(11);
+    document.getElementById("searchBar").value = urlItemString;
     
