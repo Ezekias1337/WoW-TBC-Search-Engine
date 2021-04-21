@@ -112,9 +112,17 @@ input.search {
       border-color: #B4D603;
     }
 
-  .navbariconstyling, .buttonColoring {
+  .buttonColoring, .navbariconstyling {
     color: #B4D603;
     border: 1px solid #B4D603;
+  }
+
+  .fa{
+    color: #B4D603;
+  }
+
+  .loginStyling, .nav-link {
+    color: #B4D603;
   }
 
   a:link, a:visited {
@@ -149,3 +157,7 @@ input.search {
  nav {
    background-color: #364447;
  }
+
+ 
+ 
+
