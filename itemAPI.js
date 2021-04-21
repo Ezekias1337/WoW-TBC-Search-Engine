@@ -74,3 +74,7 @@ function fetchData(searchTerm) {
     let urlItemString = window.location.search.slice(11);
     document.getElementById("searchBar").value = urlItemString;
     
+
+    function successMessage () {
+        console.log("function has been called!")
+    }
