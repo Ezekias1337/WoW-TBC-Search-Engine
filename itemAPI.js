@@ -61,6 +61,7 @@ function fetchData(searchTerm) {
         if (input.length > 1) {
             return input;
         }
+        
     }
 
     function searchExecute() {
@@ -77,4 +78,22 @@ function fetchData(searchTerm) {
 
     function successMessage () {
         console.log("function has been called!")
+    }
+
+    var testMia = document.getElementById("searchBar");
+
+    testMia.addEventListener("keyup", function(event) {
+        var x = event.key;
+        // Number 13 is the "Enter" key on the keyboard
+        if (x === "Enter") {
+
+          
+          // Trigger the button element with a click
+          
+          document.getElementById("searchButtonItems").click();
+        }
+      });
+
+    function refreshPage(){
+        location.reload();
     }
