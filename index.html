@@ -24,8 +24,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col mx-auto">
-                            <div class="TBC_Logo"></div>
                             <a class="nav-link" href="#">
+                            <div class="TBC_Logo"></div>
                             </a>
                             <div class="col">
                                 <h1>Search Engine</h1>
@@ -45,14 +45,14 @@
                     </button>
                     <div class="collapse navbar-collapse" id="bcNavbar">
                         <ul class="navbar-nav">
-                            <li class="nav-item active"><a class="nav-link navIconTextHover" href="#"><i class="fa fa-home fa-lg fa-fw"></i>Items</a>
+                            <li class="nav-item active"><a class="nav-link navIconTextHover" href="item-search-results.html"><i class="fa fa-shield fa-lg fa-fw"></i>Items</a>
                             </li>
                             <li class="nav-item"><a class="nav-link navIconTextHover" href="talent-tree-calculator.html"><i
                                         class="fa fa-bullseye fa-lg fa-fw"></i>Talents</a></li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="#"><i class="fa fa-book fa-lg fa-fw"></i>Spells</a></li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="contactus.html"><i
+                            <li class="nav-item"><a class="nav-link navIconTextHover" href="spell-search-results.html"><i class="fa fa-book fa-lg fa-fw"></i>Spells</a></li>
+                            <li class="nav-item"><a class="nav-link navIconTextHover" href="NPC-search-results.html.html"><i
                                         class="fa fa-user fa-lg fa-fw"></i>NPCs</a></li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="contactus.html"><i
+                            <li class="nav-item"><a class="nav-link navIconTextHover" href="quest-search-results.html.html"><i
                                         class="fa fa-exclamation fa-lg fa-fw"></i>Quests</a></li>
                         </ul>
                         <span class="navbar-text ml-auto">
@@ -111,17 +111,18 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 mx-auto">
-                            <form action="search-results.html" method="get">
+                            <form action="item-search-results.html" method="get">
                                 <h5><input id="searchBar" name="userInput" type="text" placeholder="Enter search here: " class="groove search" style="height:30 px;">
                                     <button id="searchButton" type="submit" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
                                 </h5>
-                                <h3 style="color: #B4D603;">Filter By:</h3>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button id="filterItems"  type="button" class="btn btn-dark buttonColoring">Items</button>
-                                    <button id="filterSpells"  type="button" class="btn btn-dark buttonColoring">Spells</button>
-                                    <button id="filterNPCs"  type="button" class="btn btn-dark buttonColoring">NPCs</button>
-                                    <button id="filterQuests"  type="button" class="btn btn-dark buttonColoring">Quests</button>
-                                  </div>
+                                <h3 style="color: #B4D603;">Search Category:</h3>
+                                <select required style="width:550px;" class="form-control" id="filterChoice">
+                                    <option selected disabled hidden></option>
+                                    <option>Items</option>
+                                    <option>Spells</option>
+                                    <option>NPCs</option>
+                                    <option>Quests</option>
+                                </select>
                             </form>
 
                             

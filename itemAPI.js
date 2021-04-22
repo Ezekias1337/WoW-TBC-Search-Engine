@@ -69,7 +69,6 @@ function fetchItems(searchTerm) {
     
     function searchExecute() {
         let test = search();
-        let checkFilterChoice = document.getElementById("filterChoice").value;
 
 
         fetchItems(test);
