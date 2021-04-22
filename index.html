@@ -115,7 +115,17 @@
                                 <h5><input id="searchBar" name="userInput" type="text" placeholder="Enter search here: " class="groove search" style="height:30 px;">
                                     <button id="searchButton" type="submit" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
                                 </h5>
+                                <h3 style="color: #B4D603;">Filter By:</h3>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button id="filterItems"  type="button" class="btn btn-dark buttonColoring">Items</button>
+                                    <button id="filterSpells"  type="button" class="btn btn-dark buttonColoring">Spells</button>
+                                    <button id="filterNPCs"  type="button" class="btn btn-dark buttonColoring">NPCs</button>
+                                    <button id="filterQuests"  type="button" class="btn btn-dark buttonColoring">Quests</button>
+                                  </div>
                             </form>
+
+                            
+
                         </div>
                     </div>
                 </div>
@@ -141,9 +151,10 @@
         <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="generateAccessToken.js"></script>
         <script src="itemAPI.js"></script>
         <script src="modalShow.js"></script>
-        <script src="generateAccessToken.js"></script>
+        
         
         
 

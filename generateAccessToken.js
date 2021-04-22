@@ -14,6 +14,7 @@
          blizzardResponse = xhr.responseText
          oAuthTokenFullString = blizzardResponse;
          oAuthToken = oAuthTokenFullString.slice(17,51);
+         searchExecute();
          return xhr.responseText;
       }};
 

@@ -45,7 +45,7 @@ input.search {
     background: #364447;
 }
 
-#loginEmail, #loginPassword {
+#loginEmail, #loginPassword, #filterChoice {
   opacity: 0.8;
   color: #B4D603;
   background: #364447;

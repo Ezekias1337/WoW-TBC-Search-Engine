@@ -18,7 +18,7 @@
 
     </head>
 
-    <body onload="searchExecute()" class="bkground_dark">
+    <body onload="xhr.onreadystatechange()" class="bkground_dark">
         <center>
             <header class="bkground" style="height: 150px;">
                 <div class="container">
@@ -71,19 +71,19 @@
                         <div class="col-sm-12 mx-auto">
                               
                                 <h5><input id="searchBar" type="text" placeholder="Enter search here: " class="groove search" style="height:30 px;">
-                                    <button id="searchButtonItems" onclick="searchExecute()" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
+                                    <button id="searchButtonItems" onclick="clearSearchItems(); searchExecute()" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
                                 </h5>
                               
                         </div>
                         
                         <div class="col-sm-7 mx-auto">
                             <h3 style="color: #B4D603;">Filter By:</h3>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-dark buttonColoring">Items</button>
-                                <button type="button" class="btn btn-dark buttonColoring">Spells</button>
-                                <button type="button" class="btn btn-dark buttonColoring">NPCs</button>
-                                <button type="button" class="btn btn-dark buttonColoring">Quests</button>
-                              </div>
+                            <select class="form-control" id="filterChoice">
+                                <option>Items</option>
+                                <option>Spells</option>
+                                <option>NPCs</option>
+                                <option>Quests</option>
+                            </select>
                         </div>
                         
                         <div class="col-sm-7 mx-auto">
@@ -94,7 +94,7 @@
                                   </tr>
                                 </thead>
                                 <tbody class="ml-3">
-                                  <tr id="weaponArmourResults">
+                                  <tr id="userSearchResults">
                                       
                                   </tr>
                                 </tbody>
@@ -126,9 +126,10 @@
         <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
         <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
         <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="itemAPI.js"></script>
-        <script src="modalShow.js"></script>
         <script src="generateAccessToken.js"></script>
+        <script src="itemAPI.js"></script>
+        <scrip src="modalShow.js"></scrip>
+        
         
 
     </body>

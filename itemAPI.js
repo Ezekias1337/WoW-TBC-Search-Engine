@@ -1,4 +1,4 @@
-function fetchData(searchTerm) {
+function fetchItems(searchTerm) {
     fetch(`https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`)
         .then(response => {
             if (!response.ok) {
@@ -7,7 +7,7 @@ function fetchData(searchTerm) {
             return response.json();
         })
         .then(data => {
-            const stats = document.getElementById('weaponArmourResults');
+            const statsItems = document.getElementById('userSearchResults');
   
             Promise.all(data.results.map(user => {
                 return fetch(`https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
@@ -46,7 +46,7 @@ function fetchData(searchTerm) {
                                 div.appendChild(i);
                             }
                         }
-                        stats.appendChild(div);
+                        statsItems.appendChild(div);
                     });
                 });
         })
@@ -54,6 +54,8 @@ function fetchData(searchTerm) {
             console.error(error);
         });
   }
+
+  
 
   function search(){
     let input = document.getElementById("searchBar").value 
@@ -63,19 +65,23 @@ function fetchData(searchTerm) {
         }
         
     }
-
+    
+    
     function searchExecute() {
         let test = search();
-        fetchData(test);
+        let checkFilterChoice = document.getElementById("filterChoice").value;
+
+
+        fetchItems(test);
+
+
         console.log("Success")
     }
     
     document.getElementById("searchBar").addEventListener("submit", searchExecute);
-
     let urlItemString = window.location.search.slice(11);
     document.getElementById("searchBar").value = urlItemString;
     
-
     function successMessage () {
         console.log("function has been called!")
     }
@@ -94,6 +100,6 @@ function fetchData(searchTerm) {
         }
       });
 
-    function refreshPage(){
-        location.reload();
+    function clearSearchItems(){
+        document.getElementById("userSearchResults").innerHTML = "";
     }
