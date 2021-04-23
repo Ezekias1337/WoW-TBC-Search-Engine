@@ -133,19 +133,27 @@ function fetchItems(searchTerm) {
         console.log("function has been called!")
     }
 
-    var testSearchBar = document.getElementById("searchBar");
+    
+    
 
-    testSearchBar.addEventListener("keyup", function(event) {
-        var x = event.key;
-        // Number 13 is the "Enter" key on the keyboard
-        if (x === "Enter") {
 
-          
-          // Trigger the button element with a click
-          
-          document.getElementById("searchButtonItems").click();
-        }
-      });
+    function addEventListenerToSearchBar(){
+        document.getElementById("searchBar").addEventListener("keyup", function(event) {
+            console.log("loop entered")
+            var x = event.key;
+            // Number 13 is the "Enter" key on the keyboard
+            if (x === "Enter") {
+    
+              
+              // Trigger the button element with a click
+              
+              document.getElementById("searchButtonItems").click();
+            }
+          });
+    }
+
+
+
 
     function clearSearchItems(){
         document.getElementById("userSearchResults").innerHTML = "";

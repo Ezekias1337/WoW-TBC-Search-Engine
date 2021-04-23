@@ -18,14 +18,15 @@
 
     </head>
 
-    <body onload="xhr.onreadystatechange()" class="bkground_dark">
+    <body onload="xhr.onreadystatechange(); addEventListenerToSearchBar()" class="bkground_dark">
         <center>
             <header class="bkground" style="height: 150px;">
                 <div class="container">
                     <div class="row">
                         <div class="col mx-auto">
-                            <div class="TBC_Logo"></div>
+                            
                             <a class="nav-link" href="#">
+                                <div class="TBC_Logo"></div>
                             </a>
                             <div class="col">
                                 <h1>Search Engine</h1>
@@ -45,13 +46,15 @@
                     </button>
                     <div class="collapse navbar-collapse" id="bcNavbar">
                         <ul class="navbar-nav">
-                            <li class="nav-item active"><a class="nav-link navIconTextHover" href="#"><i class="fa fa-home fa-lg fa-fw"></i> Home</a>
+                            <li class="nav-item active"><a class="nav-link navIconTextHover" href="#"><i class="fa fa-shield fa-lg fa-fw"></i>Items</a>
                             </li>
                             <li class="nav-item"><a class="nav-link navIconTextHover" href="talent-tree-calculator.html"><i
-                                        class="fa fa-info fa-lg fa-fw"></i>Talents</a></li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="#"><i class="fa fa-list fa-lg fa-fw"></i>Sites</a></li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="contactus.html"><i
-                                        class="fa fa-address-card fa-lg fa-fw"></i>Contact</a></li>
+                                        class="fa fa-bullseye fa-lg fa-fw"></i>Talents</a></li>
+                            <li class="nav-item"><a class="nav-link navIconTextHover" href="spell-search-results.html"><i class="fa fa-book fa-lg fa-fw"></i>Spells</a></li>
+                            <li class="nav-item"><a class="nav-link navIconTextHover" href="NPC-search-results.html.html"><i
+                                        class="fa fa-user fa-lg fa-fw"></i>NPCs</a></li>
+                            <li class="nav-item"><a class="nav-link navIconTextHover" href="quest-search-results.html.html"><i
+                                        class="fa fa-exclamation fa-lg fa-fw"></i>Quests</a></li>
                         </ul>
                         <span class="navbar-text ml-auto">
                             <a role="button" class="navIconTextHover loginStyling" data-toggle="modal" data-target="#loginModal">
@@ -72,10 +75,9 @@
                         
                         <div class="col-sm-12 mx-auto">
                               <h3 style="color: #364447;">Item Search</h3>
-                                <h5><input id="searchBar" type="text" placeholder="Enter search here: " class="groove search" style="height:30 px;">
-                                    <button id="searchButtonItems" onclick="clearSearchItems(); searchExecute()" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
-                                </h5>
-                              
+                                    <h5><input id="searchBar" type="text" placeholder="Enter search here: " class="groove search" style="height:30 px;">
+                                        <button id="searchButtonItems" onclick="clearSearchItems(); searchExecute()" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
+                                    </h5>
                         </div>
                         
                         
