@@ -14,8 +14,27 @@
          blizzardResponse = xhr.responseText
          oAuthTokenFullString = blizzardResponse;
          oAuthToken = oAuthTokenFullString.slice(17,51);
-         searchExecute();
+         if ( document.URL.includes("item-search-results.html") ) {
+            searchExecuteItems();
+            console.log("Orale Holmes");
+            return xhr.responseText;
+        } else if ( document.URL.includes("spells-search-results.html") ) {
+         searchExecuteSpells();
+         console.log("Orale Holmes");
          return xhr.responseText;
+     }   else if ( document.URL.includes("NPCs-search-results.html") ) {
+         searchExecuteNPCs();
+         console.log("Orale Holmes");
+         return xhr.responseText;
+  }     /* else if ( document.URL.includes("quests-search-results.html") ) {
+         searchExecuteQuests();
+         console.log("Orale Holmes");
+         return xhr.responseText;
+} */
+
+         
+
+         
       }};
 
    var data = "grant_type=client_credentials";

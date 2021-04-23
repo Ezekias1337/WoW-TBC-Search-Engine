@@ -67,17 +67,31 @@ function fetchItems(searchTerm) {
     }
     
     
-    function searchExecute() {
+    function searchExecuteItems() {
         let test = search();
-
-
         fetchItems(test);
+        console.log("Success")
+    }
 
+    function searchExecuteSpells() {
+        let test = search();
+        fetchSpells(test);
+        console.log("Success")
+    }
 
+    function searchExecuteNPCs() {
+        let test = search();
+        fetchNPCs(test);
         console.log("Success")
     }
     
-    document.getElementById("searchBar").addEventListener("submit", searchExecute);
+    /*function searchExecuteQuests() {
+        let test = search();
+        fetchQuests(test);
+        console.log("Success")
+    }*/
+    
+    document.getElementById("searchBar").addEventListener("submit", searchExecuteItems);
     let urlItemString = window.location.search.slice(11);
     document.getElementById("searchBar").value = urlItemString;
     
