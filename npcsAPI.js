@@ -10,7 +10,7 @@ function fetchNPCs(searchTerm) {
             const statsItems = document.getElementById('userSearchResults');
   
             Promise.all(data.results.map(user => {
-                return fetch(`https://us.api.blizzard.com/data/wow/media/creature-display/${user.data.id}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
+                return fetch(`https://us.api.blizzard.com/data/wow/media/creature-display/${user.data.creature_displays[0].id}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
                     .then(innerRes => innerRes.json())
                     .then(innerResData => {
                         return {...user, ...innerResData}
