@@ -81,13 +81,61 @@ function fetchItems(searchTerm) {
     let urlItemString = window.location.search.slice(11);
     document.getElementById("searchBar").value = urlItemString;
     
+
+    function determineSearchCategory(){
+        return document.getElementById("filterChoice").value;
+    }
+
+
+  /*  function updateFormAction(){
+
+        let logicKey = determineSearchCategory(); 
+
+        if (logicKey === "Items"){
+            document.getElementById("searchForm").setAttribute("action", "item-search-results.html");
+        } 
+        elseif (logicKey === "Spells"){
+            document.getElementById("searchForm").setAttribute("action", "spells-search-results.html");
+        } 
+        elseif (logicKey === "NPCs"){
+            document.getElementById("searchForm").setAttribute("action", "NPCs-search-results.html");
+        } 
+        
+        else {
+            document.getElementById("searchForm").setAttribute("action", "quests-search-results.html");
+        }
+
+    } */
+    
+    function updateFormAction (){
+    let logicKey = determineSearchCategory();
+
+    switch(logicKey){
+        case "Items":
+            document.getElementById("searchForm").setAttribute("action", "item-search-results.html");
+            break;
+        case "Spells":
+            document.getElementById("searchForm").setAttribute("action", "spells-search-results.html");
+            break;
+        case "NPCs":
+            document.getElementById("searchForm").setAttribute("action", "NPCs-search-results.html");
+            break;
+        case "Quests":
+           document.getElementById("searchForm").setAttribute("action", "quests-search-results.html");
+            break;
+        default:
+            console.log("User didn't select category");
+    }
+}
+    searchCategory = document.getElementById("filterChoice").addEventListener("change", updateFormAction);
+
     function successMessage () {
         console.log("function has been called!")
     }
 
-    var testMia = document.getElementById("searchBar");
+    var testSearchBar = document.getElementById("searchBar");
 
-    testMia.addEventListener("keyup", function(event) {
+    testSearchBar.addEventListener("keyup", function(event) {
         var x = event.key;
         // Number 13 is the "Enter" key on the keyboard
         if (x === "Enter") {
@@ -102,3 +150,4 @@ function fetchItems(searchTerm) {
     function clearSearchItems(){
         document.getElementById("userSearchResults").innerHTML = "";
     }
+
