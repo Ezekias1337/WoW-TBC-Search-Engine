@@ -1,5 +1,5 @@
 function fetchSpells(searchTerm) {
-    fetch(`https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`)
+    fetch(`https://us.api.blizzard.com/data/wow/search/spell?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`)
         .then(response => {
             if (!response.ok) {
                 throw Error("ERROR");
@@ -10,7 +10,7 @@ function fetchSpells(searchTerm) {
             const statsItems = document.getElementById('userSearchResults');
   
             Promise.all(data.results.map(user => {
-                return fetch(`https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
+                return fetch(`https://us.api.blizzard.com/data/wow/media/spell/${user.data.id}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
                     .then(innerRes => innerRes.json())
                     .then(innerResData => {
                         return {...user, ...innerResData}
@@ -26,11 +26,6 @@ function fetchSpells(searchTerm) {
                         div.className = 'Items';
                         const lines = [
                             `${user.data.name.en_US}`,
-                            `Item Level ${user.data.level}`,
-                            `${user.data.inventory_type.name.en_US}`,
-                            `${user.data.item_subclass.name.en_US}`,
-                            `Item Class: ${user.data.item_class.name.en_US}`,
-                            `Item Subclass: ${user.data.item_subclass.name.en_US}`,
                             `ID: ${user.data.id}`
                         ];
                         for (let line of lines) {
