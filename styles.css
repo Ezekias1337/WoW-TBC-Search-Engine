@@ -107,8 +107,8 @@ input.search {
   color: #364447;
   min-width: 1550px;
   min-height: 1350px;
+  background-attachment: fixed;
   
-  background-repeat: repeat;
 
 }
 
