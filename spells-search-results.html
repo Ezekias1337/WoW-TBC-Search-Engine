@@ -46,11 +46,11 @@
                     </button>
                     <div class="collapse navbar-collapse" id="bcNavbar">
                         <ul class="navbar-nav">
-                            <li class="nav-item active"><a class="nav-link navIconTextHover" href="item-search-results.html"><i class="fa fa-shield fa-lg fa-fw"></i>Items</a>
+                            <li class="nav-item"><a class="nav-link navIconTextHover" href="item-search-results.html"><i class="fa fa-shield fa-lg fa-fw"></i>Items</a>
                             </li>
                             <li class="nav-item"><a class="nav-link navIconTextHover" href="talent-tree-calculator.html"><i
                                         class="fa fa-bullseye fa-lg fa-fw"></i>Talents</a></li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="#"><i class="fa fa-book fa-lg fa-fw"></i>Spells</a></li>
+                            <li class="nav-item active"><a class="nav-link navIconTextHover" href="#"><i class="fa fa-book fa-lg fa-fw"></i>Spells</a></li>
                             <li class="nav-item"><a class="nav-link navIconTextHover" href="NPCs-search-results.html"><i
                                         class="fa fa-user fa-lg fa-fw"></i>NPCs</a></li>
                             <li class="nav-item"><a class="nav-link navIconTextHover" href="quests-search-results.html"><i
@@ -65,9 +65,53 @@
                 </div>
             </nav>
 
+            <div id="loginModal" class="modal fade" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Login</h3>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label class="sr-only" for="loginEmail">Email Address</label>
+                                            <input type="email" class="form-control form-control-sm" id="loginEmail"
+                                                placeholder="Enter email">
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <label class="sr-only" for="loginPassword">Password</label>
+                                            <input type="password" class="form-control form-control-sm" id="loginPassword"
+                                                placeholder="Password">
+                                        </div>
+                                        <div class="col">
+                                            <div class="myTest custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">Remember Me</label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <button type="button" class="btn btn-secondary btn-sm ml-auto"
+                                            data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-sml ml-1 signIn">Sign in</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
 
-
-
+            <nav aria-label="breadcrumb" >
+                <ol class="breadcrumb" id="customBreadCrumb">
+                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item active" id="customActiveBreadCrumb" aria-current="page">Spells</li>
+                </ol>
+              </nav>
             
                 <div class="container Wallpaper_Belf_Draenei img-fluid img-thumbnail" >
                     <div class="row">
@@ -82,15 +126,15 @@
                         
                         
                         
-                        <div class="col-sm-7 mx-auto">
+                        <div class="col-sm-4 mx-auto">
                             <table class="table table-dark table-striped table-hover">
-                                <thead class="thead-light">
+                                <thead align="center" class="thead-light">
                                   <tr>
                                     <th scope="col">Results</th>
                                   </tr>
                                 </thead>
                                 <tbody class="ml-3">
-                                  <tr id="userSearchResults">
+                                  <tr id="userSearchResults"  colspan="8">
                                       
                                   </tr>
                                 </tbody>

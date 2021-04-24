@@ -45,10 +45,14 @@ input.search {
     background: #364447;
 }
 
-#loginEmail, #loginPassword, #filterChoice {
+#loginEmail, #loginPassword, #filterChoice, #customBreadCrumb {
   opacity: 0.8;
   color: #B4D603;
   background: #364447;
+}
+
+#customActiveBreadCrumb {
+  color: #e1eef4;
 }
 
 .form-control:focus {

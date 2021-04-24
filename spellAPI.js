@@ -30,6 +30,7 @@ function fetchSpells(searchTerm) {
                         ];
                         for (let line of lines) {
                             const p = document.createElement('td');
+                            p.style = "text-align:center vertical-align:center";
                             p.innerText = line;
                             div.appendChild(p);
                         }
