@@ -1,5 +1,7 @@
+'use strict';
+
 function fetchItems(searchTerm) {
-    fetch(`https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`)
+    fetch(`https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&id=&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`)
         .then(response => {
             if (!response.ok) {
                 throw Error("ERROR");

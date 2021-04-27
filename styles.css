@@ -105,8 +105,9 @@ input.search {
   background-position:center;
   min-height: 500px;
   color: #364447;
-  min-width: 1550px;
+  
   min-height: 1350px;
+  max-width: 100%;
   background-attachment: fixed;
   
 
@@ -137,7 +138,7 @@ input.search {
   background-image: linear-gradient(#364447, #E0910E);
   color: #e1eef4;
   min-height: 150px;
-  min-width: 2050px;
+  min-width: 100%;
 
 }
 
@@ -183,7 +184,7 @@ input.search {
 
   .Items {
     border-radius: 7px;
-    border: 1px solid #BEBFC1;
+    
   }
 
   tbody p{

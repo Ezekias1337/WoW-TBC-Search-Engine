@@ -1,3 +1,5 @@
+'use strict';
+
 function fetchSpells(searchTerm) {
     fetch(`https://us.api.blizzard.com/data/wow/search/spell?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`)
         .then(response => {
