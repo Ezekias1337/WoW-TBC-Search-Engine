@@ -32,7 +32,6 @@ function fetchItems(searchTerm) {
                             `${user.data.inventory_type.name.en_US}`,
                             `${user.data.item_subclass.name.en_US}`,
                             `Item Class: ${user.data.item_class.name.en_US}`,
-                            `Item Subclass: ${user.data.item_subclass.name.en_US}`,
                             `ID: ${user.data.id}`
                         ];
                         for (let line of lines) {
@@ -72,25 +71,29 @@ function fetchItems(searchTerm) {
     function searchExecuteItems() {
         let test = search();
         fetchItems(test);
-        console.log("Success")
+        console.log("Success");
+        setTimeout(toolTipItems, 2000);
     }
 
     function searchExecuteSpells() {
         let test = search();
         fetchSpells(test);
-        console.log("Success")
+        console.log("Success");
+        setTimeout(toolTipSpells, 2000);
     }
 
     function searchExecuteNPCs() {
         let test = search();
         fetchNPCs(test);
-        console.log("Success")
+        console.log("Success");
+        setTimeout(toolTipNPCs, 2000);
     }
     
     /*function searchExecuteQuests() {
         let test = search();
         fetchQuests(test);
-        console.log("Success")
+        console.log("Success");
+        setTimeout(toolTip, 2000);
     }*/
     
     document.getElementById("searchBar").addEventListener("submit", searchExecuteItems);
@@ -175,3 +178,20 @@ function fetchItems(searchTerm) {
         document.getElementById("userSearchResults").innerHTML = "";
     }
 
+    function toolTipItems() {document.querySelectorAll('.Items').forEach(item => {
+        item.addEventListener('mouseover', event => {
+          console.log(event.currentTarget.children[5].innerText.replace("ID: ", ""));
+        })
+      })}
+
+      function toolTipSpells() {document.querySelectorAll('.Items').forEach(item => {
+        item.addEventListener('mouseover', event => {
+          console.log(event.currentTarget.children[1].innerText.replace("ID: ", ""));
+        })
+      })}
+
+      function toolTipNPCs() {document.querySelectorAll('.Items').forEach(item => {
+        item.addEventListener('mouseover', event => {
+          console.log(event.currentTarget.children[2].innerText.replace("ID: ", ""));
+        })
+      })}

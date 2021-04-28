@@ -26,6 +26,7 @@ function fetchSpells(searchTerm) {
                     results.forEach((user) => {
                         const div = document.createElement('tr');
                         div.className = 'Items';
+                      /*  div.onclick="toolTip(this)"; */
                         const lines = [
                             `${user.data.name.en_US}`,
                             `ID: ${user.data.id}`
@@ -52,3 +53,5 @@ function fetchSpells(searchTerm) {
             console.error(error);
         });
   }
+
+
