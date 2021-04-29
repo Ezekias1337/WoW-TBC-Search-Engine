@@ -26,6 +26,9 @@ function fetchItems(searchTerm) {
                     results.forEach((user) => {
                         const div = document.createElement('tr');
                         div.className = 'Items';
+                        div.dataset.toggle = "tooltip";
+                        div.dataset.placement = "top"; 
+                        div.setAttribute("title", "");
                         const lines = [
                             `${user.data.name.en_US}`,
                             `Item Level ${user.data.level}`,
@@ -177,12 +180,43 @@ function fetchItems(searchTerm) {
     function clearSearchItems(){
         document.getElementById("userSearchResults").innerHTML = "";
     }
-
+    
     function toolTipItems() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('mouseover', event => {
-          console.log(event.currentTarget.children[5].innerText.replace("ID: ", ""));
-        })
+        item.addEventListener('mouseover', getToolTipID) 
       })}
+
+    function getToolTipID() {
+        let ID;
+        let ID2;
+        ID = (event.currentTarget.children[5].innerText.replace("ID: ", ""));
+        ID2 = (event.currentTarget);
+            console.log(ID);
+            fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
+            .then(response => response.json())
+            .then((user) => {
+                console.log(user.inventory_type);
+                ID2.setAttribute("title", user.inventory_type.name);
+            }); 
+
+    }
+
+    
+
+  /*  function fetchToolTipData () {
+        toolTipItems();
+        fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`).then(response => response.json())
+          .then (user => {
+              const lines = [
+                  `${user.data.name.en_US}`,
+                  `Item Level ${user.data.level}`,
+                  `${user.data.inventory_type.name.en_US}`,
+                  `${user.data.item_subclass.name.en_US}`,
+                  `Item Class: ${user.data.item_class.name.en_US}`,
+                  `ID: ${user.data.id}`
+              ];
+          event.currentTarget.dataset.title = lines;
+    }) */
+      
 
       function toolTipSpells() {document.querySelectorAll('.Items').forEach(item => {
         item.addEventListener('mouseover', event => {
