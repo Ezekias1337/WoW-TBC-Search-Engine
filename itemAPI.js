@@ -181,9 +181,15 @@ function fetchItems(searchTerm) {
     function clearSearchItems(){
         document.getElementById("userSearchResults").innerHTML = "";
     }
+
+    function clearToolTip(){
+        document.getElementById("toolTipDisplay").innerHTML = "";
+        document.getElementById("fullToolTip").style.display = "none";
+    }
     
     function toolTipItems() {document.querySelectorAll('.Items').forEach(item => {
         item.addEventListener('mouseover', getToolTipID) 
+     /*   item.addEventListener('mouseleave', clearToolTip) */
       })}
 
       function getToolTipID() {
@@ -244,11 +250,12 @@ function fetchItems(searchTerm) {
                     `${newData.required_level}`,
                     `${newData.sell_price}`
                 ]   
-               /*     lines.forEach((cell) => {
+                    document.getElementById("fullToolTip").style.display = "table"
+                    lines.forEach((cell) => {
                     let node = document.createElement('td');
                     node.innerHTML = cell;
                     document.getElementById("toolTipDisplay").appendChild(node)
-                }) */
+                }) 
                    console.table(lines) 
               }
             })}
