@@ -186,47 +186,38 @@ function fetchItems(searchTerm) {
         item.addEventListener('mouseover', getToolTipID) 
       })}
 
-    function getToolTipID() {
+      function getToolTipID() {
+        let responseFromFetch;
         let ID;
         let ID2;
         ID = (event.currentTarget.children[5].innerText.replace("ID: ", ""));
         ID2 = (event.currentTarget);
-            console.log(ID);
-            fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
+         fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
+             .then(response => response.json())
+             .then(data => responseFromFetch = data)
+             .then(newData => 
+                {console.log(Object.keys(newData.preview_item.stats).length);
+                let itemStatsArrayLength;
+                itemStatsArrayLength = Object.keys(newData.preview_item.stats).length;
+                let i;
+                let itemStatsArray = [];
+                for (i = 0; i < itemStatsArrayLength; i++){
+                    itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
+                    console.log(itemStatsArray)
+                }})}
+    /* This works, but I need to add error handling for items with no stats*/
+  
+
+    function test() {
+       let responseFromFetch;
+        fetch(`https://us.api.blizzard.com/data/wow/item/3039?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
             .then(response => response.json())
-            .then((user) => {
-                console.log(user.inventory_type);
-                let lineContent;
-                let statsArray; 
-                try {
-                    statsArray = user.preview_item.stats[0].display.display_string
-                    console.log(statsArray)
-                } catch (error) {
-                    console.log(error)
-                }
-                console.table(statsArray)
-                const lines = [
-                    `${user.name}`,
-                    `${user.preview_item.level.value}`,
-                   /* `${user.preview_item.binding.name}`, */
-                    `${user.inventory_type.name}`,
-                    `${user.item_subclass.name}`,
-                    `${user.preview_item.weapon.damage.display_string}`,
-                    `${user.preview_item.weapon.attack_speed.display_string}`,
-                    `${user.preview_item.weapon.dps.display_string}`,
-                   /* `${user.preview_item.stats[0].display.display_string}`, */
-                    `${user.preview_item.durability.display_string}`,
-                    `${user.required_level}`,
-                    `${user.sell_price}`
-                ] 
-                lineContent = user.inventory_type.name;
-                let node = document.createElement('tr');
-                node.innerHTML = lines;
-                
-                document.getElementById("toolTipDisplay").appendChild(node);
-            }); 
+            .then(data => responseFromFetch = data)
+            .then(newData => console.log(newData.preview_item.stats[0].display.display_string, newData.preview_item.binding.name))
 
     }
+
+
 
     /* 
     
