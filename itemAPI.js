@@ -27,8 +27,9 @@ function fetchItems(searchTerm) {
                         const div = document.createElement('tr');
                         div.className = 'Items';
                         div.dataset.toggle = "tooltip";
-                        div.dataset.placement = "top"; 
+                        div.dataset.placement = "auto left"; 
                         div.setAttribute("title", "");
+                        div.dataset.html = true;
                         const lines = [
                             `${user.data.name.en_US}`,
                             `Item Level ${user.data.level}`,
@@ -195,12 +196,54 @@ function fetchItems(searchTerm) {
             .then(response => response.json())
             .then((user) => {
                 console.log(user.inventory_type);
-                ID2.setAttribute("title", user.inventory_type.name);
+                let lineContent;
+                let statsArray; 
+                try {
+                    statsArray = user.preview_item.stats[0].display.display_string
+                    console.log(statsArray)
+                } catch (error) {
+                    console.log(error)
+                }
+                console.table(statsArray)
+                const lines = [
+                    `${user.name}`,
+                    `${user.preview_item.level.value}`,
+                   /* `${user.preview_item.binding.name}`, */
+                    `${user.inventory_type.name}`,
+                    `${user.item_subclass.name}`,
+                    `${user.preview_item.weapon.damage.display_string}`,
+                    `${user.preview_item.weapon.attack_speed.display_string}`,
+                    `${user.preview_item.weapon.dps.display_string}`,
+                   /* `${user.preview_item.stats[0].display.display_string}`, */
+                    `${user.preview_item.durability.display_string}`,
+                    `${user.required_level}`,
+                    `${user.sell_price}`
+                ] 
+                lineContent = user.inventory_type.name;
+                let node = document.createElement('tr');
+                node.innerHTML = lines;
+                
+                document.getElementById("toolTipDisplay").appendChild(node);
             }); 
 
     }
 
+    /* 
     
+    user.name  (name of item) row 1
+    user.preview_item.level.value (ilvl of item) row 2
+    user.preview_item.binding.name       (bind on pickup or equip) row 3
+    user.inventory_type.name       (inventory type (aka ranged, 1h sword)) row 4
+    user.item_subclass.name       (item subclass (aka bow, sword, polearm))
+    user.preview_item.weapon.damage.display_string  (damage range (aka 31-42 damage)) row 5
+    user.preview_item.weapon.attack_speed.display_string (weapon speed (aka Speed 3.00))
+    user.preview_item.weapon.dps.display_string (DPS (aka 12.2 damage per second)) row 6
+    user.preview_item.stats[0] *this will be hard to implement* (stats (aka +16 agility)) row 7
+    user.preview_item.durability.display_string       (durability) row 8
+    user.required_level       (required level to use) row 9
+    user.sell_price       (sell price) row 10
+    
+    */
 
   /*  function fetchToolTipData () {
         toolTipItems();
