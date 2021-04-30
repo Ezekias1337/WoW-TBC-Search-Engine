@@ -113,9 +113,15 @@
                 </ol>
               </nav>
             
-              <table id="toolTipDisplay">
-                <th>ToolTip</th>
-              </table>
+           <!--  
+               
+                <table class="table table-dark table-striped">
+                    <tr id="toolTipDisplay" class="thead-light">
+                        <th>ToolTip</th>
+                    </tr> 
+                </table> 
+            
+            --> 
 
                 <div class="container Wallpaper_Belf_Draenei img-fluid img-thumbnail" >
                     <div class="row">
@@ -130,20 +136,32 @@
                         
                         
                         
-                        <table class="col-sm-7 mx-auto">
-                            <table class="table table-dark table-striped table-hover">
-                                <thead class="thead-light" align="center">
-                                  <tr>
-                                    <th scope="col">Results</th>
+                        <div class="col-sm-4 mx-auto">
+                            <table class="table table-dark table-hover">
+                                <thead align="center" class="thead-light">
+                                    <tr>
+                                        <th colspan="7">Results</th> 
+                                    </tr>
+                                </thead>
+                                
+                                <thead align="center" class="thead-light">
+                                    <tr>
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">iLvl</th>
+                                    <th scope="col">Inv Type</th>
+                                    <th scope="col">Subclass</th>
+                                    <th scope="col">Item Class</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Img</th>
                                   </tr>
                                 </thead>
-                                <tbody class="ml-3">
-                                  <tr id="userSearchResults">
-                                      
-                                  </tr>
+
+                                <tbody class="ml-3" id="userSearchResults" colspan="4">
+                                  
                                 </tbody>
+
                               </table>
-                        </table>
+                        </div>
                     </div>
                 </div>
             

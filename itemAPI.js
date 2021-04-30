@@ -196,16 +196,62 @@ function fetchItems(searchTerm) {
              .then(response => response.json())
              .then(data => responseFromFetch = data)
              .then(newData => 
-                {console.log(Object.keys(newData.preview_item.stats).length);
+                {
+                if (newData.preview_item.stats == null){
+                    console.log("Item has no stats");
+                    const lines = [
+                        `${newData.name}`,
+                        `${newData.preview_item.level.value}`,
+
+                      /* I need to add error handling here for Items with  no bind type*/
+                      /*  `${newData.preview_item.binding.name}`, */
+                        `${newData.inventory_type.name}`,
+                        `${newData.item_subclass.name}`,
+                        `${newData.preview_item.weapon.damage.display_string}`,
+                        `${newData.preview_item.weapon.attack_speed.display_string}`,
+                        `${newData.preview_item.weapon.dps.display_string}`,
+                        `${newData.preview_item.durability.display_string}`,
+                        `${newData.required_level}`,
+                        `${newData.sell_price}`
+                    ]
+                    console.table(lines)
+                    let node = document.createElement('tr');
+                    node.innerHTML = lines;
+                
+                document.getElementById("toolTipDisplay").appendChild(node);
+                } else {
                 let itemStatsArrayLength;
                 itemStatsArrayLength = Object.keys(newData.preview_item.stats).length;
                 let i;
                 let itemStatsArray = [];
+                
                 for (i = 0; i < itemStatsArrayLength; i++){
                     itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
                     console.log(itemStatsArray)
-                }})}
-    /* This works, but I need to add error handling for items with no stats*/
+                }
+                
+                const lines = [
+                    `${newData.name}`,
+                    `${newData.preview_item.level.value}`,
+                    `${newData.preview_item.binding.name}`, 
+                    `${newData.inventory_type.name}`,
+                    `${newData.item_subclass.name}`,
+                    `${newData.preview_item.weapon.damage.display_string}`,
+                    `${newData.preview_item.weapon.attack_speed.display_string}`,
+                    `${newData.preview_item.weapon.dps.display_string}`,
+                    `${itemStatsArray}`, 
+                    `${newData.preview_item.durability.display_string}`,
+                    `${newData.required_level}`,
+                    `${newData.sell_price}`
+                ]   
+               /*     lines.forEach((cell) => {
+                    let node = document.createElement('td');
+                    node.innerHTML = cell;
+                    document.getElementById("toolTipDisplay").appendChild(node)
+                }) */
+                   console.table(lines) 
+              }
+            })}
   
 
     function test() {
