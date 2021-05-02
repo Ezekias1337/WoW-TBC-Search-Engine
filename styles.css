@@ -105,7 +105,6 @@ input.search {
   background-position:center;
   min-height: 500px;
   color: #364447;
-  
   min-height: 1350px;
   max-width: 100%;
   background-attachment: fixed;
@@ -207,6 +206,17 @@ input.search {
    background-color: #364447;
  }
 
- 
+ #fullToolTip{
+  opacity: 0.9;
+  right: 1000px;
+  top: 715px;
+  position:absolute;
+ }
+
+
+ #resultsTable{
+  left: 360px;
+  opacity: 0.9;
+}
  
 

@@ -192,10 +192,10 @@ function fetchItems(searchTerm) {
             tooltipLinezArray[z].innerHTML = "";
             
         }
-        document.querySelectorAll('.tooltip-linez').forEach(e => e.remove());
+       document.querySelectorAll('.tooltip-linez').forEach(e => e.remove());
 
         
-        document.getElementById("fullToolTip").style.display = "none";
+     /*   document.getElementById("fullToolTip").style.display = "none"; */
         
         console.log("Cleared tooltip of data!")
     }
@@ -205,7 +205,21 @@ function fetchItems(searchTerm) {
         item.addEventListener('mouseleave', clearToolTip) 
       })}
 
+    
+
+    function moveToolTipWMouse(y_pos){
+        let g;
+        let xCoord;
+        let yCoord;
+        g = document.getElementById("fullToolTip");
+        window.addEventListener('mousemove', function(e) {
+        xCoord = e.x;
+        yCoord = e.pageY - 100;
+        g.style.top = yCoord +'px';
+    })}
+
       function getToolTipID() {
+        moveToolTipWMouse();
         document.getElementById("fullToolTip").style.display = "table"
         let responseFromFetch;
         let ID;
@@ -296,7 +310,7 @@ function fetchItems(searchTerm) {
                     } else if(cell === newData.inventory_type.name){
                         document.getElementById("inv-type").appendChild(node)
                     } else if(cell === newData.item_subclass.name){
-                        document.getElementById("item-subclass").appendChild(node)
+                        document.getElementById("inv-type").appendChild(node)
                     } else if(cell === newData.preview_item.weapon.damage.display_string){
                         document.getElementById("damage").appendChild(node)
                     } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
@@ -387,3 +401,15 @@ function fetchItems(searchTerm) {
           console.log(event.currentTarget.children[2].innerText.replace("ID: ", ""));
         })
       })}
+
+/*    function getCoordinates(){
+        let xCoord;
+        let yCoord;
+        
+        window.addEventListener('mousemove', function(e) {
+            xCoord = e.x;
+            yCoord = e.y;
+        console.log(`x: ${e.x} | y: ${e.y}`); 
+    })} */
+
+    
