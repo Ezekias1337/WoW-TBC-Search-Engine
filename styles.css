@@ -208,15 +208,31 @@ input.search {
 
  #fullToolTip{
   opacity: 0.9;
-  right: 1000px;
+  right: 900px;
   top: 715px;
   position:absolute;
  }
 
 
  #resultsTable{
-  left: 360px;
+  left: 420px;
   opacity: 0.9;
 }
  
+#item-name, #ilvl, #bind-type, #inv-type, #item-subclass, #damage, #speed, #dps, #stats, #durability, #req-lvl, #sell-price {
+  height: 20px;
+  max-height: 20px;
+}
 
+.gold {
+  background-image: url( ../images/gold.png);
+  background-repeat: no-repeat;
+}
+
+.silver {
+  background-image: url( ../images/silver.png);
+}
+
+.copper {
+  background-image: url( ../images/copper.png);
+}

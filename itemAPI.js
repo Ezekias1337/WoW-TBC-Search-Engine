@@ -32,7 +32,7 @@ function fetchItems(searchTerm) {
                         div.dataset.html = true;
                         const lines = [
                             `${user.data.name.en_US}`,
-                            `Item Level ${user.data.level}`,
+                            `Level ${user.data.level}`,
                             `${user.data.inventory_type.name.en_US}`,
                             `${user.data.item_subclass.name.en_US}`,
                             `Item Class: ${user.data.item_class.name.en_US}`,
@@ -213,9 +213,13 @@ function fetchItems(searchTerm) {
         let yCoord;
         g = document.getElementById("fullToolTip");
         window.addEventListener('mousemove', function(e) {
-        xCoord = e.x;
-        yCoord = e.pageY - 100;
-        g.style.top = yCoord +'px';
+        yCoord = e.pageY - 200;
+        if (yCoord > 720){
+            g.style.top = yCoord +'px';
+        }
+        
+
+        
     })}
 
       function getToolTipID() {
@@ -231,44 +235,74 @@ function fetchItems(searchTerm) {
              .then(data => responseFromFetch = data)
              .then(newData => 
                 {
-                if (newData.preview_item.stats == null){
-                    console.log("Item has no stats");
+                if (newData.preview_item.binding == null){
+                    console.log("Item has no bind-type");
+                    let sellPriceArray = [];
+                    let sellPriceArraydisplay;
+                    let sellPriceArraydisplayFinal;
+    
+                    sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+                    if (newData.preview_item.sell_price.display_strings.gold > 0){
+                        sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+                    } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver ");
+                    } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper ");
+                    } else {
+                        console.log("Atleast one demonination of currency null")
+                    }
+                    sellPriceArraydisplay = sellPriceArray.join(); 
+                    sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
                     const lines = [
                         `${newData.name}`,
-                        `${newData.preview_item.level.value}`,
-
-                      /* I need to add error handling here for Items with  no bind type*/
-                      /*  `${newData.preview_item.binding.name}`, */
+                        `${newData.preview_item.level.display_string}`,
                         `${newData.inventory_type.name}`,
                         `${newData.item_subclass.name}`,
                         `${newData.preview_item.weapon.damage.display_string}`,
                         `${newData.preview_item.weapon.attack_speed.display_string}`,
                         `${newData.preview_item.weapon.dps.display_string}`,
                         `${newData.preview_item.durability.display_string}`,
-                        `${newData.required_level}`,
-                        `${newData.sell_price}`
+                        `${newData.preview_item.requirements.level.display_string}`,
+                        `${sellPriceArraydisplayFinal}`
                     ]
-                    console.table(lines)
-                    let node = document.createElement('tr');
-                    node.innerHTML = lines;
-                
-                document.getElementById("toolTipDisplay").appendChild(node);
-                } else {
-                let itemStatsArrayLength;
-                let i;
-                let itemStatsArray = [];
-                itemStatsArrayLength = Object.keys(newData.preview_item.stats).length;
-                
-                for (i = 0; i < itemStatsArrayLength; i++){
-                    itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
-                    console.log(itemStatsArray)
-                }
-                let itemStatsArrayDisplay;
-                itemStatsArrayDisplay = itemStatsArray.toString();
-                
+                    lines.forEach((cell) => {
+                    let node = document.createElement('td');
+                    node.innerHTML = cell; 
+                    node.className = 'tooltip-linez'
+                    if (cell === newData.name){
+                        document.getElementById("item-name").appendChild(node)
+                    } else if(cell === newData.preview_item.level.display_string){
+                        document.getElementById("item-name").appendChild(node)
+                    } else if(cell === newData.inventory_type.name){
+                        document.getElementById("inv-type").appendChild(node)
+                    } else if(cell === newData.item_subclass.name){
+                        document.getElementById("inv-type").appendChild(node)
+                    } else if(cell === newData.preview_item.weapon.damage.display_string){
+                        document.getElementById("damage").appendChild(node)
+                    } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
+                        document.getElementById("damage").appendChild(node)
+                    } else if(cell === newData.preview_item.weapon.dps.display_string){
+                        document.getElementById("damage").appendChild(node)
+                    }  else if(cell === newData.preview_item.durability.display_string){
+                        document.getElementById("durability").appendChild(node)
+                    } else if(cell === newData.preview_item.requirements.level.display_string){
+                        document.getElementById("durability").appendChild(node)
+                    } else if(cell === sellPriceArraydisplayFinal){
+                        document.getElementById("durability").appendChild(node)
+                    }  
+                    else{
+                        console.log("Failed to append")
+                    }
+                })
+            } 
+
+            else if (newData.preview_item.stats == null){
+                console.log("Item has no stats");
                 let sellPriceArray = [];
                 let sellPriceArraydisplay;
                 let sellPriceArraydisplayFinal;
+
                 sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
                 if (newData.preview_item.sell_price.display_strings.gold > 0){
                     sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
@@ -279,7 +313,7 @@ function fetchItems(searchTerm) {
                 } else {
                     console.log("Atleast one demonination of currency null")
                 }
-                sellPriceArraydisplay = sellPriceArray.toString();
+                sellPriceArraydisplay = sellPriceArray.join(); 
                 sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
 
                 const lines = [
@@ -291,52 +325,129 @@ function fetchItems(searchTerm) {
                     `${newData.preview_item.weapon.damage.display_string}`,
                     `${newData.preview_item.weapon.attack_speed.display_string}`,
                     `${newData.preview_item.weapon.dps.display_string}`,
-                    `${itemStatsArrayDisplay}`, 
                     `${newData.preview_item.durability.display_string}`,
                     `${newData.preview_item.requirements.level.display_string}`,
                     `${sellPriceArraydisplayFinal}`
-                ]   
-                  
-                    lines.forEach((cell) => {
-                    let node = document.createElement('td');
-                    node.innerHTML = cell; 
-                    node.className = 'tooltip-linez'
-                    if (cell === newData.name){
-                        document.getElementById("item-name").appendChild(node)
-                    } else if(cell === newData.preview_item.level.display_string){
-                        document.getElementById("ilvl").appendChild(node)
-                    } else if(cell === newData.preview_item.binding.name){
-                        document.getElementById("bind-type").appendChild(node)
-                    } else if(cell === newData.inventory_type.name){
-                        document.getElementById("inv-type").appendChild(node)
-                    } else if(cell === newData.item_subclass.name){
-                        document.getElementById("inv-type").appendChild(node)
-                    } else if(cell === newData.preview_item.weapon.damage.display_string){
-                        document.getElementById("damage").appendChild(node)
-                    } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
-                        document.getElementById("speed").appendChild(node)
-                    } else if(cell === newData.preview_item.weapon.dps.display_string){
-                        document.getElementById("dps").appendChild(node)
-                    } else if(cell === itemStatsArrayDisplay){
-                        document.getElementById("stats").appendChild(node)
-                    } 
-                    else if(cell === newData.preview_item.durability.display_string){
-                        document.getElementById("durability").appendChild(node)
-                    } else if(cell === newData.preview_item.requirements.level.display_string){
-                        document.getElementById("req-lvl").appendChild(node)
-                    } else if(cell === sellPriceArraydisplayFinal){
-                        document.getElementById("sell-price").appendChild(node)
-                    }  
-                    else{
-                        console.log("Failed to append")
-                    }
-                    
-                     
+                ]
+                lines.forEach((cell) => {
+                let node = document.createElement('td');
+                node.innerHTML = cell; 
+                node.className = 'tooltip-linez'
+                if (cell === newData.name){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.preview_item.level.display_string){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.preview_item.binding.name){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.inventory_type.name){
+                    document.getElementById("inv-type").appendChild(node)
+                } else if(cell === newData.item_subclass.name){
+                    document.getElementById("inv-type").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.damage.display_string){
+                    document.getElementById("damage").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
+                    document.getElementById("damage").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.dps.display_string){
+                    document.getElementById("damage").appendChild(node)
+                }  else if(cell === newData.preview_item.durability.display_string){
+                    document.getElementById("durability").appendChild(node)
+                } else if(cell === newData.preview_item.requirements.level.display_string){
+                    document.getElementById("durability").appendChild(node)
+                } else if(cell === sellPriceArraydisplayFinal){
+                    document.getElementById("durability").appendChild(node)
+                }  
+                else{
+                    console.log("Failed to append")
+                }
+            })
+        } 
 
-                }) 
-                   console.table(lines) 
-                   console.log(typeof(newData.required_level))
-              }
+
+                else {
+                    let itemStatsArrayLength;
+                    let i;
+                    let itemStatsArray = [];
+                    itemStatsArrayLength = Object.keys(newData.preview_item.stats).length;
+                    
+                    for (i = 0; i < itemStatsArrayLength; i++){
+                        itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
+                        console.log(itemStatsArray)
+                    }
+                    let itemStatsArrayDisplay;
+                    itemStatsArrayDisplay = itemStatsArray.toString();
+
+                    let sellPriceArray = [];
+                    let sellPriceArraydisplay;
+                    let sellPriceArraydisplayFinal;
+
+                    sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+                    if (newData.preview_item.sell_price.display_strings.gold > 0){
+                        sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+                    } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver ");
+                    } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper ");
+                    } else {
+                        console.log("Atleast one demonination of currency null")
+                    }
+                    sellPriceArraydisplay = sellPriceArray.join(); 
+                    sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
+                    const lines = [
+                        `${newData.name}`,
+                        `${newData.preview_item.level.display_string}`,
+                        `${newData.preview_item.binding.name}`, 
+                        `${newData.inventory_type.name}`,
+                        `${newData.item_subclass.name}`,
+                        `${newData.preview_item.weapon.damage.display_string}`,
+                        `${newData.preview_item.weapon.attack_speed.display_string}`,
+                        `${newData.preview_item.weapon.dps.display_string}`,
+                        `${itemStatsArrayDisplay}`, 
+                        `${newData.preview_item.durability.display_string}`,
+                        `${newData.preview_item.requirements.level.display_string}`,
+                        `${sellPriceArraydisplayFinal}`
+                    ]   
+                    
+                        lines.forEach((cell) => {
+                        let node = document.createElement('td');
+                        node.innerHTML = cell; 
+                        node.className = 'tooltip-linez'
+                        if (cell === newData.name){
+                            document.getElementById("item-name").appendChild(node)
+                        } else if(cell === newData.preview_item.level.display_string){
+                            document.getElementById("item-name").appendChild(node)
+                        } else if(cell === newData.preview_item.binding.name){
+                            document.getElementById("item-name").appendChild(node)
+                        } else if(cell === newData.inventory_type.name){
+                            document.getElementById("inv-type").appendChild(node)
+                        } else if(cell === newData.item_subclass.name){
+                            document.getElementById("inv-type").appendChild(node)
+                        } else if(cell === newData.preview_item.weapon.damage.display_string){
+                            document.getElementById("damage").appendChild(node)
+                        } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
+                            document.getElementById("damage").appendChild(node)
+                        } else if(cell === newData.preview_item.weapon.dps.display_string){
+                            document.getElementById("damage").appendChild(node)
+                        } else if(cell === itemStatsArrayDisplay){
+                            document.getElementById("inv-type").appendChild(node)
+                        } 
+                        else if(cell === newData.preview_item.durability.display_string){
+                            document.getElementById("durability").appendChild(node)
+                        } else if(cell === newData.preview_item.requirements.level.display_string){
+                            document.getElementById("durability").appendChild(node)
+                        } else if(cell === sellPriceArraydisplayFinal){
+                            document.getElementById("durability").appendChild(node)
+                        }  
+                        else{
+                            console.log("Failed to append")
+                        }
+                        
+                        
+
+                    }) 
+                    console.table(lines) 
+                    console.log(typeof(newData.required_level))
+                }
             })}
     function appendToolTipDataItemsWithStats (){
         let node = document.createElement('td');
