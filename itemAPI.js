@@ -235,9 +235,6 @@ function fetchItems(searchTerm) {
              .then(data => responseFromFetch = data)
              .then(newData => 
                 {
-                    /* Need to add statement to change item name color based off quality */
-                  if (newData.item_class.name === "Weapon"){
-                    /* This if statement is for low level Weapons, with no stats or bind type */
                     function styleItemName(){
                         let poor;
                         let common;
@@ -270,6 +267,10 @@ function fetchItems(searchTerm) {
                         }
                         
                     }
+                  /* Start of Weapon Parsing */
+                  if (newData.item_class.name === "Weapon"){
+                    /* This if statement is for low level Weapons, with no stats or bind type */
+                    
 
                     if (newData.preview_item.binding == null){
                     console.log("Item has no bind-type");
@@ -336,38 +337,7 @@ function fetchItems(searchTerm) {
             /* This else if statement is for Weapons with no stats, but with a bind type */
             
             else if (newData.preview_item.stats == null){
-                function styleItemName(){
-                    let poor;
-                    let common;
-                    let uncommon;
-                    let rare;
-                    let epic;
-                    let legendary;
-                    let m;
-            
-                    poor = "#9d9d9d";
-                    common = "#ffffff";
-                    uncommon = "#1eff00";
-                    rare = "#0070dd";
-                    epic = "#a335ee";
-                    legendary = "#ff8000";
                 
-                    m = document.getElementById('item-name');
-                    if (newData.quality.name === "Poor"){
-                        m.style.color = poor;
-                    } else if (newData.quality.name === "Common"){
-                        m.style.color = common;
-                    } else if (newData.quality.name === "Uncommon"){
-                        m.style.color = uncommon;
-                    } else if (newData.quality.name === "Rare"){
-                        m.style.color = rare;
-                    } else if (newData.quality.name === "Epic"){
-                        m.style.color = epic;
-                    } else if (newData.quality.name === "Legendary"){
-                        m.style.color = legendary;
-                    }
-                    
-                }
                 console.log("Item has no stats");
                 let sellPriceArray = [];
                 let sellPriceArraydisplay;
@@ -436,38 +406,7 @@ function fetchItems(searchTerm) {
         /* This else if statement is for weapons with no required level */
         
         else if (newData.preview_item.requirements == null){
-            function styleItemName(){
-                let poor;
-                let common;
-                let uncommon;
-                let rare;
-                let epic;
-                let legendary;
-                let m;
-        
-                poor = "#9d9d9d";
-                common = "#ffffff";
-                uncommon = "#1eff00";
-                rare = "#0070dd";
-                epic = "#a335ee";
-                legendary = "#ff8000";
             
-                m = document.getElementById('item-name');
-                if (newData.quality.name === "Poor"){
-                    m.style.color = poor;
-                } else if (newData.quality.name === "Common"){
-                    m.style.color = common;
-                } else if (newData.quality.name === "Uncommon"){
-                    m.style.color = uncommon;
-                } else if (newData.quality.name === "Rare"){
-                    m.style.color = rare;
-                } else if (newData.quality.name === "Epic"){
-                    m.style.color = epic;
-                } else if (newData.quality.name === "Legendary"){
-                    m.style.color = legendary;
-                }
-                
-            }
             let itemStatsArrayLength;
             let i;
             let itemStatsArray = [];
@@ -552,38 +491,7 @@ function fetchItems(searchTerm) {
 
             /* This else statement is for Weapons with stats and bind type */
                 else {
-                    function styleItemName(){
-                        let poor;
-                        let common;
-                        let uncommon;
-                        let rare;
-                        let epic;
-                        let legendary;
-                        let m;
-                
-                        poor = "#9d9d9d";
-                        common = "#ffffff";
-                        uncommon = "#1eff00";
-                        rare = "#0070dd";
-                        epic = "#a335ee";
-                        legendary = "#ff8000";
                     
-                        m = document.getElementById('item-name');
-                        if (newData.quality.name === "Poor"){
-                            m.style.color = poor;
-                        } else if (newData.quality.name === "Common"){
-                            m.style.color = common;
-                        } else if (newData.quality.name === "Uncommon"){
-                            m.style.color = uncommon;
-                        } else if (newData.quality.name === "Rare"){
-                            m.style.color = rare;
-                        } else if (newData.quality.name === "Epic"){
-                            m.style.color = epic;
-                        } else if (newData.quality.name === "Legendary"){
-                            m.style.color = legendary;
-                        }
-                        
-                    }
                     let itemStatsArrayLength;
                     let i;
                     let itemStatsArray = [];
@@ -668,9 +576,280 @@ function fetchItems(searchTerm) {
                 }
                 styleItemName();
             } /* End of Weapon Parsing */
-            else if(newData.preview_item.item_class.name === "Armor"){
+            
+            /*Start of Armour Parsing */
+            else if (newData.preview_item.item_class.name === "Armor"){
+            /* This if statement is for low level Armour, with no stats or bind type */
+                if (newData.preview_item.binding == null){
+                    console.log("Item has no bind-type");
+                    let sellPriceArray = [];
+                    let sellPriceArraydisplay;
+                    let sellPriceArraydisplayFinal;
+    
+                    sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+                    if (newData.preview_item.sell_price.display_strings.gold > 0){
+                        sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+                    } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver");
+                    } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper");
+                    } else {
+                        console.log("Atleast one demonination of currency null")
+                    }
+                    sellPriceArraydisplay = sellPriceArray.join(); 
+                    sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
 
-                /* End of Armour Parsing */
+                    const lines = [
+                        `${newData.name}`,
+                        `${newData.preview_item.level.display_string}`,
+                        `${newData.inventory_type.name}`,
+                        `${newData.item_subclass.name}`,
+                        `${newData.preview_item.armor.display.display_string}`,
+                        `${newData.preview_item.durability.display_string}`,
+                        `${newData.preview_item.requirements.level.display_string}`,
+                        `${sellPriceArraydisplayFinal}`
+                    ]
+                    lines.forEach((cell) => {
+                    let node = document.createElement('td');
+                    node.innerHTML = cell; 
+                    node.className = 'tooltip-linez'
+                    if (cell === newData.name){
+                        document.getElementById("item-name").appendChild(node)
+                    } else if(cell === newData.preview_item.level.display_string){
+                        document.getElementById("item-name").appendChild(node)
+                    } else if(cell === newData.inventory_type.name){
+                        document.getElementById("inv-type").appendChild(node)
+                    } else if(cell === newData.item_subclass.name){
+                        document.getElementById("inv-type").appendChild(node)
+                    } else if(cell === newData.preview_item.armor.display.display_string){
+                        document.getElementById("item-name").appendChild(node)
+                    } else if(cell === newData.preview_item.durability.display_string){
+                        document.getElementById("durability").appendChild(node)
+                    } else if(cell === newData.preview_item.requirements.level.display_string){
+                        document.getElementById("durability").appendChild(node)
+                    } else if(cell === sellPriceArraydisplayFinal){
+                        document.getElementById("durability").appendChild(node)
+                    }  
+                    else{
+                        console.log("Failed to append")
+                    }
+                })
+                    
+                    styleItemName();
+
+                }
+            /* This else if statement is for Armour with no stats, but with a bind type */
+                else if (newData.preview_item.stats == null){
+                    console.log("Item has no stats");
+                let sellPriceArray = [];
+                let sellPriceArraydisplay;
+                let sellPriceArraydisplayFinal;
+
+                sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+                if (newData.preview_item.sell_price.display_strings.gold > 0){
+                    sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+                } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                    sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver");
+                } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                    sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper");
+                } else {
+                    console.log("Atleast one demonination of currency null")
+                }
+                sellPriceArraydisplay = sellPriceArray.join(); 
+                sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
+                const lines = [
+                    `${newData.name}`,
+                    `${newData.preview_item.level.display_string}`,
+                    `${newData.preview_item.binding.name}`, 
+                    `${newData.inventory_type.name}`,
+                    `${newData.item_subclass.name}`,
+                    `${newData.preview_item.armor.display.display_string}`,
+                    `${newData.preview_item.durability.display_string}`,
+                    `${newData.preview_item.requirements.level.display_string}`,
+                    `${sellPriceArraydisplayFinal}`
+                ]
+                lines.forEach((cell) => {
+                let node = document.createElement('td');
+                node.innerHTML = cell; 
+                node.className = 'tooltip-linez'
+                if (cell === newData.name){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.preview_item.level.display_string){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.preview_item.binding.name){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.inventory_type.name){
+                    document.getElementById("inv-type").appendChild(node)
+                } else if(cell === newData.item_subclass.name){
+                    document.getElementById("inv-type").appendChild(node)
+                } else if(cell === newData.preview_item.armor.display.display_string){
+                    document.getElementById("damage").appendChild(node)
+                } else if(cell === newData.preview_item.durability.display_string){
+                    document.getElementById("durability").appendChild(node)
+                } else if(cell === newData.preview_item.requirements.level.display_string){
+                    document.getElementById("durability").appendChild(node)
+                } else if(cell === sellPriceArraydisplayFinal){
+                    document.getElementById("durability").appendChild(node)
+                }  
+                else{
+                    console.log("Failed to append")
+                }
+            })
+                    styleItemName();
+            }
+            /* This else if statement is for Armour with no required level */
+                else if (newData.preview_item.requirements == null){
+                    let itemStatsArrayLength;
+            let i;
+            let itemStatsArray = [];
+            itemStatsArrayLength = Object.keys(newData.preview_item.stats).length;
+            
+            for (i = 0; i < itemStatsArrayLength; i++){
+                itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
+                console.log(itemStatsArray)
+            }
+            let itemStatsArrayDisplay;
+            itemStatsArrayDisplay = itemStatsArray.toString();
+
+            let sellPriceArray = [];
+            let sellPriceArraydisplay;
+            let sellPriceArraydisplayFinal;
+
+            sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+            if (newData.preview_item.sell_price.display_strings.gold > 0){
+                sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+            } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver");
+            } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper");
+            } else {
+                console.log("Atleast one demonination of currency null")
+            }
+            sellPriceArraydisplay = sellPriceArray.join(); 
+            sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
+            const lines = [
+                `${newData.name}`,
+                `${newData.preview_item.level.display_string}`,
+                `${newData.preview_item.binding.name}`, 
+                `${newData.inventory_type.name}`,
+                `${newData.item_subclass.name}`,
+                `${newData.preview_item.armor.display.display_string}`,
+                `${itemStatsArrayDisplay}`, 
+                `${newData.preview_item.durability.display_string}`,
+                `${sellPriceArraydisplayFinal}`
+            ]   
+            
+                lines.forEach((cell) => {
+                let node = document.createElement('td');
+                node.innerHTML = cell; 
+                node.className = 'tooltip-linez'
+                if (cell === newData.name){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.preview_item.level.display_string){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.preview_item.binding.name){
+                    document.getElementById("item-name").appendChild(node)
+                } else if(cell === newData.inventory_type.name){
+                    document.getElementById("inv-type").appendChild(node)
+                } else if(cell === newData.item_subclass.name){
+                    document.getElementById("inv-type").appendChild(node)
+                } else if(cell === newData.preview_item.armor.display.display_string){
+                    document.getElementById("damage").appendChild(node)
+                } else if(cell === itemStatsArrayDisplay){
+                    document.getElementById("inv-type").appendChild(node)
+                } else if(cell === newData.preview_item.durability.display_string){
+                    document.getElementById("durability").appendChild(node)
+                } else if(cell === sellPriceArraydisplayFinal){
+                    document.getElementById("durability").appendChild(node)
+                }  
+                else{
+                    console.log("Failed to append")
+                }
+                
+            })
+                    
+                    styleItemName();
+            }
+            /* This else statement is for Armour with stats and bind type */
+                else {
+                    let itemStatsArrayLength;
+                    let i;
+                    let itemStatsArray = [];
+                    itemStatsArrayLength = Object.keys(newData.preview_item.stats).length;
+                    
+                    for (i = 0; i < itemStatsArrayLength; i++){
+                        itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
+                        console.log(itemStatsArray)
+                    }
+                    let itemStatsArrayDisplay;
+                    itemStatsArrayDisplay = itemStatsArray.toString();
+
+                    let sellPriceArray = [];
+                    let sellPriceArraydisplay;
+                    let sellPriceArraydisplayFinal;
+
+                    sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+                    if (newData.preview_item.sell_price.display_strings.gold > 0){
+                        sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+                    } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver");
+                    } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper");
+                    } else {
+                        console.log("Atleast one demonination of currency null")
+                    }
+                    sellPriceArraydisplay = sellPriceArray.join(); 
+                    sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
+                    const lines = [
+                        `${newData.name}`,
+                        `${newData.preview_item.level.display_string}`,
+                        `${newData.preview_item.binding.name}`, 
+                        `${newData.inventory_type.name}`,
+                        `${newData.item_subclass.name}`,
+                        `${newData.preview_item.armor.display.display_string}`,
+                        `${itemStatsArrayDisplay}`, 
+                        `${newData.preview_item.durability.display_string}`,
+                        `${newData.preview_item.requirements.level.display_string}`,
+                        `${sellPriceArraydisplayFinal}`
+                    ]   
+                    
+                        lines.forEach((cell) => {
+                        let node = document.createElement('td');
+                        node.innerHTML = cell; 
+                        node.className = 'tooltip-linez'
+                        if (cell === newData.name){
+                            document.getElementById("item-name").appendChild(node)
+                        } else if(cell === newData.preview_item.level.display_string){
+                            document.getElementById("item-name").appendChild(node)
+                        } else if(cell === newData.preview_item.binding.name){
+                            document.getElementById("item-name").appendChild(node)
+                        } else if(cell === newData.inventory_type.name){
+                            document.getElementById("inv-type").appendChild(node)
+                        } else if(cell === newData.item_subclass.name){
+                            document.getElementById("inv-type").appendChild(node)
+                        } else if(cell === newData.preview_item.armor.display.display_string){
+                            document.getElementById("damage").appendChild(node)
+                        } else if(cell === itemStatsArrayDisplay){
+                            document.getElementById("inv-type").appendChild(node)
+                        } else if(cell === newData.preview_item.durability.display_string){
+                            document.getElementById("durability").appendChild(node)
+                        } else if(cell === newData.preview_item.requirements.level.display_string){
+                            document.getElementById("durability").appendChild(node)
+                        } else if(cell === sellPriceArraydisplayFinal){
+                            document.getElementById("durability").appendChild(node)
+                        }  
+                        else{
+                            console.log("Failed to append")
+                        }
+                    })
+                    styleItemName();
+            }
+            
+            
+            /* End of Armour Parsing */
             } 
             else if(newData.preview_item.item_class.name === "Tradeskill"){
                 
