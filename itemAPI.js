@@ -77,7 +77,7 @@ function fetchItems(searchTerm) {
         fetchItems(test);
         console.log("Success");
         setTimeout(toolTipItems, 1000);
-        setTimeout(getToolTipItems, 1250);
+        
     }
 
     function searchExecuteSpells() {

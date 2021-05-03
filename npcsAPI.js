@@ -77,10 +77,32 @@ function fetchNPCs(searchTerm) {
                     }
                     let tameableString
                     tameableString = is_tameableBooleanParser();
+                    if (newData.family == null){
+                        const lines = [
+                            `${newData.name}`,
+                            `${tameableString}`,
+                            `${newData.type.name}`
+                        ]
+                        lines.forEach((cell) => {
+                            let node = document.createElement('td');
+                            node.innerHTML = cell; 
+                            node.className = 'tooltip-linez'
+                            if (cell === newData.name){
+                                document.getElementById("tooltip-row-1").appendChild(node)
+                            } else if(cell === tameableString){
+                                document.getElementById("tooltip-row-2").appendChild(node)
+                            } else if(cell === newData.type.name){
+                                document.getElementById("tooltip-row-2").appendChild(node)
+                            }  else {
+                                console.log("Failed to append")
+                            }
+                        })
+                    }
 
-                    const lines = [
+                    else {const lines = [
                         `${newData.name}`,
                         `${newData.family.name}`,
+                        /* Need to add error handling for npcs with family.name error */
                         `${tameableString}`,
                         `${newData.type.name}`
                     ]
@@ -99,7 +121,7 @@ function fetchNPCs(searchTerm) {
                         }  else {
                             console.log("Failed to append")
                         }
-                    })
+                    })}
                 })}
 
     function toolTipNPCs() {document.querySelectorAll('.Items').forEach(item => {
