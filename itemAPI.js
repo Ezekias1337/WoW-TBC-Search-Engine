@@ -76,7 +76,7 @@ function fetchItems(searchTerm) {
         let test = search();
         fetchItems(test);
         console.log("Success");
-        setTimeout(toolTipItems, 2000);
+        setTimeout(toolTipItems, 1000);
     }
 
     function searchExecuteSpells() {
@@ -847,30 +847,93 @@ function fetchItems(searchTerm) {
                     })
                     styleItemName();
             }
+
             
+            } /* End of Armour Parsing */
             
-            /* End of Armour Parsing */
-            } 
-            else if(newData.preview_item.item_class.name === "Tradeskill"){
+            /* Start of Quest Parsing */
+            else if(newData.preview_item.item_class.name === "Quest"){
                 
-                /* End of Tradeskill Parsing */
-            } 
-            else if(newData.preview_item.item_class.name === "Consumable"){
-                   
-                /* End of Consumable Parsing */
-            }
-            else if(newData.preview_item.item_class.name === "Quest"){
-                   
-                /* End of Tradeskill Parsing */
-            }
-            else if(newData.preview_item.item_class.name === "Recipe"){
-                   
-                /* End of Tradeskill Parsing */
-            }
-            else if(newData.preview_item.item_class.name === "Quest"){
-                   
-                /* End of Tradeskill Parsing */
-            }
+
+                    const lines = [
+                        `${newData.name}`,
+                        `${newData.item_class.name}`,
+                        `${newData.level}`,
+                    ]
+                    lines.forEach((cell) => {
+                    let node = document.createElement('td');
+                    node.innerHTML = cell; 
+                    node.className = 'tooltip-linez'
+                    if (cell === newData.name){
+                        document.getElementById("item-name").appendChild(node)
+                    } else if(cell === newData.item_class.name){
+                        document.getElementById("inv-type").appendChild(node)
+                    } else if(cell === newData.level){
+                        document.getElementById("inv-type").appendChild(node)
+                    } 
+                    else{
+                        console.log("Failed to append")
+                    }
+                })
+                
+                styleItemName();
+            } /* End of Quest Parsing */
+            
+            /* Start of Tradeskill, Consumable, & Recipe Parsing */
+            else if(newData.preview_item.item_class.name === "Tradeskill" || "Consumable" || "Recipe"){
+                console.log("Item has no bind-type");
+                    let sellPriceArray = [];
+                    let sellPriceArraydisplay;
+                    let sellPriceArraydisplayFinal;
+    
+                    sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+                    if (newData.preview_item.sell_price.display_strings.gold > 0){
+                        sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+                    } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver");
+                    } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                        sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper");
+                    } else {
+                        console.log("Atleast one demonination of currency null")
+                    }
+                    sellPriceArraydisplay = sellPriceArray.join(); 
+                    sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
+                    const lines = [
+                        `${newData.name}`,
+                        `${newData.item_class.name}`,
+                        `${newData.preview_item.crafting_reagent}`,
+                        `${newData.item_subclass.name}`,
+                        `${newData.level}`,
+                        `${sellPriceArraydisplayFinal}`
+                    ]
+                    lines.forEach((cell) => {
+                    let node = document.createElement('td');
+                    node.innerHTML = cell; 
+                    node.className = 'tooltip-linez'
+                    if (cell === newData.name){
+                        document.getElementById("item-name").appendChild(node)
+                    } else if(cell === newData.item_class.name){
+                        document.getElementById("inv-type").appendChild(node)
+                    } else if(cell === newData.preview_item.crafting_reagent){
+                        document.getElementById("inv-type").appendChild(node)
+                    } else if(cell === newData.item_subclass.name){
+                        document.getElementById("item-name").appendChild(node)
+                    } else if(cell === newData.level){
+                        document.getElementById("damage").appendChild(node)
+                    } else if(cell === sellPriceArraydisplayFinal){
+                        document.getElementById("inv-type").appendChild(node)
+                    }   
+                    else{
+                        console.log("Failed to append")
+                    }
+                })
+
+                styleItemName();
+            } /* End of Tradeskill, Consumable, & Recipe Parsing */
+            
+            
+            
         }       
         )}
     
