@@ -207,7 +207,7 @@ input.search {
  }
 
  #fullToolTip{
-  opacity: 0.9;
+  opacity: 0.95;
   right: 900px;
   top: 715px;
   position:absolute;
@@ -216,7 +216,7 @@ input.search {
 
  #resultsTable{
   left: 420px;
-  opacity: 0.9;
+  opacity: 0.95;
 }
  
 #item-name, #ilvl, #bind-type, #inv-type, #item-subclass, #damage, #speed, #dps, #stats, #durability, #req-lvl, #sell-price {
@@ -226,7 +226,7 @@ input.search {
 
 .gold {
   background-image: url( ../images/gold.png);
-  background-repeat: no-repeat;
+  
 }
 
 .silver {

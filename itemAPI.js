@@ -77,13 +77,15 @@ function fetchItems(searchTerm) {
         fetchItems(test);
         console.log("Success");
         setTimeout(toolTipItems, 1000);
+        setTimeout(getToolTipItems, 1250);
     }
 
     function searchExecuteSpells() {
         let test = search();
         fetchSpells(test);
         console.log("Success");
-        setTimeout(toolTipSpells, 2000);
+        setTimeout(toolTipSpells, 1000);
+      /*  setTimeout(getToolTipSpells, 1250); */
     }
 
     function searchExecuteNPCs() {
@@ -201,7 +203,7 @@ function fetchItems(searchTerm) {
     }
     
     function toolTipItems() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('mouseenter', getToolTipID) 
+        item.addEventListener('mouseenter', getToolTipItems) 
         item.addEventListener('mouseleave', clearToolTip) 
       })}
 
@@ -222,7 +224,7 @@ function fetchItems(searchTerm) {
         
     })}
 
-      function getToolTipID() {
+      function getToolTipItems() {
         moveToolTipWMouse();
         document.getElementById("fullToolTip").style.display = "table"
         let responseFromFetch;
@@ -251,7 +253,7 @@ function fetchItems(searchTerm) {
                         epic = "#a335ee";
                         legendary = "#ff8000";
                     
-                        m = document.getElementById('item-name');
+                        m = document.getElementById('tooltip-row-1');
                         if (newData.quality.name === "Poor"){
                             m.style.color = poor;
                         } else if (newData.quality.name === "Common"){
@@ -270,7 +272,7 @@ function fetchItems(searchTerm) {
                   /* Start of Weapon Parsing */
                   if (newData.item_class.name === "Weapon"){
                     /* This if statement is for low level Weapons, with no stats or bind type */
-                    
+                    /* NEED TO ADD ERROR HANDLING FOR WEAPONS WITH BIND TYPE BUT NO STATS, E.G. ITEM ID 1008 */
 
                     if (newData.preview_item.binding == null){
                     console.log("Item has no bind-type");
@@ -308,25 +310,25 @@ function fetchItems(searchTerm) {
                     node.innerHTML = cell; 
                     node.className = 'tooltip-linez'
                     if (cell === newData.name){
-                        document.getElementById("item-name").appendChild(node)
+                        document.getElementById("tooltip-row-1").appendChild(node)
                     } else if(cell === newData.preview_item.level.display_string){
-                        document.getElementById("item-name").appendChild(node)
+                        document.getElementById("tooltip-row-1").appendChild(node)
                     } else if(cell === newData.inventory_type.name){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     } else if(cell === newData.item_subclass.name){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     } else if(cell === newData.preview_item.weapon.damage.display_string){
-                        document.getElementById("damage").appendChild(node)
+                        document.getElementById("tooltip-row-3").appendChild(node)
                     } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
-                        document.getElementById("damage").appendChild(node)
+                        document.getElementById("tooltip-row-3").appendChild(node)
                     } else if(cell === newData.preview_item.weapon.dps.display_string){
-                        document.getElementById("damage").appendChild(node)
+                        document.getElementById("tooltip-row-3").appendChild(node)
                     }  else if(cell === newData.preview_item.durability.display_string){
-                        document.getElementById("durability").appendChild(node)
+                        document.getElementById("tooltip-row-4").appendChild(node)
                     } else if(cell === newData.preview_item.requirements.level.display_string){
-                        document.getElementById("durability").appendChild(node)
+                        document.getElementById("tooltip-row-4").appendChild(node)
                     } else if(cell === sellPriceArraydisplayFinal){
-                        document.getElementById("durability").appendChild(node)
+                        document.getElementById("tooltip-row-4").appendChild(node)
                     }  
                     else{
                         console.log("Failed to append")
@@ -374,27 +376,27 @@ function fetchItems(searchTerm) {
                 node.innerHTML = cell; 
                 node.className = 'tooltip-linez'
                 if (cell === newData.name){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.preview_item.level.display_string){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.preview_item.binding.name){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.inventory_type.name){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.item_subclass.name){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.preview_item.weapon.damage.display_string){
-                    document.getElementById("damage").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
-                    document.getElementById("damage").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === newData.preview_item.weapon.dps.display_string){
-                    document.getElementById("damage").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 }  else if(cell === newData.preview_item.durability.display_string){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-4").appendChild(node)
                 } else if(cell === newData.preview_item.requirements.level.display_string){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-4").appendChild(node)
                 } else if(cell === sellPriceArraydisplayFinal){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-4").appendChild(node)
                 }  
                 else{
                     console.log("Failed to append")
@@ -455,28 +457,28 @@ function fetchItems(searchTerm) {
                 node.innerHTML = cell; 
                 node.className = 'tooltip-linez'
                 if (cell === newData.name){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.preview_item.level.display_string){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.preview_item.binding.name){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.inventory_type.name){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.item_subclass.name){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.preview_item.weapon.damage.display_string){
-                    document.getElementById("damage").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
-                    document.getElementById("damage").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === newData.preview_item.weapon.dps.display_string){
-                    document.getElementById("damage").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === itemStatsArrayDisplay){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } 
                 else if(cell === newData.preview_item.durability.display_string){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-4").appendChild(node)
                 } else if(cell === sellPriceArraydisplayFinal){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-4").appendChild(node)
                 }  
                 else{
                     console.log("Failed to append")
@@ -541,30 +543,30 @@ function fetchItems(searchTerm) {
                         node.innerHTML = cell; 
                         node.className = 'tooltip-linez'
                         if (cell === newData.name){
-                            document.getElementById("item-name").appendChild(node)
+                            document.getElementById("tooltip-row-1").appendChild(node)
                         } else if(cell === newData.preview_item.level.display_string){
-                            document.getElementById("item-name").appendChild(node)
+                            document.getElementById("tooltip-row-1").appendChild(node)
                         } else if(cell === newData.preview_item.binding.name){
-                            document.getElementById("item-name").appendChild(node)
+                            document.getElementById("tooltip-row-1").appendChild(node)
                         } else if(cell === newData.inventory_type.name){
-                            document.getElementById("inv-type").appendChild(node)
+                            document.getElementById("tooltip-row-2").appendChild(node)
                         } else if(cell === newData.item_subclass.name){
-                            document.getElementById("inv-type").appendChild(node)
+                            document.getElementById("tooltip-row-2").appendChild(node)
                         } else if(cell === newData.preview_item.weapon.damage.display_string){
-                            document.getElementById("damage").appendChild(node)
+                            document.getElementById("tooltip-row-3").appendChild(node)
                         } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
-                            document.getElementById("damage").appendChild(node)
+                            document.getElementById("tooltip-row-3").appendChild(node)
                         } else if(cell === newData.preview_item.weapon.dps.display_string){
-                            document.getElementById("damage").appendChild(node)
+                            document.getElementById("tooltip-row-3").appendChild(node)
                         } else if(cell === itemStatsArrayDisplay){
-                            document.getElementById("inv-type").appendChild(node)
+                            document.getElementById("tooltip-row-2").appendChild(node)
                         } 
                         else if(cell === newData.preview_item.durability.display_string){
-                            document.getElementById("durability").appendChild(node)
+                            document.getElementById("tooltip-row-4").appendChild(node)
                         } else if(cell === newData.preview_item.requirements.level.display_string){
-                            document.getElementById("durability").appendChild(node)
+                            document.getElementById("tooltip-row-4").appendChild(node)
                         } else if(cell === sellPriceArraydisplayFinal){
-                            document.getElementById("durability").appendChild(node)
+                            document.getElementById("tooltip-row-4").appendChild(node)
                         }  
                         else{
                             console.log("Failed to append")
@@ -614,21 +616,21 @@ function fetchItems(searchTerm) {
                     node.innerHTML = cell; 
                     node.className = 'tooltip-linez'
                     if (cell === newData.name){
-                        document.getElementById("item-name").appendChild(node)
+                        document.getElementById("tooltip-row-1").appendChild(node)
                     } else if(cell === newData.preview_item.level.display_string){
-                        document.getElementById("item-name").appendChild(node)
+                        document.getElementById("tooltip-row-1").appendChild(node)
                     } else if(cell === newData.inventory_type.name){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     } else if(cell === newData.item_subclass.name){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     } else if(cell === newData.preview_item.armor.display.display_string){
-                        document.getElementById("item-name").appendChild(node)
+                        document.getElementById("tooltip-row-1").appendChild(node)
                     } else if(cell === newData.preview_item.durability.display_string){
-                        document.getElementById("durability").appendChild(node)
+                        document.getElementById("tooltip-row-3").appendChild(node)
                     } else if(cell === newData.preview_item.requirements.level.display_string){
-                        document.getElementById("durability").appendChild(node)
+                        document.getElementById("tooltip-row-3").appendChild(node)
                     } else if(cell === sellPriceArraydisplayFinal){
-                        document.getElementById("durability").appendChild(node)
+                        document.getElementById("tooltip-row-3").appendChild(node)
                     }  
                     else{
                         console.log("Failed to append")
@@ -674,23 +676,23 @@ function fetchItems(searchTerm) {
                 node.innerHTML = cell; 
                 node.className = 'tooltip-linez'
                 if (cell === newData.name){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.preview_item.level.display_string){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.preview_item.binding.name){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.inventory_type.name){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.item_subclass.name){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.preview_item.armor.display.display_string){
-                    document.getElementById("damage").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.preview_item.durability.display_string){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === newData.preview_item.requirements.level.display_string){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === sellPriceArraydisplayFinal){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 }  
                 else{
                     console.log("Failed to append")
@@ -746,23 +748,23 @@ function fetchItems(searchTerm) {
                 node.innerHTML = cell; 
                 node.className = 'tooltip-linez'
                 if (cell === newData.name){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.preview_item.level.display_string){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.preview_item.binding.name){
-                    document.getElementById("item-name").appendChild(node)
+                    document.getElementById("tooltip-row-1").appendChild(node)
                 } else if(cell === newData.inventory_type.name){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.item_subclass.name){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === newData.preview_item.armor.display.display_string){
-                    document.getElementById("damage").appendChild(node)
+                    document.getElementById("tooltip-row-2").appendChild(node)
                 } else if(cell === itemStatsArrayDisplay){
-                    document.getElementById("inv-type").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === newData.preview_item.durability.display_string){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 } else if(cell === sellPriceArraydisplayFinal){
-                    document.getElementById("durability").appendChild(node)
+                    document.getElementById("tooltip-row-3").appendChild(node)
                 }  
                 else{
                     console.log("Failed to append")
@@ -821,25 +823,25 @@ function fetchItems(searchTerm) {
                         node.innerHTML = cell; 
                         node.className = 'tooltip-linez'
                         if (cell === newData.name){
-                            document.getElementById("item-name").appendChild(node)
+                            document.getElementById("tooltip-row-1").appendChild(node)
                         } else if(cell === newData.preview_item.level.display_string){
-                            document.getElementById("item-name").appendChild(node)
+                            document.getElementById("tooltip-row-1").appendChild(node)
                         } else if(cell === newData.preview_item.binding.name){
-                            document.getElementById("item-name").appendChild(node)
+                            document.getElementById("tooltip-row-1").appendChild(node)
                         } else if(cell === newData.inventory_type.name){
-                            document.getElementById("inv-type").appendChild(node)
+                            document.getElementById("tooltip-row-2").appendChild(node)
                         } else if(cell === newData.item_subclass.name){
-                            document.getElementById("inv-type").appendChild(node)
+                            document.getElementById("tooltip-row-2").appendChild(node)
                         } else if(cell === newData.preview_item.armor.display.display_string){
-                            document.getElementById("damage").appendChild(node)
+                            document.getElementById("tooltip-row-2").appendChild(node)
                         } else if(cell === itemStatsArrayDisplay){
-                            document.getElementById("inv-type").appendChild(node)
+                            document.getElementById("tooltip-row-3").appendChild(node)
                         } else if(cell === newData.preview_item.durability.display_string){
-                            document.getElementById("durability").appendChild(node)
+                            document.getElementById("tooltip-row-3").appendChild(node)
                         } else if(cell === newData.preview_item.requirements.level.display_string){
-                            document.getElementById("durability").appendChild(node)
+                            document.getElementById("tooltip-row-3").appendChild(node)
                         } else if(cell === sellPriceArraydisplayFinal){
-                            document.getElementById("durability").appendChild(node)
+                            document.getElementById("tooltip-row-4").appendChild(node)
                         }  
                         else{
                             console.log("Failed to append")
@@ -865,11 +867,11 @@ function fetchItems(searchTerm) {
                     node.innerHTML = cell; 
                     node.className = 'tooltip-linez'
                     if (cell === newData.name){
-                        document.getElementById("item-name").appendChild(node)
+                        document.getElementById("tooltip-row-1").appendChild(node)
                     } else if(cell === newData.item_class.name){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     } else if(cell === newData.level){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     } 
                     else{
                         console.log("Failed to append")
@@ -912,17 +914,17 @@ function fetchItems(searchTerm) {
                     node.innerHTML = cell; 
                     node.className = 'tooltip-linez'
                     if (cell === newData.name){
-                        document.getElementById("item-name").appendChild(node)
+                        document.getElementById("tooltip-row-1").appendChild(node)
                     } else if(cell === newData.item_class.name){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     } else if(cell === newData.preview_item.crafting_reagent){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     } else if(cell === newData.item_subclass.name){
-                        document.getElementById("item-name").appendChild(node)
+                        document.getElementById("tooltip-row-1").appendChild(node)
                     } else if(cell === newData.level){
-                        document.getElementById("damage").appendChild(node)
+                        document.getElementById("tooltip-row-3").appendChild(node)
                     } else if(cell === sellPriceArraydisplayFinal){
-                        document.getElementById("inv-type").appendChild(node)
+                        document.getElementById("tooltip-row-2").appendChild(node)
                     }   
                     else{
                         console.log("Failed to append")
@@ -939,20 +941,16 @@ function fetchItems(searchTerm) {
     
     
 
-    function appendToolTipDataItemsWithStats (){
-        let node = document.createElement('td');
-        node.innerHTML = cell;
-        if (cell === newData.name){
-            document.getElementById("item-name").appendChild(node)
-        }
-    }
+   
 
     function test() {
        let responseFromFetch;
-        fetch(`https://us.api.blizzard.com/data/wow/item/3039?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
-            .then(response => response.json())
+        fetch(`https://us.api.blizzard.com/data/wow/spell/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
+        
+        
+        .then(response => response.json())
             .then(data => responseFromFetch = data)
-            .then(newData => console.log(newData.preview_item.stats[0].display.display_string, newData.preview_item.binding.name))
+            .then(newData => console.log(newData))
 
     }
 
