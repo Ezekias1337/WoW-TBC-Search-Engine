@@ -152,6 +152,7 @@ function fetchItems(searchTerm) {
             console.log("User didn't select category");
     }
 }
+    let searchCategory;
     searchCategory = document.getElementById("filterChoice").addEventListener("change", updateFormAction);
 
     function successMessage () {
