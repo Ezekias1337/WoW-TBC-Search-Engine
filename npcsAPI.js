@@ -6,7 +6,7 @@ function fetchNPCs(searchTerm) {
             if (!response.ok) {
                 throw Error("ERROR");
             }
-            console.log(response.json())
+            
             return response.json();
         })
         .then(data => {
@@ -29,7 +29,6 @@ function fetchNPCs(searchTerm) {
                         div.className = 'Items';
                         const lines = [
                             `${user.data.name.en_US}`,
-                            `Is Tameable: ${user.is_tameable}`,
                             `ID: ${user.data.id}`
                         ];
                         for (let line of lines) {
@@ -53,3 +52,57 @@ function fetchNPCs(searchTerm) {
             console.error(error);
         });
   }
+
+  function getToolTipNPCs(){
+    moveToolTipWMouse();
+    let responseFromFetch;
+    let ID;
+    let ID2;
+    ID = (event.currentTarget.children[1].innerText.replace("ID: ", ""));
+    ID2 = (event.currentTarget);
+    console.log(ID, ID2);
+    fetch(`https://us.api.blizzard.com/data/wow/creature/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
+    .then(response => response.json())
+             .then(data => responseFromFetch = data)
+             .then(newData => 
+                {
+                    function is_tameableBooleanParser(){
+                        let is_tameable_string;
+                        if(newData.is_tameable === true){
+                            is_tameable_string = "Is Tameable"
+                        } else {
+                            is_tameable_string = "Not Tameable"
+                        }
+                        return is_tameable_string;
+                    }
+                    let tameableString
+                    tameableString = is_tameableBooleanParser();
+
+                    const lines = [
+                        `${newData.name}`,
+                        `${newData.family.name}`,
+                        `${tameableString}`,
+                        `${newData.type.name}`
+                    ]
+                    lines.forEach((cell) => {
+                        let node = document.createElement('td');
+                        node.innerHTML = cell; 
+                        node.className = 'tooltip-linez'
+                        if (cell === newData.name){
+                            document.getElementById("tooltip-row-1").appendChild(node)
+                        } else if(cell === newData.family.name){
+                            document.getElementById("tooltip-row-1").appendChild(node)
+                        } else if(cell === tameableString){
+                            document.getElementById("tooltip-row-2").appendChild(node)
+                        } else if(cell === newData.type.name){
+                            document.getElementById("tooltip-row-2").appendChild(node)
+                        }  else {
+                            console.log("Failed to append")
+                        }
+                    })
+                })}
+
+    function toolTipNPCs() {document.querySelectorAll('.Items').forEach(item => {
+        item.addEventListener('mouseenter', getToolTipNPCs) 
+        item.addEventListener('mouseleave', clearToolTip) 
+      })}

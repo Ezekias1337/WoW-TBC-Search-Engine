@@ -945,9 +945,7 @@ function fetchItems(searchTerm) {
 
     function test() {
        let responseFromFetch;
-        fetch(`https://us.api.blizzard.com/data/wow/spell/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
-        
-        
+        fetch(`https://us.api.blizzard.com/data/wow/creature/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
         .then(response => response.json())
             .then(data => responseFromFetch = data)
             .then(newData => console.log(newData))
