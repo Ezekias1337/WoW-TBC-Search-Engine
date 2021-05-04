@@ -74,7 +74,7 @@ input.search {
   opacity: 0.5;
   background-size: auto;
   background-position: center;
-  min-height: 500px;
+  min-height: 700px;
   color: #364447; }
 
 .Wallpaper_Belf_Draenei {
@@ -83,7 +83,7 @@ input.search {
   opacity: 0.5;
   background-size: auto;
   background-position: center;
-  min-height: 500px;
+  min-height: 700px;
   background-attachment: fixed; }
 
 .TBC_Logo {
@@ -149,7 +149,13 @@ tbody img {
   border: 1px solid #BEBFC1; }
 
 tr {
-  height: 70px; }
+  height: 70px;
+  vertical-align: middle; }
+
+@media (max-width: 576px) {
+  /* CSS that should be displayed if width is equal to or less than 800px goes here */
+  td {
+    max-width: 100px; } }
 
 nav {
   background-color: #364447; }
@@ -162,7 +168,8 @@ nav {
 #resultsTable {
   opacity: 0.95;
   table-layout: fixed;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  max-width: 90%; }
 
 #item-name, #ilvl, #bind-type, #inv-type, #item-subclass, #damage, #speed, #dps, #stats, #durability, #req-lvl, #sell-price {
   height: 20px;

@@ -26,6 +26,8 @@ function fetchSpells(searchTerm) {
                     results.forEach((user) => {
                         const div = document.createElement('tr');
                         div.className = 'Items';
+                        div.setAttribute("data-toggle", "modal");
+                        div.setAttribute("data-target", "#toolTipModal");
                       /*  div.onclick="toolTip(this)"; */
                         const lines = [
                             `${user.data.name.en_US}`,
@@ -55,7 +57,7 @@ function fetchSpells(searchTerm) {
   }
 
   function getToolTipSpells(){
-    moveToolTipWMouse();
+   /* moveToolTipWMouse(); */
     let responseFromFetch;
     let ID;
     let ID2;
@@ -86,6 +88,6 @@ function fetchSpells(searchTerm) {
                 })}
 
     function toolTipSpells() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('mouseenter', getToolTipSpells) 
+        item.addEventListener('click', getToolTipSpells) 
         item.addEventListener('mouseleave', clearToolTip) 
       })}

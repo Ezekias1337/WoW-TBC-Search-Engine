@@ -27,6 +27,8 @@ function fetchNPCs(searchTerm) {
                     results.forEach((user) => {
                         const div = document.createElement('tr');
                         div.className = 'Items';
+                        div.setAttribute("data-toggle", "modal");
+                        div.setAttribute("data-target", "#toolTipModal");
                         const lines = [
                             `${user.data.name.en_US}`,
                             `ID: ${user.data.id}`
@@ -54,7 +56,7 @@ function fetchNPCs(searchTerm) {
   }
 
   function getToolTipNPCs(){
-    moveToolTipWMouse();
+  /*  moveToolTipWMouse(); */
     let responseFromFetch;
     let ID;
     let ID2;
@@ -125,6 +127,6 @@ function fetchNPCs(searchTerm) {
                 })}
 
     function toolTipNPCs() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('mouseenter', getToolTipNPCs) 
+        item.addEventListener('click', getToolTipNPCs) 
         item.addEventListener('mouseleave', clearToolTip) 
       })}
