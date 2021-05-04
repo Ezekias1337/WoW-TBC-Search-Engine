@@ -104,9 +104,6 @@ input.search {
   background-size:auto;
   background-position:center;
   min-height: 500px;
-  color: #364447;
-  min-height: 1350px;
-  max-width: 100%;
   background-attachment: fixed;
   
 
@@ -202,21 +199,28 @@ input.search {
     height: 70px;
  }
 
+ td{
+   
+ }
+
  nav {
    background-color: #364447;
  }
 
  #fullToolTip{
   opacity: 0.95;
-  right: 900px;
-  top: 715px;
-  position:absolute;
+  table-layout: fixed;
+  word-wrap: break-word;
+
  }
 
 
  #resultsTable{
-  left: 420px;
+ 
   opacity: 0.95;
+  table-layout: fixed;
+  word-wrap: break-word;
+
 }
  
 #item-name, #ilvl, #bind-type, #inv-type, #item-subclass, #damage, #speed, #dps, #stats, #durability, #req-lvl, #sell-price {

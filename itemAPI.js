@@ -32,9 +32,9 @@ function fetchItems(searchTerm) {
                         div.dataset.html = true;
                         const lines = [
                             `${user.data.name.en_US}`,
-                            `Level ${user.data.level}`,
-                            `${user.data.inventory_type.name.en_US}`,
-                            `${user.data.item_subclass.name.en_US}`,
+                         /*   `Level ${user.data.level}`, */
+                         /*   `${user.data.inventory_type.name.en_US}`, */
+                         /*   `${user.data.item_subclass.name.en_US}`, */
                             `Item Class: ${user.data.item_class.name.en_US}`,
                             `ID: ${user.data.id}`
                         ];
@@ -76,7 +76,7 @@ function fetchItems(searchTerm) {
         let test = search();
         fetchItems(test);
         console.log("Success");
-        setTimeout(toolTipItems, 1000);
+        setTimeout(toolTipItems, 1500);
         
     }
 
@@ -208,7 +208,7 @@ function fetchItems(searchTerm) {
         item.addEventListener('mouseleave', clearToolTip) 
       })}
 
-    
+      toolTipItems();
 
     function moveToolTipWMouse(y_pos){
         let g;
@@ -216,8 +216,8 @@ function fetchItems(searchTerm) {
         let yCoord;
         g = document.getElementById("fullToolTip");
         window.addEventListener('mousemove', function(e) {
-        yCoord = e.pageY - 200;
-        if (yCoord > 720){
+        yCoord = e.pageY - 950;
+        if (yCoord > 1){
             g.style.top = yCoord +'px';
         }
         
@@ -231,7 +231,7 @@ function fetchItems(searchTerm) {
         let responseFromFetch;
         let ID;
         let ID2;
-        ID = (event.currentTarget.children[5].innerText.replace("ID: ", ""));
+        ID = (event.currentTarget.children[2].innerText.replace("ID: ", ""));
         ID2 = (event.currentTarget);
          fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
              .then(response => response.json())
