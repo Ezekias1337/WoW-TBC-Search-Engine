@@ -26,10 +26,12 @@ function fetchItems(searchTerm) {
                     results.forEach((user) => {
                         const div = document.createElement('tr');
                         div.className = 'Items';
-                        div.dataset.toggle = "tooltip";
+                      /*  div.dataset.toggle = "tooltip";
                         div.dataset.placement = "auto left"; 
                         div.setAttribute("title", "");
-                        div.dataset.html = true;
+                        div.dataset.html = true; */
+                        div.setAttribute("data-toggle", "modal");
+                        div.setAttribute("data-target", "#toolTipModal");
                         const lines = [
                             `${user.data.name.en_US}`,
                          /*   `Level ${user.data.level}`, */
@@ -204,7 +206,7 @@ function fetchItems(searchTerm) {
     }
     
     function toolTipItems() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('mouseenter', getToolTipItems) 
+        item.addEventListener('click', getToolTipItems) 
         item.addEventListener('mouseleave', clearToolTip) 
       })}
 
@@ -226,7 +228,7 @@ function fetchItems(searchTerm) {
     })}
 
       function getToolTipItems() {
-        moveToolTipWMouse();
+     /*   moveToolTipWMouse(); */
         document.getElementById("fullToolTip").style.display = "table"
         let responseFromFetch;
         let ID;
