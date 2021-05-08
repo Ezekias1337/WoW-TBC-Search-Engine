@@ -11,27 +11,23 @@
    xhr.onreadystatechange = function () {
       
       if (xhr.readyState === 4) {
-         console.log(xhr.status);
-         console.log(xhr.responseText);
+      /*   cc_color(xhr.status, "orange");
+         cc_color(xhr.responseText, "green"); */
          blizzardResponse = xhr.responseText
          oAuthTokenFullString = blizzardResponse;
          oAuthToken = oAuthTokenFullString.slice(17,51);
          if ( document.URL.includes("item-search-results.html") ) {
-            searchExecuteItems();
-            console.log("Orale Holmes");
-            return xhr.responseText;
+               searchExecuteItems(); 
+               return xhr.responseText;
         } else if ( document.URL.includes("spells-search-results.html") ) {
-         searchExecuteSpells();
-         console.log("Orale Holmes");
-         return xhr.responseText;
+               searchExecuteSpells();
+               return xhr.responseText;
      }   else if ( document.URL.includes("NPCs-search-results.html") ) {
-         searchExecuteNPCs();
-         console.log("Orale Holmes");
-         return xhr.responseText;
+               searchExecuteNPCs();
+               return xhr.responseText;
   }     /* else if ( document.URL.includes("quests-search-results.html") ) {
-         searchExecuteQuests();
-         console.log("Orale Holmes");
-         return xhr.responseText;
+               searchExecuteQuests(); 
+               return xhr.responseText;
 } */
 
          

@@ -57,7 +57,6 @@ function fetchSpells(searchTerm) {
   }
 
   function getToolTipSpells(){
-   /* moveToolTipWMouse(); */
     let responseFromFetch;
     let ID;
     let ID2;
@@ -91,3 +90,11 @@ function fetchSpells(searchTerm) {
         item.addEventListener('click', getToolTipSpells) 
         item.addEventListener('mouseleave', clearToolTip) 
       })}
+
+    function searchExecuteSpells() {
+        let test = search();
+        fetchSpells(test);
+        setTimeout(toolTipSpells, 1000);
+    }
+
+    

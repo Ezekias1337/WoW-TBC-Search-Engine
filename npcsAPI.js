@@ -1,4 +1,4 @@
-
+'use strict';
 
 function fetchNPCs(searchTerm) {
     fetch(`https://us.api.blizzard.com/data/wow/search/creature?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`)
@@ -56,7 +56,6 @@ function fetchNPCs(searchTerm) {
   }
 
   function getToolTipNPCs(){
-  /*  moveToolTipWMouse(); */
     let responseFromFetch;
     let ID;
     let ID2;
@@ -130,3 +129,9 @@ function fetchNPCs(searchTerm) {
         item.addEventListener('click', getToolTipNPCs) 
         item.addEventListener('mouseleave', clearToolTip) 
       })}
+    
+    function searchExecuteNPCs() {
+        let test = search();
+        fetchNPCs(test);
+        setTimeout(toolTipNPCs, 1000);
+    }

@@ -26,17 +26,10 @@ function fetchItems(searchTerm) {
                     results.forEach((user) => {
                         const div = document.createElement('tr');
                         div.className = 'Items';
-                      /*  div.dataset.toggle = "tooltip";
-                        div.dataset.placement = "auto left"; 
-                        div.setAttribute("title", "");
-                        div.dataset.html = true; */
                         div.setAttribute("data-toggle", "modal");
                         div.setAttribute("data-target", "#toolTipModal");
                         const lines = [
                             `${user.data.name.en_US}`,
-                         /*   `Level ${user.data.level}`, */
-                         /*   `${user.data.inventory_type.name.en_US}`, */
-                         /*   `${user.data.item_subclass.name.en_US}`, */
                             `Item Class: ${user.data.item_class.name.en_US}`,
                             `ID: ${user.data.id}`
                         ];
@@ -61,174 +54,19 @@ function fetchItems(searchTerm) {
             console.error(error);
         });
   }
-
-  
-
-  function search(){
-    let input = document.getElementById("searchBar").value 
-    console.log(input);
-        if (input.length > 1) {
-            return input;
-        }
-        
-    }
-    
-    
+ 
     function searchExecuteItems() {
         let test = search();
         fetchItems(test);
-        console.log("Success");
-        setTimeout(toolTipItems, 1500);
+        setTimeout(toolTipItems, 1000);
         
     }
-
-    function searchExecuteSpells() {
-        let test = search();
-        fetchSpells(test);
-        console.log("Success");
-        setTimeout(toolTipSpells, 1000);
-      /*  setTimeout(getToolTipSpells, 1250); */
-    }
-
-    function searchExecuteNPCs() {
-        let test = search();
-        fetchNPCs(test);
-        console.log("Success");
-        setTimeout(toolTipNPCs, 2000);
-    }
-    
-    /*function searchExecuteQuests() {
-        let test = search();
-        fetchQuests(test);
-        console.log("Success");
-        setTimeout(toolTip, 2000);
-    }*/
     
     document.getElementById("searchBar").addEventListener("submit", searchExecuteItems);
     let urlItemString = window.location.search.slice(11);
     document.getElementById("searchBar").value = urlItemString;
-    
-
-    function determineSearchCategory(){
-        return document.getElementById("filterChoice").value;
-    }
-
-
-  /*  function updateFormAction(){
-
-        let logicKey = determineSearchCategory(); 
-
-        if (logicKey === "Items"){
-            document.getElementById("searchForm").setAttribute("action", "item-search-results.html");
-        } 
-        elseif (logicKey === "Spells"){
-            document.getElementById("searchForm").setAttribute("action", "spells-search-results.html");
-        } 
-        elseif (logicKey === "NPCs"){
-            document.getElementById("searchForm").setAttribute("action", "NPCs-search-results.html");
-        } 
-        
-        else {
-            document.getElementById("searchForm").setAttribute("action", "quests-search-results.html");
-        }
-
-    } */
-    
-    function updateFormAction (){
-    let logicKey = determineSearchCategory();
-
-    switch(logicKey){
-        case "Items":
-            document.getElementById("searchForm").setAttribute("action", "item-search-results.html");
-            break;
-        case "Spells":
-            document.getElementById("searchForm").setAttribute("action", "spells-search-results.html");
-            break;
-        case "NPCs":
-            document.getElementById("searchForm").setAttribute("action", "NPCs-search-results.html");
-            break;
-        case "Quests":
-           document.getElementById("searchForm").setAttribute("action", "quests-search-results.html");
-            break;
-        default:
-            console.log("User didn't select category");
-    }
-}
-    let searchCategory;
-    searchCategory = document.getElementById("filterChoice").addEventListener("change", updateFormAction);
-
-    function successMessage () {
-        console.log("function has been called!")
-    }
-
-    
-    
-
-
-    function addEventListenerToSearchBar(){
-        document.getElementById("searchBar").addEventListener("keyup", function(event) {
-            console.log("loop entered")
-            var x = event.key;
-            // Number 13 is the "Enter" key on the keyboard
-            if (x === "Enter") {
-    
-              
-              // Trigger the button element with a click
-              
-              document.getElementById("searchButtonItems").click();
-            }
-          });
-    }
-
-
-
-
-    function clearSearchItems(){
-        document.getElementById("userSearchResults").innerHTML = "";
-    }
-
-    function clearToolTip(){
-        let tooltipLinezArray;
-        tooltipLinezArray = document.getElementsByClassName("tooltip-linez");
-        let z;
-        let tooltipLinezClassLength;
-        tooltipLinezClassLength = Object.keys(tooltipLinezArray).length;
-        for (z = 0; z < tooltipLinezClassLength; z++){
-            tooltipLinezArray[z].innerHTML = "";
-            
-        }
-       document.querySelectorAll('.tooltip-linez').forEach(e => e.remove());
-
-        
-     /*   document.getElementById("fullToolTip").style.display = "none"; */
-        
-        console.log("Cleared tooltip of data!")
-    }
-    
-    function toolTipItems() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('click', getToolTipItems) 
-        item.addEventListener('mouseleave', clearToolTip) 
-      })}
-
-      toolTipItems();
-
-    function moveToolTipWMouse(y_pos){
-        let g;
-        let xCoord;
-        let yCoord;
-        g = document.getElementById("fullToolTip");
-        window.addEventListener('mousemove', function(e) {
-        yCoord = e.pageY - 950;
-        if (yCoord > 1){
-            g.style.top = yCoord +'px';
-        }
-        
-
-        
-    })}
 
       function getToolTipItems() {
-     /*   moveToolTipWMouse(); */
         document.getElementById("fullToolTip").style.display = "table"
         let responseFromFetch;
         let ID;
@@ -419,7 +257,6 @@ function fetchItems(searchTerm) {
             
             for (i = 0; i < itemStatsArrayLength; i++){
                 itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
-                console.log(itemStatsArray)
             }
             let itemStatsArrayDisplay;
             itemStatsArrayDisplay = itemStatsArray.toString();
@@ -504,7 +341,6 @@ function fetchItems(searchTerm) {
                     
                     for (i = 0; i < itemStatsArrayLength; i++){
                         itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
-                        console.log(itemStatsArray)
                     }
                     let itemStatsArrayDisplay;
                     itemStatsArrayDisplay = itemStatsArray.toString();
@@ -712,7 +548,6 @@ function fetchItems(searchTerm) {
             
             for (i = 0; i < itemStatsArrayLength; i++){
                 itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
-                console.log(itemStatsArray)
             }
             let itemStatsArrayDisplay;
             itemStatsArrayDisplay = itemStatsArray.toString();
@@ -786,7 +621,6 @@ function fetchItems(searchTerm) {
                     
                     for (i = 0; i < itemStatsArrayLength; i++){
                         itemStatsArray.push(newData.preview_item.stats[i].display.display_string)
-                        console.log(itemStatsArray)
                     }
                     let itemStatsArrayDisplay;
                     itemStatsArrayDisplay = itemStatsArray.toString();
@@ -936,80 +770,5 @@ function fetchItems(searchTerm) {
 
                 styleItemName();
             } /* End of Tradeskill, Consumable, & Recipe Parsing */
-            
-            
-            
-        }       
+          }       
         )}
-    
-    
-
-   
-
-    function test() {
-       let responseFromFetch;
-        fetch(`https://us.api.blizzard.com/data/wow/creature/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
-        .then(response => response.json())
-            .then(data => responseFromFetch = data)
-            .then(newData => console.log(newData))
-
-    }
-
-
-
-    /* 
-    
-    user.name  (name of item) row 1
-    user.preview_item.level.value (ilvl of item) row 2
-    user.preview_item.binding.name       (bind on pickup or equip) row 3
-    user.inventory_type.name       (inventory type (aka ranged, 1h sword)) row 4
-    user.item_subclass.name       (item subclass (aka bow, sword, polearm))
-    user.preview_item.weapon.damage.display_string  (damage range (aka 31-42 damage)) row 5
-    user.preview_item.weapon.attack_speed.display_string (weapon speed (aka Speed 3.00))
-    user.preview_item.weapon.dps.display_string (DPS (aka 12.2 damage per second)) row 6
-    user.preview_item.stats[0] *this will be hard to implement* (stats (aka +16 agility)) row 7
-    user.preview_item.durability.display_string       (durability) row 8
-    user.required_level       (required level to use) row 9
-    user.sell_price       (sell price) row 10
-    
-    */
-
-  /*  function fetchToolTipData () {
-        toolTipItems();
-        fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`).then(response => response.json())
-          .then (user => {
-              const lines = [
-                  `${user.data.name.en_US}`,
-                  `Item Level ${user.data.level}`,
-                  `${user.data.inventory_type.name.en_US}`,
-                  `${user.data.item_subclass.name.en_US}`,
-                  `Item Class: ${user.data.item_class.name.en_US}`,
-                  `ID: ${user.data.id}`
-              ];
-          event.currentTarget.dataset.title = lines;
-    }) */
-      
-
-      function toolTipSpells() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('mouseover', event => {
-          console.log(event.currentTarget.children[1].innerText.replace("ID: ", ""));
-        })
-      })}
-
-      function toolTipNPCs() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('mouseover', event => {
-          console.log(event.currentTarget.children[2].innerText.replace("ID: ", ""));
-        })
-      })}
-
-/*    function getCoordinates(){
-        let xCoord;
-        let yCoord;
-        
-        window.addEventListener('mousemove', function(e) {
-            xCoord = e.x;
-            yCoord = e.y;
-        console.log(`x: ${e.x} | y: ${e.y}`); 
-    })} */
-
-    
