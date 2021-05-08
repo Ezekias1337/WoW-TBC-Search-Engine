@@ -40,10 +40,7 @@ function search(){
 
     }
     
-    function toolTipItems() {document.querySelectorAll('.Items').forEach(item => {
-        item.addEventListener('click', getToolTipItems) 
-        item.addEventListener('mouseleave', clearToolTip) 
-      })}
+    
 
 
       function testJSONData() {
@@ -66,3 +63,5 @@ function search(){
         
     }
     setTimeout(loginModalListener, 1000);
+
+    

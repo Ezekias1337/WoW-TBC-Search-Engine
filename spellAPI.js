@@ -56,6 +56,13 @@ function fetchSpells(searchTerm) {
         });
   }
 
+  function searchExecuteSpells() {
+    let test = search();
+    fetchSpells(test);
+    setTimeout(toolTipSpells, 1000);
+    console.log("Searched for Spells")
+}
+
   function getToolTipSpells(){
     let responseFromFetch;
     let ID;
@@ -91,10 +98,9 @@ function fetchSpells(searchTerm) {
         item.addEventListener('mouseleave', clearToolTip) 
       })}
 
-    function searchExecuteSpells() {
-        let test = search();
-        fetchSpells(test);
-        setTimeout(toolTipSpells, 1000);
-    }
+    document.getElementById("searchBar").addEventListener("submit", searchExecuteSpells);
+    let urlItemString = window.location.search.slice(11);
+    document.getElementById("searchBar").value = urlItemString;
+    
 
     

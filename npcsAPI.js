@@ -135,3 +135,7 @@ function fetchNPCs(searchTerm) {
         fetchNPCs(test);
         setTimeout(toolTipNPCs, 1000);
     }
+
+    document.getElementById("searchBar").addEventListener("submit", searchExecuteNPCs);
+    let urlItemString = window.location.search.slice(11);
+    document.getElementById("searchBar").value = urlItemString;

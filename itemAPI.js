@@ -55,11 +55,15 @@ function fetchItems(searchTerm) {
         });
   }
  
+  function toolTipItems() {document.querySelectorAll('.Items').forEach(item => {
+    item.addEventListener('click', getToolTipItems) 
+    item.addEventListener('mouseleave', clearToolTip) 
+  })}
+
     function searchExecuteItems() {
         let test = search();
         fetchItems(test);
         setTimeout(toolTipItems, 1000);
-        
     }
     
     document.getElementById("searchBar").addEventListener("submit", searchExecuteItems);
