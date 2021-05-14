@@ -120,8 +120,7 @@ function fetchItems(searchTerm) {
                     }
                   /* Start of Weapon Parsing */
                   if (newData.item_class.name === "Weapon"){
-                    /* This if statement is for low level Weapons, with no stats or bind type */
-                    /* NEED TO ADD ERROR HANDLING FOR WEAPONS WITH BIND TYPE BUT NO STATS, E.G. ITEM ID 1008 */
+                    /* NEED TO ADD ERROR HANDLING FOR ARMOR WITH NO ARMOR, EG ITEM 19138 SULFURAS BAND */
                     /* This else if statement is for Weapons with no stats, no bind type and no required attribute*/
             
             if (newData.sell_price != null){
