@@ -67,8 +67,11 @@ function fetchSpells(searchTerm) {
     let responseFromFetch;
     let ID;
     let ID2;
+    let tooltipImage;
     ID = (event.currentTarget.children[1].innerText.replace("ID: ", ""));
     ID2 = (event.currentTarget);
+    tooltipImage = event.currentTarget.children[2].cloneNode(true);
+    tooltipImage.id = "tooltipImageStyleSpell";
     console.log(ID, ID2);
     fetch(`https://us.api.blizzard.com/data/wow/spell/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
     .then(response => response.json())
@@ -79,14 +82,17 @@ function fetchSpells(searchTerm) {
                         `${newData.name}`,
                         `${newData.description}`
                     ]
+
+                    document.getElementById("tooltip-row-1").appendChild(tooltipImage);
+
                     lines.forEach((cell) => {
                         let node = document.createElement('td');
                         node.innerHTML = cell; 
                         node.className = 'tooltip-linez'
                         if (cell === newData.name){
-                            document.getElementById("tooltip-row-1").appendChild(node)
-                        } else if(cell === newData.description){
                             document.getElementById("tooltip-row-2").appendChild(node)
+                        } else if(cell === newData.description){
+                            document.getElementById("tooltip-row-3").appendChild(node)
                         }   else{
                             console.log("Failed to append")
                         }

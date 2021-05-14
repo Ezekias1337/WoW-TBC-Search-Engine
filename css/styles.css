@@ -268,3 +268,6 @@ nav {
   border-radius: 5px;
   padding: 3.5px;
   color: #e1eef4; }
+
+#tooltipImageStyleNPC, #tooltipImageStyleItem, #tooltipImageStyleSpell {
+  width: 75px; }

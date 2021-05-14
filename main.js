@@ -32,12 +32,25 @@ function search(){
         let z;
         let tooltipLinezClassLength;
         tooltipLinezClassLength = Object.keys(tooltipLinezArray).length;
+        
+        if(document.getElementById("tooltipImageStyleNPC")){
+            document.getElementById("tooltipImageStyleNPC").remove();
+        } else if(document.getElementById("tooltipImageStyleItem")){
+            document.getElementById("tooltipImageStyleItem").remove();
+        } else if(document.getElementById("tooltipImageStyleSpell")){
+            document.getElementById("tooltipImageStyleSpell").remove();
+        }
+        
+        
+
+
+
         for (z = 0; z < tooltipLinezClassLength; z++){
             tooltipLinezArray[z].innerHTML = "";
             
         }
        document.querySelectorAll('.tooltip-linez').forEach(e => e.remove());
-
+       
     }
     
       function testJSONData() {

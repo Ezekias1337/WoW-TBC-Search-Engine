@@ -75,6 +75,10 @@ function fetchItems(searchTerm) {
         let responseFromFetch;
         let ID;
         let ID2;
+        let tooltipImage;
+        tooltipImage = event.currentTarget.children[3].cloneNode(true);
+        tooltipImage.id = "tooltipImageStyleItem";
+        tooltipImage.className = "d-block";
         ID = (event.currentTarget.children[2].innerText.replace("ID: ", ""));
         ID2 = (event.currentTarget);
          fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
@@ -151,6 +155,9 @@ function fetchItems(searchTerm) {
                     `${newData.preview_item.durability.display_string}`,
                     `${sellPriceArraydisplayFinal}`
                 ]
+
+                document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                 lines.forEach((cell) => {
                 let node = document.createElement('td');
                 node.innerHTML = cell; 
@@ -228,6 +235,9 @@ function fetchItems(searchTerm) {
                         `${newData.preview_item.requirements.level.display_string}`,
                         `${sellPriceArraydisplayFinal}`
                     ]
+
+                    document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                     lines.forEach((cell) => {
                     let node = document.createElement('td');
                     node.innerHTML = cell; 
@@ -297,6 +307,9 @@ function fetchItems(searchTerm) {
                     `${newData.preview_item.durability.display_string}`,
                     `${sellPriceArraydisplayFinal}`
                 ]
+
+                document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                 lines.forEach((cell) => {
                 let node = document.createElement('td');
                 node.innerHTML = cell; 
@@ -366,6 +379,8 @@ function fetchItems(searchTerm) {
                     `${newData.preview_item.requirements.level.display_string}`,
                     `${sellPriceArraydisplayFinal}`
                 ]
+                document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                 lines.forEach((cell) => {
                 let node = document.createElement('td');
                 node.innerHTML = cell; 
@@ -446,6 +461,8 @@ function fetchItems(searchTerm) {
                 `${sellPriceArraydisplayFinal}`
             ]   
             
+            document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                 lines.forEach((cell) => {
                 let node = document.createElement('td');
                 node.innerHTML = cell; 
@@ -531,6 +548,8 @@ function fetchItems(searchTerm) {
                         `${sellPriceArraydisplayFinal}`
                     ]   
                     
+                    document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                         lines.forEach((cell) => {
                         let node = document.createElement('td');
                         node.innerHTML = cell; 
@@ -604,6 +623,9 @@ function fetchItems(searchTerm) {
                         `${newData.preview_item.requirements.level.display_string}`,
                         `${sellPriceArraydisplayFinal}`
                     ]
+
+                    document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                     lines.forEach((cell) => {
                     let node = document.createElement('td');
                     node.innerHTML = cell; 
@@ -664,6 +686,9 @@ function fetchItems(searchTerm) {
                     `${newData.preview_item.requirements.level.display_string}`,
                     `${sellPriceArraydisplayFinal}`
                 ]
+
+                document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                 lines.forEach((cell) => {
                 let node = document.createElement('td');
                 node.innerHTML = cell; 
@@ -734,6 +759,8 @@ function fetchItems(searchTerm) {
                 `${newData.preview_item.durability.display_string}`,
                 `${sellPriceArraydisplayFinal}`
             ]   
+
+            document.getElementById("tooltip-row-1").appendChild(tooltipImage)
             
                 lines.forEach((cell) => {
                 let node = document.createElement('td');
@@ -809,6 +836,8 @@ function fetchItems(searchTerm) {
                         `${sellPriceArraydisplayFinal}`
                     ]   
                     
+                    document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                         lines.forEach((cell) => {
                         let node = document.createElement('td');
                         node.innerHTML = cell; 
@@ -853,6 +882,8 @@ function fetchItems(searchTerm) {
                         `${newData.item_class.name}`,
                         `${newData.level}`,
                     ]
+                    document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                     lines.forEach((cell) => {
                     let node = document.createElement('td');
                     node.innerHTML = cell; 
@@ -900,6 +931,8 @@ function fetchItems(searchTerm) {
                         `${newData.level}`,
                         `${sellPriceArraydisplayFinal}`
                     ]
+                    document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+
                     lines.forEach((cell) => {
                     let node = document.createElement('td');
                     node.innerHTML = cell; 

@@ -59,8 +59,12 @@ function fetchNPCs(searchTerm) {
     let responseFromFetch;
     let ID;
     let ID2;
+    let tooltipImage;
     ID = (event.currentTarget.children[1].innerText.replace("ID: ", ""));
     ID2 = (event.currentTarget);
+    tooltipImage = event.currentTarget.children[2].cloneNode(true);
+    tooltipImage.id = "tooltipImageStyleNPC";
+    tooltipImage.className = "d-block";
     console.log(ID, ID2);
     fetch(`https://us.api.blizzard.com/data/wow/creature/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
     .then(response => response.json())
@@ -84,6 +88,7 @@ function fetchNPCs(searchTerm) {
                             `${tameableString}`,
                             `${newData.type.name}`
                         ]
+                        document.getElementById("tooltip-row-1").appendChild(tooltipImage)
                         lines.forEach((cell) => {
                             let node = document.createElement('td');
                             node.innerHTML = cell; 
@@ -98,6 +103,8 @@ function fetchNPCs(searchTerm) {
                                 console.log("Failed to append")
                             }
                         })
+
+                       /* document.getElementById("tooltip-row-1").appendChild(tooltipImage) */
                     }
 
                     else {const lines = [
@@ -107,6 +114,7 @@ function fetchNPCs(searchTerm) {
                         `${tameableString}`,
                         `${newData.type.name}`
                     ]
+                    document.getElementById("tooltip-row-1").appendChild(tooltipImage);
                     lines.forEach((cell) => {
                         let node = document.createElement('td');
                         node.innerHTML = cell; 
@@ -122,7 +130,9 @@ function fetchNPCs(searchTerm) {
                         }  else {
                             console.log("Failed to append")
                         }
-                    })}
+                    })
+                    /*document.getElementById("tooltip-row-1").appendChild(tooltipImage)*/
+                }
                 })}
 
     function toolTipNPCs() {document.querySelectorAll('.Items').forEach(item => {
