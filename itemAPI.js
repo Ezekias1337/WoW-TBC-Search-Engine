@@ -118,8 +118,71 @@ function fetchItems(searchTerm) {
                   if (newData.item_class.name === "Weapon"){
                     /* This if statement is for low level Weapons, with no stats or bind type */
                     /* NEED TO ADD ERROR HANDLING FOR WEAPONS WITH BIND TYPE BUT NO STATS, E.G. ITEM ID 1008 */
+                    /* This else if statement is for Weapons with no stats, no bind type and no required attribute*/
+            
+            if (newData.sell_price != null){
+                
+                console.log("Item has no stats");
+                let sellPriceArray = [];
+                let sellPriceArraydisplay;
+                let sellPriceArraydisplayFinal;
 
-                    if (newData.preview_item.binding == null){
+                sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+                if (newData.preview_item.sell_price.display_strings.gold > 0){
+                    sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+                } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                    sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver");
+                } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                    sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper");
+                } else {
+                    console.log("Atleast one demonination of currency null")
+                }
+                sellPriceArraydisplay = sellPriceArray.join(); 
+                sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
+                const lines = [
+                    `${newData.name}`,
+                    `${newData.preview_item.level.display_string}`, 
+                    `${newData.inventory_type.name}`,
+                    `${newData.item_subclass.name}`,
+                    `${newData.preview_item.weapon.damage.display_string}`,
+                    `${newData.preview_item.weapon.attack_speed.display_string}`,
+                    `${newData.preview_item.weapon.dps.display_string}`,
+                    `${newData.preview_item.durability.display_string}`,
+                    `${sellPriceArraydisplayFinal}`
+                ]
+                lines.forEach((cell) => {
+                let node = document.createElement('td');
+                node.innerHTML = cell; 
+                node.className = 'tooltip-linez'
+                if (cell === newData.name){
+                    document.getElementById("tooltip-row-1").appendChild(node)
+                } else if(cell === newData.preview_item.level.display_string){
+                    document.getElementById("tooltip-row-1").appendChild(node)
+                } else if(cell === newData.inventory_type.name){
+                    document.getElementById("tooltip-row-2").appendChild(node)
+                } else if(cell === newData.item_subclass.name){
+                    document.getElementById("tooltip-row-2").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.damage.display_string){
+                    document.getElementById("tooltip-row-3").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
+                    document.getElementById("tooltip-row-3").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.dps.display_string){
+                    document.getElementById("tooltip-row-3").appendChild(node)
+                }  else if(cell === newData.preview_item.durability.display_string){
+                    document.getElementById("tooltip-row-4").appendChild(node)
+                } else if(cell === sellPriceArraydisplayFinal){
+                    document.getElementById("tooltip-row-4").appendChild(node)
+                }  
+                else{
+                    console.log("Failed to append")
+                }
+            })
+            styleItemName();
+        }
+
+
+                    else if (newData.preview_item.binding == null && newData.preview_item.stats == null){
                     console.log("Item has no bind-type");
                     let sellPriceArray = [];
                     let sellPriceArraydisplay;
@@ -137,6 +200,21 @@ function fetchItems(searchTerm) {
                     }
                     sellPriceArraydisplay = sellPriceArray.join(); 
                     sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
+                    if (newData.preview_item.requirements.level.display_string === null){
+                        const lines = [
+                            `${newData.name}`,
+                            `${newData.preview_item.level.display_string}`,
+                            `${newData.inventory_type.name}`,
+                            `${newData.item_subclass.name}`,
+                            `${newData.preview_item.weapon.damage.display_string}`,
+                            `${newData.preview_item.weapon.attack_speed.display_string}`,
+                            `${newData.preview_item.weapon.dps.display_string}`,
+                            `${newData.preview_item.durability.display_string}`,
+                            `${newData.preview_item.requirements.level.display_string}`,
+                            `${sellPriceArraydisplayFinal}`
+                        ]
+                    }
 
                     const lines = [
                         `${newData.name}`,
@@ -181,6 +259,78 @@ function fetchItems(searchTerm) {
                 })
                 styleItemName();
             } 
+
+
+            /* ------------------------------------------------------------------------------- */
+            
+            /* This else if statement is for Weapons with no stats, no required level but with a bind type */
+            
+            else if (newData.preview_item.stats == null){
+                
+                console.log("Item has no stats");
+                let sellPriceArray = [];
+                let sellPriceArraydisplay;
+                let sellPriceArraydisplayFinal;
+
+                sellPriceArray.push(newData.preview_item.sell_price.display_strings.header);
+                if (newData.preview_item.sell_price.display_strings.gold > 0){
+                    sellPriceArray.push(newData.preview_item.sell_price.display_strings.gold + " Gold");
+                } if (newData.preview_item.sell_price.display_strings.silver > 0){
+                    sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.silver + " Silver");
+                } if (newData.preview_item.sell_price.display_strings.copper > 0){
+                    sellPriceArray.push(" " + newData.preview_item.sell_price.display_strings.copper + " Copper");
+                } else {
+                    console.log("Atleast one demonination of currency null")
+                }
+                sellPriceArraydisplay = sellPriceArray.join(); 
+                sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
+
+                const lines = [
+                    `${newData.name}`,
+                    `${newData.preview_item.level.display_string}`,
+                    `${newData.preview_item.binding.name}`, 
+                    `${newData.inventory_type.name}`,
+                    `${newData.item_subclass.name}`,
+                    `${newData.preview_item.weapon.damage.display_string}`,
+                    `${newData.preview_item.weapon.attack_speed.display_string}`,
+                    `${newData.preview_item.weapon.dps.display_string}`,
+                    `${newData.preview_item.durability.display_string}`,
+                    `${sellPriceArraydisplayFinal}`
+                ]
+                lines.forEach((cell) => {
+                let node = document.createElement('td');
+                node.innerHTML = cell; 
+                node.className = 'tooltip-linez'
+                if (cell === newData.name){
+                    document.getElementById("tooltip-row-1").appendChild(node)
+                } else if(cell === newData.preview_item.level.display_string){
+                    document.getElementById("tooltip-row-1").appendChild(node)
+                } else if(cell === newData.preview_item.binding.name){
+                    document.getElementById("tooltip-row-1").appendChild(node)
+                } else if(cell === newData.inventory_type.name){
+                    document.getElementById("tooltip-row-2").appendChild(node)
+                } else if(cell === newData.item_subclass.name){
+                    document.getElementById("tooltip-row-2").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.damage.display_string){
+                    document.getElementById("tooltip-row-3").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.attack_speed.display_string){
+                    document.getElementById("tooltip-row-3").appendChild(node)
+                } else if(cell === newData.preview_item.weapon.dps.display_string){
+                    document.getElementById("tooltip-row-3").appendChild(node)
+                }  else if(cell === newData.preview_item.durability.display_string){
+                    document.getElementById("tooltip-row-4").appendChild(node)
+                } else if(cell === sellPriceArraydisplayFinal){
+                    document.getElementById("tooltip-row-4").appendChild(node)
+                }  
+                else{
+                    console.log("Failed to append")
+                }
+            })
+            styleItemName();
+        }
+            
+            /* -------------------------------------------------------------------------------- */
+            
             /* This else if statement is for Weapons with no stats, but with a bind type */
             
             else if (newData.preview_item.stats == null){

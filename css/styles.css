@@ -263,3 +263,8 @@ nav {
 
 .fa:hover {
   color: #e1eef4; }
+
+.modal-content {
+  border-radius: 5px;
+  padding: 3.5px;
+  color: #e1eef4; }

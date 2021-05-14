@@ -139,3 +139,5 @@ function fetchNPCs(searchTerm) {
     document.getElementById("searchBar").addEventListener("submit", searchExecuteNPCs);
     let urlItemString = window.location.search.slice(11);
     document.getElementById("searchBar").value = urlItemString;
+   
+    
