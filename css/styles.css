@@ -294,8 +294,17 @@ nav {
   bottom: -25px;
   max-height: 20px; }
 
-.talentButton {
-  opacity: 1; }
+.active {
+  border: 2px solid rgba(64, 191, 64, 0.8);
+  border-radius: 3px; }
+
+.inactive {
+  border: 2px solid #C2C4C6;
+  border-radius: 3px; }
+
+.maxeds {
+  border: 2px solid #ffd100;
+  border-radius: 3px; }
 
 #toolTipModal {
   opacity: 0.90; }
@@ -306,5 +315,12 @@ nav {
   /* For IE7 */
   zoom: 1;
   /* Trigger hasLayout */
-  width: 70%;
-  text-align: center; }
+  width: 80%;
+  text-align: center;
+  margin: 9px; }
+
+.req-inactive {
+  filter: grayscale(100%); }
+
+.req-active {
+  filter: grayscale(0%); }
