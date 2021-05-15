@@ -271,3 +271,40 @@ nav {
 
 #tooltipImageStyleNPC, #tooltipImageStyleItem, #tooltipImageStyleSpell {
   width: 75px; }
+
+.inactiveTalent {
+  opacity: 1; }
+
+.activeTalent {
+  border-color: rgba(64, 191, 64, 0.8); }
+
+.maxedTalent {
+  border-color: #ffd100; }
+
+.talentPoints {
+  background-color: #000;
+  border: #333;
+  border-radius: 3px !important;
+  color: #787878;
+  cursor: pointer;
+  font-size: 11px;
+  position: relative;
+  user-select: none;
+  left: -15px;
+  bottom: -25px;
+  max-height: 20px; }
+
+.talentButton {
+  opacity: 1; }
+
+#toolTipModal {
+  opacity: 0.90; }
+
+.talent-row {
+  display: inline-block;
+  *display: inline;
+  /* For IE7 */
+  zoom: 1;
+  /* Trigger hasLayout */
+  width: 70%;
+  text-align: center; }

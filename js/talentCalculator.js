@@ -66,3 +66,122 @@ function displayClassTalents(className){
     console.log("Successfully Updated Talents!");
     
 }
+
+function addEventListenersCalcIcons(){
+    let talentsObj = [];
+    let talentsArry = [];
+    talentsObj = document.getElementsByClassName("talentButton");
+    console.log(talentsObj);
+    console.log(typeof(talentsObj));
+    for(item of talentsObj){
+        item.addEventListener("click", updateTalentPoints);
+        item.addEventListener("click", updateCounter);
+    }
+    /*talentsObj.map((talent) => talent.addEventListener("click", updateTalentPoints))*/
+}
+let i = 0;
+
+function updateCounter(){
+    i = i+1
+    console.log("Talent Points Spent: " + i)
+}
+
+function updateTalentPoints(){
+    let valueString;
+    let pointChecker;
+    let onePointArray = ["0/1", "1/1"];
+    let twoPointArray = ["0/2", "1/2", "2/2"];
+    let threePointArray = ["0/3", "1/3", "2/3", "3/3"];
+    let fourPointArray = ["0/4", "1/4", "2/4", "3/4", "4/4"];
+    let fivePointArray = ["0/5", "1/5", "2/5", "3/5", "4/5", "5/5"];
+    
+    valueString = event.currentTarget.nextElementSibling.innerText;
+    pointChecker = event.currentTarget.nextElementSibling.className.substring(17, 19);
+    console.log(pointChecker);
+    let insufficientPointWarning = `You need to spend ${pointChecker - i} more points in this tree first!`;
+
+    if(valueString[2] === "1"){
+        if(i >= pointChecker){
+            if(valueString === onePointArray[0]){
+                event.currentTarget.nextElementSibling.innerText = onePointArray[1];
+            } else if(valueString === onePointArray[1]){
+                console.log("You've maxed out this talent already!");
+            }
+            } else{
+                i = i-1;
+                console.log(insufficientPointWarning);
+        }
+    }
+    
+    if(valueString[2] === "2"){   
+        if(i >= pointChecker){
+            if(valueString === twoPointArray[0]){
+                event.currentTarget.nextElementSibling.innerText = twoPointArray[1];
+            } else if(valueString === twoPointArray[1]){
+                event.currentTarget.nextElementSibling.innerText = twoPointArray[2];
+            } else if(valueString === twoPointArray[2]){
+                console.log("You've maxed out this talent already!");
+            }
+        } else{
+            i = i-1;
+            console.log(insufficientPointWarning);
+        }
+    }
+    
+    if(valueString[2] === "3"){  
+        if(i >= pointChecker){
+            if(valueString === threePointArray[0]){
+                event.currentTarget.nextElementSibling.innerText = threePointArray[1];
+            } else if(valueString === threePointArray[1]){
+                event.currentTarget.nextElementSibling.innerText = threePointArray[2];
+            } else if(valueString === threePointArray[2]){
+                event.currentTarget.nextElementSibling.innerText = threePointArray[3];
+            } else if(valueString === threePointArray[3]){
+                console.log("You've maxed out this talent already!");
+            } 
+        } else{
+            i = i-1;
+            console.log(insufficientPointWarning);
+        }
+    }
+    
+    if(valueString[2] === "4"){ 
+        if(i >= pointChecker){
+            if(valueString === fourPointArray[0]){
+                event.currentTarget.nextElementSibling.innerText = fourPointArray[1];
+            } else if(valueString === fourPointArray[1]){
+                event.currentTarget.nextElementSibling.innerText = fourPointArray[2];
+            } else if(valueString === fourPointArray[2]){
+                event.currentTarget.nextElementSibling.innerText = fourPointArray[3];
+            } else if(valueString === fourPointArray[3]){
+                event.currentTarget.nextElementSibling.innerText = fourPointArray[4];
+            } else if(valueString === fourPointArray[4]){
+                console.log("You've maxed out this talent already!");
+            }
+        }else{
+            i = i-1;
+            console.log(insufficientPointWarning);
+        }
+    }
+
+    if(valueString[2] === "5"){  
+        if(i >= pointChecker){
+            if(valueString === fivePointArray[0]){
+                event.currentTarget.nextElementSibling.innerText = fivePointArray[1];
+            } else if(valueString === fivePointArray[1]){
+                event.currentTarget.nextElementSibling.innerText = fivePointArray[2];
+            } else if(valueString === fivePointArray[2]){
+                event.currentTarget.nextElementSibling.innerText = fivePointArray[3];
+            } else if(valueString === fivePointArray[3]){
+                event.currentTarget.nextElementSibling.innerText = fivePointArray[4];
+            } else if(valueString === fivePointArray[4]){
+                event.currentTarget.nextElementSibling.innerText = fivePointArray[5];
+            } else if(valueString === fivePointArray[5]){
+                console.log("You've maxed out this talent already!");
+            }
+        } else{
+            i = i-1;
+            console.log(insufficientPointWarning);
+        }
+    }
+}
