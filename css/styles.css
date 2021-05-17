@@ -294,11 +294,11 @@ nav {
   bottom: -25px;
   max-height: 20px; }
 
-.active {
+.active-talent {
   border: 2px solid rgba(64, 191, 64, 0.8);
   border-radius: 3px; }
 
-.inactive {
+.inactive-talent {
   border: 2px solid #C2C4C6;
   border-radius: 3px; }
 

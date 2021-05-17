@@ -91,51 +91,76 @@ function updateCounter(){
     i = i+1
     console.log("Talent Points Spent: " + i)
     document.getElementById("total-points").innerText = i;
-     
+    let classChecker; 
+    let classFinisher;
+    
 
     if(i >= pointChecker){
         if(i >= 40){
             pointsObj = document.getElementsByClassName("req-40-s1");
             for(item of pointsObj){
-                
-                /*item.previousSibling.previousSibling.className = "talentButton active req-active";*/
-
-            } 
+                classChecker = item.previousSibling.previousSibling.className;
+                classFinisher = classChecker.replace("inactive-talent", "active-talent");
+                classChecker = classFinisher.replace("req-inactive", "req-active")
+                item.previousSibling.previousSibling.className = classChecker
+            }   
         } else if(i >= 35){
             pointsObj = document.getElementsByClassName("req-35-s1");
             for(item of pointsObj){
-                /*item.previousSibling.previousSibling.className = "talentButton active req-active";*/
-            } 
+                classChecker = item.previousSibling.previousSibling.className;
+                classFinisher = classChecker.replace("inactive-talent", "active-talent");
+                classChecker = classFinisher.replace("req-inactive", "req-active")
+                item.previousSibling.previousSibling.className = classChecker;
+            }  
         } else if(i >= 30){
             pointsObj = document.getElementsByClassName("req-30-s1");
             for(item of pointsObj){
-                /*item.previousSibling.previousSibling.className = "talentButton active req-active";*/
-            } 
+                classChecker = item.previousSibling.previousSibling.className;
+                classFinisher = classChecker.replace("inactive-talent", "active-talent");
+                classChecker = classFinisher.replace("req-inactive", "req-active")
+                item.previousSibling.previousSibling.className = classChecker;
+            }   
         } else if(i >= 25){
             pointsObj = document.getElementsByClassName("req-25-s1");
             for(item of pointsObj){
-                /*item.previousSibling.previousSibling.className = "talentButton active req-active";*/
-            } 
+                classChecker = item.previousSibling.previousSibling.className;
+                classFinisher = classChecker.replace("inactive-talent", "active-talent");
+                classChecker = classFinisher.replace("req-inactive", "req-active")
+                item.previousSibling.previousSibling.className = classChecker;
+            }   
         } else if(i >= 20){
             pointsObj = document.getElementsByClassName("req-20-s1");
             for(item of pointsObj){
-                /*item.previousSibling.previousSibling.className = "talentButton active req-active";*/
-            } 
+                classChecker = item.previousSibling.previousSibling.className;
+                classFinisher = classChecker.replace("inactive-talent", "active-talent");
+                classChecker = classFinisher.replace("req-inactive", "req-active")
+                item.previousSibling.previousSibling.className = classChecker;
+            }  
         } else if(i >= 15){
             pointsObj = document.getElementsByClassName("req-15-s1");
             for(item of pointsObj){
-                /*item.previousSibling.previousSibling.className = "talentButton active req-active";*/
-            } 
+                classChecker = item.previousSibling.previousSibling.className;
+                classFinisher = classChecker.replace("inactive-talent", "active-talent");
+                classChecker = classFinisher.replace("req-inactive", "req-active")
+                item.previousSibling.previousSibling.className = classChecker;
+            }  
         } else if(i >= 10){
             pointsObj = document.getElementsByClassName("req-10-s1");
+            
             for(item of pointsObj){
-                /*item.previousSibling.previousSibling.className = "talentButton active req-active";*/
-            } 
+                classChecker = item.previousSibling.previousSibling.className;
+                classFinisher = classChecker.replace("inactive-talent", "active-talent");
+                classChecker = classFinisher.replace("req-inactive", "req-active")
+                item.previousSibling.previousSibling.className = classChecker;
+            }  
         }   else if(i >= 5){
             pointsObj = document.getElementsByClassName("req-05-s1");
             for(item of pointsObj){
-                /*item.previousSibling.previousSibling.className = "talentButton active req-active";*/
-            } 
+                classChecker = item.previousSibling.previousSibling.className;
+                classFinisher = classChecker.replace("inactive-talent", "active-talent");
+                classChecker = classFinisher.replace("req-inactive", "req-active")
+                item.previousSibling.previousSibling.className = classChecker;
+            }   
         }  
     
     }
@@ -163,7 +188,7 @@ function updateTalentPoints(){
                 event.currentTarget.className = "talentButton maxeds req-active";
             } else if(valueString === onePointArray[1]){
                 i = i-1;
-                console.log(event.currentTarget.className) /*"talentButton maxeds req-active";*/
+                event.currentTarget.className /*"talentButton maxeds req-active";*/
                 console.log("You've maxed out this talent already!");
             }
             } else{
@@ -177,6 +202,7 @@ function updateTalentPoints(){
             
             if(valueString === twoPointArray[0]){
                 event.currentTarget.nextElementSibling.innerText = twoPointArray[1];
+                event.currentTarget.className = "talentButton active-talent req-active";
             } else if(valueString === twoPointArray[1]){
                 event.currentTarget.nextElementSibling.innerText = twoPointArray[2];
                 event.currentTarget.className = "talentButton maxeds req-active";
@@ -196,6 +222,7 @@ function updateTalentPoints(){
             
             if(valueString === threePointArray[0]){
                 event.currentTarget.nextElementSibling.innerText = threePointArray[1];
+                event.currentTarget.className = "talentButton active-talent req-active";;
             } else if(valueString === threePointArray[1]){
                 event.currentTarget.nextElementSibling.innerText = threePointArray[2];
             } else if(valueString === threePointArray[2]){
@@ -217,6 +244,7 @@ function updateTalentPoints(){
             
             if(valueString === fourPointArray[0]){
                 event.currentTarget.nextElementSibling.innerText = fourPointArray[1];
+                event.currentTarget.className = "talentButton active-talent req-active";
             } else if(valueString === fourPointArray[1]){
                 event.currentTarget.nextElementSibling.innerText = fourPointArray[2];
             } else if(valueString === fourPointArray[2]){
@@ -240,7 +268,7 @@ function updateTalentPoints(){
             
             if(valueString === fivePointArray[0]){
                 event.currentTarget.nextElementSibling.innerText = fivePointArray[1];
-                event.currentTarget.className = "talentButton active req-active";
+                event.currentTarget.className = "talentButton active-talent req-active";
                 console.log("Function entered")
             } else if(valueString === fivePointArray[1]){
                 event.currentTarget.nextElementSibling.innerText = fivePointArray[2];
