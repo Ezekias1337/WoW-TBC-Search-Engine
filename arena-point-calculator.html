@@ -42,7 +42,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="bcNavbar">
                         <ul class="navbar-nav">
-                            <li class="nav-item active"><a class="nav-link navIconTextHover" href="#"><i class="fa fa-shield fa-lg fa-fw"></i>Items</a>
+                            <li class="nav-item"><a class="nav-link navIconTextHover" href="item-search-results.html"><i class="fa fa-shield fa-lg fa-fw"></i>Items</a>
                             </li>
                             <li class="nav-item"><a class="nav-link navIconTextHover" href="talent-tree-calculator.html"><i
                                         class="fa fa-bullseye fa-lg fa-fw"></i>Talents</a></li>
@@ -51,6 +51,8 @@
                                         class="fa fa-user fa-lg fa-fw"></i>NPCs</a></li>
                             <li class="nav-item"><a class="nav-link navIconTextHover" href="quests-search-results.html"><i
                                         class="fa fa-exclamation fa-lg fa-fw"></i>Quests</a></li>
+                            <li class="nav-item active"><a class="nav-link navIconTextHover" href="arena-point-calculator.html"><i
+                                class="fa fa-shield fa-lg fa-fw"></i>Arena Calculator</a></li>
                         </ul>
                         <span class="navbar-text ml-auto">
                             <a role="button" class="navIconTextHover loginStyling" data-toggle="modal" data-target="#loginModal">
@@ -105,7 +107,7 @@
             <nav aria-label="breadcrumb" >
                 <ol class="breadcrumb" id="customBreadCrumb">
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                  <li class="breadcrumb-item active" id="customActiveBreadCrumb" aria-current="page">Items</li>
+                  <li class="breadcrumb-item active" id="customActiveBreadCrumb" aria-current="page">Arena Calculator</li>
                 </ol>
               </nav>
 
@@ -113,16 +115,26 @@
                     <div class="row">
                         <div class="col-sm-12 mx-auto">
                               <h3 style="color: #364447;">Arena Point Calculator</h3>
-                                    <h5><input id="2s" type="text" placeholder="Enter 2s rating here: " class="groove arena" style="height:30 px;">
-                                        <input id="3s" type="text" placeholder="Enter 3s rating here: " class="groove arena" style="height:30 px;">
-                                        <input id="5s" type="text" placeholder="Enter 5s rating here: " class="groove arena" style="height:30 px;">
-                                        <button id="submitArenaPoints" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
-                                    </h5>
-                                    <h5><input id="2s-output" type="text" placeholder="Enter 2s rating here: " class="groove arena" style="height:30 px;">
-                                        <input id="3s-output" type="text" placeholder="Enter 3s rating here: " class="groove arena" style="height:30 px;">
-                                        <input id="5s-output" type="text" placeholder="Enter 5s rating here: " class="groove arena" style="height:30 px;">
-                                        <button id="resetArenaPoints" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
-                                    </h5>
+                                    <div class="row arena-field arena-wrapper">
+                                            <div class="col col-12">
+                                                <input id="2s" type="text" placeholder="Enter 2s rating here: " class="groove arena" style="height:30 px;">
+                                                <input tabindex="-1" readonly id="2s-output" type="text" class="groove arena" style="height:30 px;">
+                                            </div>
+                                            <div class="col col-12">
+                                                <input id="3s" type="text" placeholder="Enter 3s rating here: " class="groove arena" style="height:30 px;">
+                                                <input tabindex="-1" readonly id="3s-output" type="text" class="groove arena" style="height:30 px;">
+                                            </div>
+                                            <div class="col col-12">
+                                                <input id="5s" type="text" placeholder="Enter 5s rating here: " class="groove arena" style="height:30 px;">
+                                                <input tabindex="-1" readonly id="5s-output" type="text" class="groove arena" style="height:30 px;">
+                                            </div>
+                                            
+                                    </div>
+
+                                    <div class="col col-12 mt-2">
+                                        <button id="submitArenaPoints" class="groove search fa fa-calculator execute_search" style="height: 34px; width: 60px;"></button>
+                                        <button id="resetArenaPoints" class="groove search fa execute_search arena-field" style="height: 34px; width: 60px;">Reset</button>
+                                    </div>
                         </div>
                     </div>
                 </div>

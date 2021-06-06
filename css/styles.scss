@@ -2,10 +2,14 @@
     font-family: Warcraft; src: url(../fonts/Warcraft.ttf);
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, .arena-field {
 
     font-family: Warcraft;
     color: #e1eef4;
+}
+
+.arena-wrapper {
+  margin-top: 100px;
 }
 
 .bkground {
