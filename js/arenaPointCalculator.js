@@ -1,3 +1,22 @@
+'use strict';
+
+const e = React.createElement;
+
+class ArenaCalc extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {  };
+    }
+  
+    render() {
+      
+  
+      return e(
+        
+      );
+    }
+}  
+
 function calculatePoints2s () {
     let points;
     let pointOutput2s;
