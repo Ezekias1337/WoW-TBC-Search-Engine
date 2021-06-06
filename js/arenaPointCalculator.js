@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 const e = React.createElement;
 
@@ -15,7 +15,7 @@ class ArenaCalc extends React.Component {
         
       );
     }
-}  
+}  */
 
 function calculatePoints2s () {
     let points;
