@@ -76,6 +76,7 @@ function addEventListenersCalcIcons(){
     for(item of talentsObj){
         item.addEventListener("click", updateTalentPoints);
         item.addEventListener("click", updateCounter);
+        item.addEventListener("click", removePoint);
     }
 }
 
@@ -86,6 +87,16 @@ let tracker;
 let index;
 let pointChecker;
 let pointsObj;
+let log = document.querySelector('#log');
+function removePoint(e) {
+    e.preventDefault();
+    //do something differant context menu
+    /*if(e.which == 3){alert("You right-clicked inside the div!");}*/
+    window.oncontextmenu = function () {
+        alert('Right Click')
+      }
+    
+}
 
 function updateCounter(){
     i = i+1
