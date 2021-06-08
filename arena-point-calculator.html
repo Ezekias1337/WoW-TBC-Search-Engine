@@ -116,15 +116,26 @@
                         <div class="col-sm-12 mx-auto">
                               <h3 style="color: #364447;">Arena Point Calculator</h3>
                                     <div class="row arena-field arena-wrapper">
+                                            <div class="col col-sm-12">
+                                                <span>Brackets                    </span>
+                                                <span>          Point Output </span>
+                                            </div>
+                                            <div class="col">
+                                                <h2></h2>
+                                            </div>
+                                            
                                             <div class="col col-12">
+                                                <span>2s</span>
                                                 <input id="2s" type="text" placeholder="Enter 2s rating here: " class="groove arena" style="height:30 px;">
                                                 <input tabindex="-1" readonly id="2s-output" type="text" class="groove arena" style="height:30 px;">
                                             </div>
                                             <div class="col col-12">
+                                                <span>3s</span>
                                                 <input id="3s" type="text" placeholder="Enter 3s rating here: " class="groove arena" style="height:30 px;">
                                                 <input tabindex="-1" readonly id="3s-output" type="text" class="groove arena" style="height:30 px;">
                                             </div>
                                             <div class="col col-12">
+                                                <span>5s</span>
                                                 <input id="5s" type="text" placeholder="Enter 5s rating here: " class="groove arena" style="height:30 px;">
                                                 <input tabindex="-1" readonly id="5s-output" type="text" class="groove arena" style="height:30 px;">
                                             </div>
@@ -132,8 +143,14 @@
                                     </div>
 
                                     <div class="col col-12 mt-2">
+                                        <span>   </span>
                                         <button id="submitArenaPoints" class="groove search fa fa-calculator execute_search" style="height: 34px; width: 60px;"></button>
                                         <button id="resetArenaPoints" class="groove search fa execute_search arena-field" style="height: 34px; width: 60px;">Reset</button>
+                                    </div>
+
+                                    <div class="col col-12 mt-2">
+                                        <h5>Total Points</h5>
+                                        <input tabindex="-1" readonly id="total-output" type="text" class="groove arena arena-field" style="height:30 px;">
                                     </div>
                         </div>
                     </div>

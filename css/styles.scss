@@ -2,10 +2,21 @@
     font-family: Warcraft; src: url(../fonts/Warcraft.ttf);
 }
 
-h1, h2, h3, h4, h5, .arena-field {
+h1, h2, h3, h4, h5, span {
 
     font-family: Warcraft;
-    color: #e1eef4;
+    color: black;
+    -webkit-text-fill-color: #e1eef4; /* Will override color (regardless of order) */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.arena-field {
+  font-family: Warcraft;
+}
+
+span {
+  font-size: 20px;
 }
 
 .arena-wrapper {

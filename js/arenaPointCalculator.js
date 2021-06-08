@@ -56,6 +56,7 @@ function submitAll(){
     let twos;
     let threes;
     let fives;
+    
 
     twos = document.getElementById("2s").value;
     threes = document.getElementById("3s").value;
@@ -70,6 +71,23 @@ function submitAll(){
     } if (!(fives === "")) {
         calculatePoints5s();
     }
+
+    displayTotal();
+
+}
+
+function displayTotal() {
+    let twos;
+    let threes;
+    let fives;
+    let sum;
+
+    twos = Number(document.getElementById("2s-output").value);
+    threes = Number(document.getElementById("3s-output").value);
+    fives = Number(document.getElementById("5s-output").value);
+
+    sum = twos + threes + fives;
+    document.getElementById("total-output").value = sum;
 }
 
 function resetArenaCalculator() {
