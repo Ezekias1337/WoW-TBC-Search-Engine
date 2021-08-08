@@ -93,7 +93,17 @@ function removePoint(e) {
     //do something differant context menu
     /*if(e.which == 3){alert("You right-clicked inside the div!");}*/
     window.oncontextmenu = function () {
-        alert('Right Click')
+        let valueString;
+    
+    let onePointArray = ["0/1", "1/1"];
+    let twoPointArray = ["0/2", "1/2", "2/2"];
+    let threePointArray = ["0/3", "1/3", "2/3", "3/3"];
+    let fourPointArray = ["0/4", "1/4", "2/4", "3/4", "4/4"];
+    let fivePointArray = ["0/5", "1/5", "2/5", "3/5", "4/5", "5/5"];
+
+    valueString = event.currentTarget.nextElementSibling.innerText;
+    pointChecker = event.currentTarget.nextElementSibling.className.substring(17, 19);
+    console.log(pointChecker);
       }
     
 }
