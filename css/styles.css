@@ -345,3 +345,6 @@ nav {
 
 .req-active {
   filter: grayscale(0%); }
+
+.npcImage {
+  max-width: 150px; }

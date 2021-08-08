@@ -43,6 +43,7 @@ function fetchNPCs(searchTerm) {
                             for (let asset of user.assets) {
                                 const i = document.createElement('img');
                                 i.src = asset.value;
+                                i.className = "npcImage"
                                 div.appendChild(i);
                             }
                         }
