@@ -207,8 +207,9 @@ input.arena {
 
   .Items {
     border-radius: 7px;
-    
   }
+
+  
 
   tbody p{
     
@@ -240,13 +241,24 @@ input.arena {
    background-color: #364447;
  }
 
- #fullToolTip{
+ #fullToolTip {
   opacity: 0.95;
   table-layout: fixed;
   word-wrap: break-word;
 
  }
 
+ .toolTipRefined {
+  padding: 0.10rem;
+ }
+
+ .table td {
+   border-top: 1px solid #343a40;
+ }
+
+ .Items td, .Items {
+  border-top: 1px solid #e1eef4;
+ }
 
  #resultsTable{
  
@@ -263,15 +275,23 @@ input.arena {
 
 .gold {
   background-image: url( ../images/gold.png);
-  
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 .silver {
   background-image: url( ../images/silver.png);
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 .copper {
   background-image: url( ../images/copper.png);
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
 .hovereffect {
@@ -373,8 +393,11 @@ input.arena {
     }
 
     #tooltipImageStyleNPC, #tooltipImageStyleItem, #tooltipImageStyleSpell{
-      width: 75px;
-
+      color: #fff;
+      box-sizing: border-box;
+      border-radius: 7px;
+      border: 1px solid #BEBFC1;
+      max-width: 60px;
     }
 
     .inactiveTalent{

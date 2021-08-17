@@ -186,6 +186,15 @@ nav {
   table-layout: fixed;
   word-wrap: break-word; }
 
+.toolTipRefined {
+  padding: 0.10rem; }
+
+.table td {
+  border-top: 1px solid #343a40; }
+
+.Items td, .Items {
+  border-top: 1px solid #e1eef4; }
+
 #resultsTable {
   opacity: 0.95;
   table-layout: fixed;
@@ -197,13 +206,22 @@ nav {
   max-height: 20px; }
 
 .gold {
-  background-image: url(../images/gold.png); }
+  background-image: url(../images/gold.png);
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center; }
 
 .silver {
-  background-image: url(../images/silver.png); }
+  background-image: url(../images/silver.png);
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center; }
 
 .copper {
-  background-image: url(../images/copper.png); }
+  background-image: url(../images/copper.png);
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center; }
 
 .hovereffect {
   width: 100%;
@@ -291,7 +309,11 @@ nav {
   color: #e1eef4; }
 
 #tooltipImageStyleNPC, #tooltipImageStyleItem, #tooltipImageStyleSpell {
-  width: 75px; }
+  color: #fff;
+  box-sizing: border-box;
+  border-radius: 7px;
+  border: 1px solid #BEBFC1;
+  max-width: 60px; }
 
 .inactiveTalent {
   opacity: 1; }

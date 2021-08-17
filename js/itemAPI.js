@@ -81,7 +81,7 @@ function fetchItems(searchTerm) {
         tooltipImage.className = "d-block";
         ID = (event.currentTarget.children[2].innerText.replace("ID: ", ""));
         ID2 = (event.currentTarget);
-         fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`)
+         fetch(`https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-classic-us&locale=en_US&access_token=${oAuthToken}`)      
              .then(response => response.json())
              .then(data => responseFromFetch = data)
              .then(newData => 
@@ -145,7 +145,7 @@ function fetchItems(searchTerm) {
 
                 const lines = [
                     `${newData.name}`,
-                    `${newData.preview_item.level.display_string}`, 
+                    `${newData.level}`, 
                     `${newData.inventory_type.name}`,
                     `${newData.item_subclass.name}`,
                     `${newData.preview_item.weapon.damage.display_string}`,
