@@ -93,7 +93,7 @@ function fetchItems(searchTerm) {
                         let rare;
                         let epic;
                         let legendary;
-                        let m;
+                        let tooltipTitle;
                 
                         poor = "#9d9d9d";
                         common = "#ffffff";
@@ -102,19 +102,21 @@ function fetchItems(searchTerm) {
                         epic = "#a335ee";
                         legendary = "#ff8000";
                     
-                        m = document.getElementById('tooltip-row-1');
+                        console.log(newData.quality.name, "newData.quality.name")
+
+                        tooltipTitle = document.getElementById('tooltip-row-1');
                         if (newData.quality.name === "Poor"){
-                            m.style.color = poor;
+                            tooltipTitle.style.color = poor;
                         } else if (newData.quality.name === "Common"){
-                            m.style.color = common;
+                            tooltipTitle.style.color = common;
                         } else if (newData.quality.name === "Uncommon"){
-                            m.style.color = uncommon;
+                            tooltipTitle.style.color = uncommon;
                         } else if (newData.quality.name === "Rare"){
-                            m.style.color = rare;
+                            tooltipTitle.style.color = rare;
                         } else if (newData.quality.name === "Epic"){
-                            m.style.color = epic;
+                            tooltipTitle.style.color = epic;
                         } else if (newData.quality.name === "Legendary"){
-                            m.style.color = legendary;
+                            tooltipTitle.style.color = legendary;
                         }
                         
                     }
@@ -143,7 +145,72 @@ function fetchItems(searchTerm) {
                 sellPriceArraydisplay = sellPriceArray.join(); 
                 sellPriceArraydisplayFinal = sellPriceArraydisplay.replace("Sell Price:,", "Sell Price: ")
 
-                const lines = [
+                let numOfLines = 0;
+
+                if("preview_item.name" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("level" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.binding.name" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.unique_equipped" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.inventory_type.name" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.item_subclass.name" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.weapon.damage.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.weapon.attack_speed.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.weapon.dps.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.stats[0].display.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.stats[1].display.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.stats[2].display.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.stats[3].display.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.stats[4].display.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.durability.display_string" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.spells[0].description" in newData){
+                    numOfLines = numOfLines + 1;
+                } if("preview_item.spells[1].description" in newData){
+                    numOfLines = numOfLines + 1;
+                }if("preview_item.sell_price.display_strings" in newData){
+                    numOfLines = numOfLines + 1;
+                    /*newData.preview_item.sell_price.display_strings.header
+                    newData.preview_item.sell_price.display_strings.gold
+                    newData.preview_item.sell_price.display_strings.silver
+                    newData.preview_item.sell_price.display_strings.copper*/
+                }
+
+                console.log(numOfLines)
+                for (let i = 0; i < numOfLines; i++) {
+                    let firstHalfIDString = "tooltip-row-"
+                    let secondHalfIDString = i.toString();
+                    let tooltipID = firstHalfIDString.concat(secondHalfIDString);
+                    let tooltipRow = document.createElement("TR");
+                    let tooltipTD = document.createElement("TD");
+                    
+                    tooltipRow.id = tooltipID;
+                    tooltipRow.style.height = "10px";
+
+                    tooltipTD.style.paddingLeft = "0.3rem";
+                    tooltipTD.style.paddingRight = "0.3rem";
+                    tooltipTD.style.paddingBottom = "0.1rem";
+                    tooltipTD.style.paddingTop = "0.1rem";
+                    tooltipTD.style.borderTop = "0px solid #343a40";
+
+                    document.getElementById("toolTipDisplay").appendChild(tooltipRow);
+                    document.getElementById(tooltipID).appendChild(tooltipTD);
+                }
+                
+                /*const lines = [
                     `${newData.name}`,
                     `${newData.level}`, 
                     `${newData.inventory_type.name}`,
@@ -153,11 +220,11 @@ function fetchItems(searchTerm) {
                     `${newData.preview_item.weapon.dps.display_string}`,
                     `${newData.preview_item.durability.display_string}`,
                     `${sellPriceArraydisplayFinal}`
-                ]
+                ]*/
 
-                document.getElementById("tooltip-row-1").appendChild(tooltipImage)
+                //document.getElementById("tooltip-row-1").appendChild(tooltipImage)
 
-                lines.forEach((cell) => {
+                /*lines.forEach((cell) => {
                 let node = document.createElement('td');
                 node.innerHTML = cell; 
                 node.className = 'tooltip-linez'
@@ -183,7 +250,7 @@ function fetchItems(searchTerm) {
                 else{
                     console.log("Failed to append")
                 }
-            })
+            }) */
             styleItemName();
         }
 

@@ -1,14 +1,37 @@
 @font-face {
-    font-family: Warcraft; src: url(../fonts/Warcraft.ttf);
+  font-family: Warcraft;
+  src: url(../fonts/Warcraft.ttf);
 }
 
-h1, h2, h3, h4, h5, span {
+h1,
+h2,
+h3,
+h4,
+h5,
+.dropdown {
+  font-family: Warcraft;
+}
 
-    font-family: Warcraft;
-    color: black;
-    -webkit-text-fill-color: #e1eef4; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+a.navIconTextHover.loginStyling {
+  font-size: 16px;
+}
+
+.header-under-logo {
+  color: black;
+  -webkit-text-fill-color: #e1eef4;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: #e1eef4;
+  background: #b3d60391;
+}
+
+::selection {
+  color: #e1eef4;
+  background: #b3d60391;
 }
 
 .arena-field {
@@ -24,57 +47,60 @@ span {
 }
 
 .bkground {
-    padding: 30px;
-    background-image: linear-gradient(#B4D603, #364447);
-    color: #364447;
-    margin-bottom: 0px;
-    min-height: 275px;
+  padding: 30px;
+  background-image: linear-gradient(#b4d603, #364447);
+  color: #364447;
+  margin-bottom: 0px;
+  min-height: 275px;
 }
 
-.modal-header{
-  background-image: linear-gradient(#B4D603, #364447);
-  
+.modal-header {
+  background-image: linear-gradient(#b4d603, #364447);
 }
 
-.modal-body{
+.modal-body {
   background-color: #364447;
 }
 
 .bkground_dark {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding: 0px;
-    background-color: #364447;
-    color: #e1eef4;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding: 0px;
+  background-color: #364447;
+  color: #e1eef4;
 }
 
 input.search {
-
-    padding: 5px;
-    margin-top: 125px;
-    opacity: 0.8;
-    height: 35px;
-    width: 50%;
-    color: #B4D603;
-    background: #364447;
+  padding: 5px;
+  margin-top: 125px;
+  opacity: 0.8;
+  height: 35px;
+  width: 50%;
+  color: #b4d603;
+  background: #364447;
 }
 
 input.arena {
-
   padding: 5px;
   margin-top: 5px;
   opacity: 0.8;
   height: 35px;
-
-  color: #B4D603;
+  color: #b4d603;
   background: #364447;
 }
 
-#loginEmail, #loginPassword, #filterChoice, #customBreadCrumb {
+#loginEmail,
+#loginPassword,
+#filterChoice,
+#customBreadCrumb {
   opacity: 0.8;
-  color: #B4D603;
+  color: #b4d603;
   background: #364447;
+}
+
+#filterChoice {
+  font-size: 18px;
 }
 
 #customActiveBreadCrumb {
@@ -82,384 +108,448 @@ input.arena {
 }
 
 .form-control:focus {
-  border-color: #B4D603;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(180, 214, 3, 0.6);
+  border-color: #b4d603;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(180, 214, 3, 0.6);
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #B4D603!important;
+  background-color: #b4d603 !important;
 }
 
-.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(180, 214, 3, 1)
+.custom-checkbox
+  .custom-control-input:checked:focus
+  ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(180, 214, 3, 1);
 }
 .custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
 }
 .custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
-  background-color: #B4D603; 
+  background-color: #b4d603;
 }
 
 .execute_search {
-    padding-bottom: 4px;
-    height: 60px;
-    margin-bottom: 100px;
-    opacity: 0.8;
-    color: #B4D603;
-    background: #364447;
-
+  padding-bottom: 4px;
+  height: 60px;
+  margin-bottom: 100px;
+  opacity: 0.8;
+  color: #b4d603;
+  background: #364447;
 }
 
 .Wallpaper_Illidan {
-
-    padding: 5px;
-    background-image: url(../images/Illidan_Gif.gif);
-    opacity: 0.5;
-    background-size:auto;
-    background-position:center;
-    min-height: 700px;
-    color: #364447
-
+  padding: 5px;
+  background-image: url(../images/Illidan_Gif.gif);
+  opacity: 0.5;
+  background-size: auto;
+  background-position: center;
+  min-height: 700px;
+  color: #364447;
 }
 
 .Wallpaper_Belf_Draenei {
-
   padding: 5px;
   background-image: url(../images/Belf_Draenei_BG.png);
   opacity: 0.5;
-  background-size:auto;
-  background-position:center;
+  background-size: auto;
+  background-position: center;
   min-height: 700px;
   background-attachment: fixed;
-  
-
 }
 
-
 .TBC_Logo {
-
-    padding: 75px;
-    background-image: url( ../images/BC_Logo.png);
-    background-size:contain;
-    background-position:center;
-    background-repeat: no-repeat;
-
-
+  padding: 75px;
+  background-image: url(../images/BC_Logo.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .Bottom_Nav_of_Site {
-
   margin: 0px;
   padding: 5px;
-  background-color: #364447
-
+  background-color: #364447;
 }
 
 .Bottom_Links_Social {
-
   padding-top: 30px;
-  background-image: linear-gradient(#364447, #E0910E);
+  background-image: linear-gradient(#364447, #e0910e);
   color: #e1eef4;
   min-height: 150px;
   min-width: 100%;
-
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #B4D603;
-    opacity: 1; /* Firefox */
-  }
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #b4d603;
+  opacity: 1; /* Firefox */
+}
 
-  .groove {
-      border-style: groove;
-      border-color: #B4D603;
-    }
+.groove {
+  border-style: groove;
+  border-color: #b4d603;
+}
 
-  .buttonColoring, .navbariconstyling {
-    color: #B4D603;
-    border: 1px solid #B4D603;
-  }
+.buttonColoring,
+.navbariconstyling {
+  color: #b4d603;
+  border: 1px solid #b4d603;
+}
 
-  .fa{
-    color: #B4D603;
-  }
+.fa {
+  color: #b4d603;
+}
 
-  .loginStyling, .nav-link {
-    color: #B4D603;
-  }
+.loginStyling,
+.nav-link {
+  color: #b4d603;
+}
 
-  a:link, a:visited {
-    color: #B4D603;
-  }
+a:link,
+a:visited {
+  color: #b4d603;
+}
 
-  .signIn {
-    background-color: #B4D603;
-    
-  }
+.signIn {
+  background-color: #b4d603;
+}
 
-  .signIn:hover {
-    background-color: #90ab02;
-  }
+.signIn:hover {
+  background-color: #90ab02;
+}
 
-  .talent-frame {
-    border: 1px solid #e1eef4;
-  }
+.talent-frame {
+  border: 1px solid #e1eef4;
+}
 
-  .Items {
-    border-radius: 7px;
-  }
+.Items {
+  border-radius: 7px;
+}
 
-  
+tbody p {
+  margin: 20px;
+}
 
-  tbody p{
-    
-    margin: 20px;
-  }
+tbody img {
+  margin: 20px;
+  border-radius: 7px;
+  border: 1px solid #bebfc1;
+}
 
-  tbody img{
-    
-    margin: 20px;
-    border-radius: 7px;
-    border: 1px solid #BEBFC1;
-  }
+tr {
+  height: 70px;
+  vertical-align: middle;
+}
 
-  tr {
-    height: 70px;
-    vertical-align: middle;
- }
-
- @media (max-width: 576px) {
+@media (max-width: 576px) {
   /* CSS that should be displayed if width is equal to or less than 800px goes here */
   td {
     max-width: 100px;
   }
 }
- 
 
+nav {
+  background-color: #364447;
+}
 
- nav {
-   background-color: #364447;
- }
-
- #fullToolTip {
+#fullToolTip {
   opacity: 0.95;
   table-layout: fixed;
   word-wrap: break-word;
+}
 
- }
+.toolTipRefined {
+  padding: 0.1rem;
+}
 
- .toolTipRefined {
-  padding: 0.10rem;
- }
+.table td {
+  border-top: 1px solid #343a40;
+}
 
- .table td {
-   border-top: 1px solid #343a40;
- }
-
- .Items td, .Items {
+.Items td,
+.Items {
   border-top: 1px solid #e1eef4;
- }
+}
 
- #resultsTable{
- 
+#resultsTable {
   opacity: 0.95;
   table-layout: fixed;
   word-wrap: break-word;
   max-width: 90%;
 }
- 
-#item-name, #ilvl, #bind-type, #inv-type, #item-subclass, #damage, #speed, #dps, #stats, #durability, #req-lvl, #sell-price {
+
+#item-name,
+#ilvl,
+#bind-type,
+#inv-type,
+#item-subclass,
+#damage,
+#speed,
+#dps,
+#stats,
+#durability,
+#req-lvl,
+#sell-price {
   height: 20px;
   max-height: 20px;
 }
 
-.gold {
-  background-image: url( ../images/gold.png);
-  padding: 15px;
-  background-repeat: no-repeat;
-  background-position: right center;
-}
-
-.silver {
-  background-image: url( ../images/silver.png);
-  padding: 15px;
-  background-repeat: no-repeat;
-  background-position: right center;
-}
-
-.copper {
-  background-image: url( ../images/copper.png);
-  padding: 15px;
-  background-repeat: no-repeat;
-  background-position: right center;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #b4d603;
+  -webkit-text-fill-color: #b4d603;
+  -webkit-box-shadow: 0 0 0px 1000px #364447 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .hovereffect {
-    width:100%;
-    height:100%;
-    float:left;
-    overflow:hidden;
-    position:relative;
-    text-align:center;
-    cursor:default;
-    }
-    
-    .hovereffect .overlay {
-    
-    height:100%;
-    position:absolute;
-    overflow:hidden;
-    top:0;
-    left:0;
-    opacity:0;
-    background-color:rgba(0,0,0,0.5);
-    -webkit-transition:all .4s ease-in-out;
-    transition:all .4s ease-in-out
-    }
-    
-    .hovereffect img {
-    display:block;
-    position:relative;
-    -webkit-transition:all .4s linear;
-    transition:all .4s linear;
-    }
-    
-    .hovereffect h2 {
-    text-transform:uppercase;
-    color:#fff;
-    text-align:center;
-    position:relative;
-    font-size:17px;
-    background:rgba(0,0,0,0.6);
-    -webkit-transform:translatey(-100px);
-    -ms-transform:translatey(-100px);
-    transform:translatey(-100px);
-    -webkit-transition:all .2s ease-in-out;
-    transition:all .2s ease-in-out;
-    padding:10px;
-    }
-    
-    .hovereffect a.info {
-    text-decoration:none;
-    display:inline-block;
-    text-transform:uppercase;
-    color:#fff;
-    border:1px solid #fff;
-    background-color:transparent;
-    opacity:0;
-    filter:alpha(opacity=0);
-    -webkit-transition:all .2s ease-in-out;
-    transition:all .2s ease-in-out;
-    margin:50px 0 0;
-    padding:7px 14px;
-    }
-    
-    .hovereffect a.info:hover {
-    box-shadow:0 0 5px #fff;
-    }
-    
-    .hovereffect:hover img {
-    -ms-transform:scale(1.2);
-    -webkit-transform:scale(1.2);
-    transform:scale(1.2);
-    }
-    
-    .hovereffect:hover .overlay {
-    opacity:1;
-    filter:alpha(opacity=100);
-    }
-    
-    .hovereffect:hover h2,.hovereffect:hover a.info {
-    opacity:1;
-    filter:alpha(opacity=100);
-    -ms-transform:translatey(0);
-    -webkit-transform:translatey(0);
-    transform:translatey(0);
-    }
-    
-    .hovereffect:hover a.info {
-    -webkit-transition-delay:.2s;
-    transition-delay:.2s;
-    }
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+}
 
-    .fa:hover{
-        color: #e1eef4;
-    }
+.hovereffect .overlay {
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
 
-    .modal-content{
-      border-radius: 5px;
-      padding: 3.5px;
-      color: #e1eef4;
-    }
+.hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+}
 
-    #tooltipImageStyleNPC, #tooltipImageStyleItem, #tooltipImageStyleSpell{
-      color: #fff;
-      box-sizing: border-box;
-      border-radius: 7px;
-      border: 1px solid #BEBFC1;
-      max-width: 60px;
-    }
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transform: translatey(-100px);
+  -ms-transform: translatey(-100px);
+  transform: translatey(-100px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  padding: 10px;
+}
 
-    .inactiveTalent{
-      opacity: 1;
-    }
-    .activeTalent{
-      border-color: rgba(64,191,64,0.8);
-    }
-    .maxedTalent{
-      border-color: #ffd100;
-    }
+.hovereffect a.info {
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: transparent;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin: 50px 0 0;
+  padding: 7px 14px;
+}
 
-    .talentPoints{
-    background-color: #000;
-    border: #333;
-    border-radius: 3px !important;
-    color: #787878;
-    cursor: pointer;
-    font-size: 11px;
-    position: relative;
-    user-select: none;
-    left: -15px;
-    bottom: -25px;
-    max-height: 20px;
-    }
+.hovereffect a.info:hover {
+  box-shadow: 0 0 5px #fff;
+}
 
-    .active-talent{
-      border: 2px solid rgba(64,191,64,0.8);
-      border-radius: 3px;
-    }
+.hovereffect:hover img {
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
 
-    .inactive-talent{
-      border: 2px solid #C2C4C6;
-      border-radius: 3px;
-    }
+.hovereffect:hover .overlay {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
 
-    .maxeds{
-      border: 2px solid #ffd100;
-      border-radius: 3px;
-    }
+.hovereffect:hover h2,
+.hovereffect:hover a.info {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -ms-transform: translatey(0);
+  -webkit-transform: translatey(0);
+  transform: translatey(0);
+}
 
-    #toolTipModal{
-      opacity: 0.90;
-    }
+.hovereffect:hover a.info {
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
 
-    .talent-row{
-      display: inline-block;
-      *display: inline; /* For IE7 */
-      zoom: 1; /* Trigger hasLayout */
-      width: 90%;
-      text-align: center;
-      margin: 9px;
-    }
+.fa:hover {
+  color: #e1eef4;
+}
 
-    .req-inactive{
-      filter: grayscale(100%);
-    }
+.modal-content {
+  border-radius: 5px;
+  padding: 3.5px;
+  color: #e1eef4;
+}
 
-    .req-active{
-      filter: grayscale(0%);
-    }
+#tooltipImageStyleNPC,
+#tooltipImageStyleItem,
+#tooltipImageStyleSpell {
+  color: #fff;
+  box-sizing: border-box;
+  border-radius: 7px;
+  border: 1px solid #bebfc1;
+  max-width: 60px;
+}
 
-    .npcImage{
-      max-width: 150px;
-    }
+.inactiveTalent {
+  opacity: 1;
+}
+.activeTalent {
+  border-color: rgba(64, 191, 64, 0.8);
+}
+.maxedTalent {
+  border-color: #ffd100;
+}
+
+.talentPoints {
+  background-color: #000;
+  border: #333;
+  border-radius: 3px !important;
+  color: #787878;
+  cursor: pointer;
+  font-size: 11px;
+  position: relative;
+  user-select: none;
+  left: -15px;
+  bottom: -25px;
+  max-height: 20px;
+}
+
+#toolTipModal {
+  opacity: 0.9;
+}
+
+.npcImage {
+  max-width: 150px;
+}
+
+.item-name-Legendary,
+.item-name-Epic,
+.item-name-Rare,
+.item-name-Uncommon,
+.item-name-Common,
+.item-name-Poor {
+  margin-left: 2px;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  padding-bottom: 0.1rem;
+  padding-top: 0.1rem;
+  border-top: 0px solid #343a40;
+  text-align: left;
+}
+
+.item-name-Legendary {
+  color: #ff8000;
+}
+
+.item-name-Epic {
+  color: #a335ee;
+}
+
+.item-name-Rare {
+  color: #0070dd;
+}
+
+.item-name-Uncommon {
+  color: #1eff00;
+}
+
+.item-name-Common {
+  color: #ffffff;
+}
+
+.item-name-Poor {
+  color: #9d9d9d;
+}
+
+.item-level {
+  padding: 0.1rem;
+  color: #ffd100;
+  text-align: left;
+}
+
+.bind-type,
+.unique-equip,
+.inventory-type,
+.damage-range,
+.DPS,
+.stat,
+.durability,
+.sell-price,
+.required-level {
+  padding: 0.1rem;
+  color: #ffffff;
+  text-align: left;
+}
+
+.subclass-name,
+.weapon-speed {
+  padding: 0.1rem;
+  color: #ffffff;
+  text-align: right;
+}
+
+.equip-spell {
+  padding: 0.1rem;
+  color: #13ff00;
+  text-align: left;
+}
+
+.gold {
+  background-image: url(../images/gold.png);
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  font-size: 12px;
+}
+
+.silver {
+  background-image: url(../images/silver.png);
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  font-size: 12px;
+}
+
+.copper {
+  background-image: url(../images/copper.png);
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  font-size: 12px;
+}
+
+.tooltip-row-td {
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  padding-bottom: 0.1rem;
+  padding-top: 0.1rem;
+  border-top: 0px solid #343a40;
+}
