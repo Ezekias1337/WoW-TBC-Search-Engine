@@ -1,163 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <!-- Additional CSS must go after Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="node_modules/font-awesome/css/font-awesome.min.css"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <title>World of Warcraft Burning Crusade Search Engine</title>
+  </head>
 
-    <head>
+  <body class="bkground_dark">
+    <center>
+      <header class="bkground" style="height: 150px">
+        <div class="container">
+          <div class="row">
+            <div class="col mx-auto">
+              <a class="nav-link" href="index.html">
+                <div class="TBC_Logo"></div>
+              </a>
+              <div class="col">
+                <h1 class="header-under-logo">Search Engine</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
 
-        <!-- Required meta tags always come first -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-        <!-- Additional CSS must go after Bootstrap CSS -->
-        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <link rel="shortcut icon" href="images/favicon.ico">
-        <title>World of Warcraft Burning Crusade Search Engine</title>
+      <nav
+        class="navbar navbar-dark navbar-expand-sm navbariconstyling sticky-top"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="index.html"
+            ><img src="images/BC_W_Logo.png" height="30" width="30"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#bcNavbar"
+          >
+            <span class="fa fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="bcNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a
+                  class="nav-link navIconTextHover"
+                  href="item-search-results.html"
+                  ><i class="fa fa-shield fa-lg fa-fw"></i>Items</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link navIconTextHover"
+                  href="spells-search-results.html"
+                  ><i class="fa fa-book fa-lg fa-fw"></i>Spells</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link navIconTextHover"
+                  href="NPCs-search-results.html"
+                  ><i class="fa fa-user fa-lg fa-fw"></i>NPCs</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link navIconTextHover"
+                  href="arena-point-calculator.html"
+                  ><i class="fa fa-shield fa-lg fa-fw"></i>Arena Calculator</a
+                >
+              </li>
+            </ul>
+            <span class="navbar-text ml-auto">
+              <a
+                role="button"
+                class="navIconTextHover loginStyling"
+                data-toggle="modal"
+                data-target="#loginModal"
+              >
+                <i class="fa fa-sign-in"></i> Login
+              </a>
+            </span>
+          </div>
+        </div>
+      </nav>
 
-    </head>
-
-    <body class="bkground_dark">
-        <center>
-            <header class="bkground" style="height: 150px;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col mx-auto">
-                            <a class="nav-link" href="index.html">
-                            <div class="TBC_Logo"></div>
-                            </a>
-                            <div class="col">
-                                <h1 class="header-under-logo">Search Engine</h1>
-                            </div>
-                        </div>
+      <div id="loginModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">Login</h3>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid">
+                <form>
+                  <div class="form-row">
+                    <div class="form-group col-12">
+                      <label class="sr-only" for="loginEmail"
+                        >Email Address</label
+                      >
+                      <input
+                        type="email"
+                        class="form-control form-control-sm"
+                        id="loginEmail"
+                        placeholder="Enter email"
+                      />
                     </div>
-                </div>
-            </header>
-
-
-
-            <nav class="navbar navbar-dark navbar-expand-sm navbariconstyling sticky-top">
-                <div class="container">
-                    <a class="navbar-brand" href="index.html"><img src="images/BC_W_Logo.png" height="30" width="30" /></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bcNavbar">
-                        <span class="fa fa-bars"></span>
+                    <div class="form-group col-12">
+                      <label class="sr-only" for="loginPassword"
+                        >Password</label
+                      >
+                      <input
+                        type="password"
+                        class="form-control form-control-sm"
+                        id="loginPassword"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="col">
+                      <div class="myTest custom-control custom-checkbox">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          id="customCheck1"
+                        />
+                        <label class="custom-control-label" for="customCheck1"
+                          >Remember Me</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <button
+                      type="button"
+                      class="btn btn-secondary btn-sm ml-auto"
+                      data-dismiss="modal"
+                    >
+                      Cancel
                     </button>
-                    <div class="collapse navbar-collapse" id="bcNavbar">
-                        <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="item-search-results.html"><i class="fa fa-shield fa-lg fa-fw"></i>Items</a>
-                            </li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="spells-search-results.html"><i class="fa fa-book fa-lg fa-fw"></i>Spells</a></li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="NPCs-search-results.html"><i
-                                        class="fa fa-user fa-lg fa-fw"></i>NPCs</a></li>
-                            <li class="nav-item"><a class="nav-link navIconTextHover" href="arena-point-calculator.html"><i
-                                class="fa fa-shield fa-lg fa-fw"></i>Arena Calculator</a></li>
-                        </ul>
-                        <span class="navbar-text ml-auto">
-                            <a role="button" class="navIconTextHover loginStyling" data-toggle="modal" data-target="#loginModal">
-                                <i class="fa fa-sign-in"></i> Login
-                            </a>
-                        </span>
-                    </div>
-                </div>
-            </nav>
-
-            <div id="loginModal" class="modal fade" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title">Login</h3>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container-fluid">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="form-group col-12">
-                                            <label class="sr-only" for="loginEmail">Email Address</label>
-                                            <input type="email" class="form-control form-control-sm" id="loginEmail"
-                                                placeholder="Enter email">
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label class="sr-only" for="loginPassword">Password</label>
-                                            <input type="password" class="form-control form-control-sm" id="loginPassword"
-                                                placeholder="Password">
-                                        </div>
-                                        <div class="col">
-                                            <div class="myTest custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                <label class="custom-control-label" for="customCheck1">Remember Me</label>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <button type="button" class="btn btn-secondary btn-sm ml-auto"
-                                            data-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-sml ml-1 signIn">Sign in</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-        
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-sml ml-1 signIn">
+                      Sign in
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-
-
-            <div class="Wallpaper_Illidan img-fluid img-thumbnail">
-                <div class="container">
-                    <div class="row">
-                        <div class="col col-sm-12 col-xs-6 mx-auto">
-                            <form id="searchForm" method="get">
-                                <h5><input id="searchBar" name="userInput" type="text" placeholder="Enter search here: " class="groove search" style="height:30 px;">
-                                    <button id="searchButton" type="submit" class="groove search fa fa-search execute_search" style="height: 34px; width: 60px;"></button>
-                                </h5>
-                                <div class="row">
-                                    <div class="col col-sm-7 mx-auto">
-                                        <select required class="form-control dropdown" id="filterChoice">
-                                            <option hidden disabled selected value>Search Category</option>
-                                            <option class="custom-dropdown">Items</option>
-                                            <option class="custom-dropdown">Spells</option>
-                                            <option class="custom-dropdown">NPCs</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </form>
-
-                            
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="container Bottom_Nav_of_Site">
+      <div class="Wallpaper_Illidan img-fluid img-thumbnail">
+        <div class="container">
+          <div class="row">
+            <div class="col col-sm-12 col-xs-6 mx-auto">
+              <form id="searchForm" method="get">
+                <h5>
+                  <input
+                    id="searchBar"
+                    name="userInput"
+                    type="text"
+                    placeholder="Enter search here: "
+                    class="groove search"
+                    style="height: 30 px"
+                  />
+                  <button
+                    id="searchButton"
+                    type="submit"
+                    class="groove search fa fa-search execute_search"
+                    style="height: 35px; width: 60px;"
+                  ></button>
+                </h5>
                 <div class="row">
-                    <div class="col-12">
-                        <h3 class="header-under-logo">Intellectual Property reserved to Blizzard Entertainment</h3>
-                    </div>
+                  <div class="col col-sm-7 mx-auto">
+                    <select
+                      required
+                      class="form-control dropdown"
+                      id="filterChoice"
+                    >
+                      <option hidden disabled selected value>
+                        Search Category
+                      </option>
+                      <option class="custom-dropdown">Items</option>
+                      <option class="custom-dropdown">Spells</option>
+                      <option class="custom-dropdown">NPCs</option>
+                    </select>
+                  </div>
                 </div>
+              </form>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div class="container Bottom_Links_Social">
+      <div class="container Bottom_Nav_of_Site">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="header-under-logo">
+              Intellectual Property Reserved to Blizzard Entertainment
+            </h3>
+          </div>
+        </div>
+      </div>
 
+      <div class="container Bottom_Links_Social"></div>
+    </center>
 
-           </div>
-
-      </center>
-
-        <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
-        <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-        <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="js/generateAccessToken.js"></script>
-        <script src="js/main.js"></script>
-        <script src="js/index.js"></script>
-        <script src="https://cdn.rawgit.com/Ademking/CoolConsole/23c8707c/CoolConsole.min.js"></script>
-        
-        
-        
-        
-
-    </body>
+    <!-- jQuery must come first, then Popper.js, then the Bootstrap JavaScript plugins.-->
+    <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/generateAccessToken.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+    <script src="https://cdn.rawgit.com/Ademking/CoolConsole/23c8707c/CoolConsole.min.js"></script>
+  </body>
 </html>
