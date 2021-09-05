@@ -251,7 +251,7 @@ function getToolTipItems() {
             if(i === numOfLines + 1 && newData.preview_item.sell_price){
                 
               let sellPriceElement = document.getElementById(tooltipID);
-              sellPriceElement.innerText = " Sell Price: ";
+              sellPriceElement.innerText = "  Sell Price: ";
               sellPriceElement.style.paddingLeft = "3px"
               console.log(sellPriceElement);
 
