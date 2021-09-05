@@ -140,6 +140,18 @@ function getToolTipItems() {
         /* This else if statement is for Weapons with no stats, no bind type and no required attribute*/
 
         if (newData.sell_price != null) {
+          
+          //First wipe the slate clean by removing old tooltip
+          let elementsToDeleteLength = document.getElementById("toolTipDisplay").children.length;
+          
+          for (let i = 0; i < elementsToDeleteLength; i++) {
+
+            let rowToDeleteID = "tooltip-row-" + (i + 1).toString();
+            document.getElementById(rowToDeleteID).remove();
+        
+        }
+
+          // start logic of new tooltip
           let numOfLines = 0;
           let numOfStats = 0;
           let numOfEquipEffects = 0;
