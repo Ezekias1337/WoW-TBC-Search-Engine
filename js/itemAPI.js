@@ -270,7 +270,7 @@ function getToolTipItems() {
               sellPriceElement.appendChild(goldSpan);
               sellPriceElement.appendChild(silverSpan);
               sellPriceElement.appendChild(copperSpan);
-              console.log("Money amounts added to cell!")
+              console.log("Money amounts added to cell!!")
             }
             
 
