@@ -428,7 +428,8 @@ select:-webkit-autofill:focus {
 .stat,
 .durability,
 .sell-price,
-.required-level {
+.required-level,
+.armor-quantity {
   padding: 0.1rem;
   color: #ffffff;
   text-align: left; }
