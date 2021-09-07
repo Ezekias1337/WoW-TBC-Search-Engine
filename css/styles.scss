@@ -489,9 +489,15 @@ select:-webkit-autofill:focus {
   color: #9d9d9d;
 }
 
-.item-level {
+.item-level, .item-set {
   padding: 0.1rem;
   color: #ffd100;
+  text-align: left;
+}
+
+.individual-item-of-set, .item-set-effect {
+  padding: 0.1rem;
+  color: #9d9d9d;
   text-align: left;
 }
 

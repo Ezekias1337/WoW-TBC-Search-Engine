@@ -170,6 +170,8 @@ function getToolTipItems() {
         let numOfEquipEffects = 0;
         let rowNumberRightHandCell1;
         let rowNumberRightHandCell2;
+        let numOfItemsInSet = 0;
+        let numOfSetBonusEffects = 0;
 
         /* Below series of if statements determines number of 
                 rows the tooltip needs to have*/
@@ -186,11 +188,13 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        if (newData.preview_item.inventory_type.name) {
+        if (newData.preview_item.inventory_type.name || newData.preview_item.inventory_type.type) {
           numOfLines = numOfLines + 1;
         }
         if (newData.preview_item.item_subclass.name) {
           rowNumberRightHandCell1 = numOfLines;
+          console.log(rowNumberRightHandCell1, "rowNumberRightHandCell1")
+          console.log(numOfLines)
         }
 
         if (newData.preview_item.weapon.damage.display_string) {
@@ -198,6 +202,8 @@ function getToolTipItems() {
         }
         if (newData.preview_item.weapon.attack_speed.display_string) {
           rowNumberRightHandCell2 = numOfLines;
+          console.log(rowNumberRightHandCell2, "rowNumberRightHandCell2")
+          console.log(numOfLines)
         }
         if (newData.preview_item.weapon.dps.display_string) {
           numOfLines = numOfLines + 1;
@@ -208,10 +214,20 @@ function getToolTipItems() {
         if (newData.preview_item.durability.display_string) {
           numOfLines = numOfLines + 1;
         }
-
+        if (newData.preview_item.requirements.playable_classes) {
+          numOfLines = numOfLines + 1;
+        }
         if (newData.preview_item.spells) {
           numOfLines = numOfLines + newData.preview_item.spells.length;
         }
+        if (newData.preview_item.set) {
+          numOfLines =
+            numOfLines +
+            newData.preview_item.set.items.length +
+            2 +
+            newData.preview_item.set.effects.length;
+        }
+
         if (newData.preview_item.sell_price.display_strings) {
           numOfLines = numOfLines + 1;
         }
@@ -301,6 +317,10 @@ function getToolTipItems() {
           if (newData.preview_item.spells) {
             numOfEquipEffects = newData.preview_item.spells.length;
           }
+          if (newData.preview_item.set) {
+            numOfItemsInSet = newData.preview_item.set.items.length;
+            numOfSetBonusEffects = newData.preview_item.set.effects.length;
+          }
           //Variable keeps track of row
           let counter = 1;
 
@@ -346,13 +366,22 @@ function getToolTipItems() {
               cellToBeChanged.className + " unique-equip";
             counter = counter + 1;
           }
-          if (newData.preview_item.inventory_type.name) {
+          if (newData.preview_item.inventory_type) {
+            
+            let typeOrNameDecider = "";
+            if (newData.preview_item.inventory_type.name !== undefined) {
+              typeOrNameDecider = newData.preview_item.inventory_type.name;
+            }
+            else if (newData.preview_item.inventory_type.type !== undefined) {
+              typeOrNameDecider = newData.preview_item.inventory_type.type;
+            }
+            
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
 
             cellToBeChanged.innerText =
-              newData.preview_item.inventory_type.name;
+              typeOrNameDecider;
             cellToBeChanged.className =
               cellToBeChanged.className + " inventory-type";
           }
@@ -365,7 +394,7 @@ function getToolTipItems() {
             cellToBeChanged.className =
               cellToBeChanged.className + " subclass-name";
             cellToBeChanged.style.position = "absolute";
-            cellToBeChanged.style.right = "15%";
+            cellToBeChanged.style.right = "7%";
 
             counter = counter + 1;
           }
@@ -379,17 +408,18 @@ function getToolTipItems() {
             cellToBeChanged.className =
               cellToBeChanged.className + " damage-range";
           }
-          if (newData.preview_item.weapon.attack_speed.display_string) {
+          
+          if (newData.preview_item.weapon.attack_speed) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[1];
-
+            console.log("cellToBeChanged", cellToBeChanged)
             cellToBeChanged.innerText =
               newData.preview_item.weapon.attack_speed.display_string;
             cellToBeChanged.className =
               cellToBeChanged.className + " weapon-speed";
             cellToBeChanged.style.position = "absolute";
-            cellToBeChanged.style.right = "15%";
+            cellToBeChanged.style.right = "7%";
 
             counter = counter + 1;
           }
@@ -444,6 +474,19 @@ function getToolTipItems() {
             counter = counter + 1;
           }
 
+          if (newData.preview_item.requirements.playable_classes) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              newData.preview_item.requirements.playable_classes.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " class-req";
+
+            counter = counter + 1;
+          }
+
           if (numOfEquipEffects > 0) {
             for (let i = 0; i < numOfEquipEffects; i++) {
               let cellToBeChanged = document.getElementById(
@@ -459,6 +502,53 @@ function getToolTipItems() {
             }
           }
           
+          /////////////////////////////////////////////////////////////////////////////////////
+          console.log(numOfItemsInSet)
+          if (numOfItemsInSet > 0) {
+            
+            
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+            cellToBeChanged.innerText = newData.preview_item.set.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " item-level";
+
+            counter = counter + 1;
+
+            for (let i = 0; i < numOfItemsInSet; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+              console.log(cellToBeChanged);
+                cellToBeChanged.innerText =
+                  " " + newData.preview_item.set.items[i].item.name;
+                cellToBeChanged.className = cellToBeChanged.className + " individual-item-of-set";
+                cellToBeChanged.style.color = "#9d9d9d";
+
+                counter = counter + 1;
+                if(i === numOfItemsInSet - 1) {
+                  counter = counter + 1;
+                }
+            }
+          }
+
+          if (numOfSetBonusEffects > 0) {
+            for (let i = 0; i < numOfSetBonusEffects; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+
+              cellToBeChanged.innerText =
+                newData.preview_item.set.effects[i].display_string;
+              cellToBeChanged.className = cellToBeChanged.className + " item-set-effect";
+              cellToBeChanged.style.color = "#9d9d9d";
+
+              counter = counter + 1;
+            }
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////
 
           if (newData.preview_item.sell_price) {
             let cellToBeChanged1 = document.getElementsByClassName("gold")[0];
@@ -531,16 +621,6 @@ function getToolTipItems() {
         if (newData.preview_item.armor) {
           numOfLines = numOfLines + 1;
         }
-
-        /*if (newData.preview_item.weapon.damage.display_string) {
-          numOfLines = numOfLines + 1;
-        }
-        if (newData.preview_item.weapon.attack_speed.display_string) {
-          rowNumberRightHandCell2 = numOfLines;
-        }
-        if (newData.preview_item.weapon.dps.display_string) {
-          numOfLines = numOfLines + 1;
-        }*/
         if (newData.preview_item.stats) {
           numOfLines = numOfLines + newData.preview_item.stats.length;
         }
@@ -717,7 +797,7 @@ function getToolTipItems() {
             cellToBeChanged.className =
               cellToBeChanged.className + " subclass-name";
             cellToBeChanged.style.position = "absolute";
-            cellToBeChanged.style.right = "15%";
+            cellToBeChanged.style.right = "7%";
 
             counter = counter + 1;
           }
@@ -737,39 +817,7 @@ function getToolTipItems() {
             counter = counter + 1;
           }
 
-          /*if (newData.preview_item.weapon.damage.display_string) {
-            let cellToBeChanged = document.getElementById(
-              "tooltip-row-" + counter.toString()
-            ).children[0];
-
-            cellToBeChanged.innerText = newData.preview_item.weapon.damage.display_string;
-            cellToBeChanged.className =
-              cellToBeChanged.className + " damage-range";
-          }
-          if (newData.preview_item.weapon.attack_speed.display_string) {
-            let cellToBeChanged = document.getElementById(
-              "tooltip-row-" + counter.toString()
-            ).children[1];
-
-            cellToBeChanged.innerText = newData.preview_item.weapon.attack_speed.display_string;
-            cellToBeChanged.className =
-              cellToBeChanged.className + " weapon-speed";
-            cellToBeChanged.style.position = "absolute";
-            cellToBeChanged.style.right = "15%";
-              
-            counter = counter + 1;
-          }
-          if (newData.preview_item.weapon.dps.display_string) {
-            let cellToBeChanged = document.getElementById(
-              "tooltip-row-" + counter.toString()
-            ).children[0];
-
-            cellToBeChanged.innerText = newData.preview_item.weapon.dps.display_string;
-            cellToBeChanged.className =
-              cellToBeChanged.className + " DPS";
-
-            counter = counter + 1;
-          }*/
+          
           if (numOfStats > 0) {
             for (let i = 0; i < numOfStats; i++) {
               let cellToBeChanged = document.getElementById(
