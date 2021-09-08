@@ -188,7 +188,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        if (newData.preview_item.inventory_type.name || newData.preview_item.inventory_type.type) {
+        if (newData.preview_item.container_slots) {
           numOfLines = numOfLines + 1;
         }
         if (newData.preview_item.item_subclass.name) {
@@ -211,10 +211,10 @@ function getToolTipItems() {
         if (newData.preview_item.stats) {
           numOfLines = numOfLines + newData.preview_item.stats.length;
         }
-        if (newData.preview_item.durability.display_string) {
+        if (newData.preview_item.durability) {
           numOfLines = numOfLines + 1;
         }
-        if (newData.preview_item.requirements.playable_classes) {
+        if (newData.preview_item.requirements) {
           numOfLines = numOfLines + 1;
         }
         if (newData.preview_item.spells) {
@@ -448,7 +448,7 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item.durability.display_string) {
+          if (newData.preview_item.durability) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -624,10 +624,10 @@ function getToolTipItems() {
         if (newData.preview_item.stats) {
           numOfLines = numOfLines + newData.preview_item.stats.length;
         }
-        if (newData.preview_item.durability.display_string) {
+        if (newData.preview_item.durability) {
           numOfLines = numOfLines + 1;
         }
-        if (newData.preview_item.requirements.playable_classes) {
+        if (newData.preview_item.requirements) {
           numOfLines = numOfLines + 1;
         }
         if (newData.preview_item.spells) {
@@ -832,7 +832,7 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item.durability.display_string) {
+          if (newData.preview_item.durability) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -955,106 +955,732 @@ function getToolTipItems() {
         document
           .getElementById("element-to-append-image")
           .insertBefore(tooltipImage, tooltipHeader.childNodes[0]);
-      } /* End of Armour Parsing */ else if (
-        /* Start of Quest Parsing */
-        newData.preview_item.item_class.name === "Quest"
-      ) {
-        const lines = [
-          `${newData.name}`,
-          `${newData.item_class.name}`,
-          `${newData.level}`,
-        ];
-        document.getElementById("tooltip-row-1").appendChild(tooltipImage);
+      } else if (newData.item_class.name === "Consumable") {
+        /* This if statement is for low level Armour, with no stats or bind type */
+        //First wipe the slate clean by removing old tooltip
+        let elementsToDeleteLength =
+          document.getElementById("toolTipDisplay").children.length;
 
-        lines.forEach((cell) => {
-          let node = document.createElement("td");
-          node.innerHTML = cell;
-          node.className = "tooltip-linez";
-          if (cell === newData.name) {
-            document.getElementById("tooltip-row-1").appendChild(node);
-          } else if (cell === newData.item_class.name) {
-            document.getElementById("tooltip-row-2").appendChild(node);
-          } else if (cell === newData.level) {
-            document.getElementById("tooltip-row-2").appendChild(node);
-          } else {
-            console.log("Failed to append");
+        for (let i = 0; i < elementsToDeleteLength; i++) {
+          let rowToDeleteID = "tooltip-row-" + (i + 1).toString();
+          document.getElementById(rowToDeleteID).remove();
+        }
+
+        // start logic of new tooltip
+        let numOfLines = 0;
+        let numOfStats = 0;
+        let numOfEquipEffects = 0;
+        let numOfItemsInSet = 0;
+        let numOfSetBonusEffects = 0;
+        let rowNumberRightHandCell1;
+        let rowNumberRightHandCell2;
+
+        /* Below series of if statements determines number of 
+              rows the tooltip needs to have*/
+        if (newData.preview_item.name) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.level) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.binding) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.inventory_type.name) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.item_subclass.name) {
+          rowNumberRightHandCell1 = numOfLines;
+        }
+        if (newData.preview_item.armor) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.durability) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.requirements) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.spells) {
+          numOfLines = numOfLines + newData.preview_item.spells.length;
+        }
+        if (newData.preview_item.sell_price.display_strings) {
+          numOfLines = numOfLines + 1;
+        }
+
+        console.log(numOfLines);
+
+        /* Now that the number of rows has been determined, start 
+              creating TR/TD Elements to later add data to*/
+
+        for (let i = 1; i < numOfLines + 2; i++) {
+          let firstHalfIDString = "tooltip-row-";
+          let secondHalfIDString = i.toString();
+          let tooltipID = firstHalfIDString.concat(secondHalfIDString);
+          let tooltipRow = document.createElement("TR");
+          let tooltipTD = document.createElement("TD");
+
+          tooltipRow.id = tooltipID;
+          tooltipRow.style.height = "10px";
+          tooltipRow.style.minWidth = "100%";
+
+          tooltipTD.style.paddingLeft = "0.3rem";
+          tooltipTD.style.paddingRight = "0.3rem";
+          tooltipTD.style.paddingBottom = "0.1rem";
+          tooltipTD.style.paddingTop = "0.1rem";
+          tooltipTD.style.borderTop = "0px solid #343a40";
+          tooltipTD.className = "tooltip-row-td " + "row-" + secondHalfIDString;
+
+          document.getElementById("toolTipDisplay").appendChild(tooltipRow);
+          document.getElementById(tooltipID).appendChild(tooltipTD);
+
+          if (i === rowNumberRightHandCell1) {
+            let tooltipTD2 = document.createElement("TD");
+            tooltipTD2.style.paddingLeft = "0.3rem";
+            tooltipTD2.style.paddingRight = "0.3rem";
+            tooltipTD2.style.paddingBottom = "0.1rem";
+            tooltipTD2.style.paddingTop = "0.1rem";
+            tooltipTD2.style.borderTop = "0px solid #343a40";
+            tooltipTD2.className =
+              "tooltip-row-td " + "row-" + secondHalfIDString;
+
+            document.getElementById(tooltipID).appendChild(tooltipTD2);
           }
-        });
 
-        //styleItemName();
-      } /* End of Quest Parsing */ else if (
-        /* Start of Tradeskill, Consumable, & Recipe Parsing */
-        newData.preview_item.item_class.name === "Tradeskill" ||
-        "Consumable" ||
-        "Recipe"
-      ) {
-        console.log("Item has no bind-type");
-        let sellPriceArray = [];
-        let sellPriceArraydisplay;
-        let sellPriceArraydisplayFinal;
+          if (i === rowNumberRightHandCell2) {
+            let tooltipTD3 = document.createElement("TD");
+            tooltipTD3.style.paddingLeft = "0.3rem";
+            tooltipTD3.style.paddingRight = "0.3rem";
+            tooltipTD3.style.paddingBottom = "0.1rem";
+            tooltipTD3.style.paddingTop = "0.1rem";
+            tooltipTD3.style.borderTop = "0px solid #343a40";
+            tooltipTD3.className =
+              "tooltip-row-td " + "row-" + secondHalfIDString;
 
-        sellPriceArray.push(
-          newData.preview_item.sell_price.display_strings.header
-        );
-        if (newData.preview_item.sell_price.display_strings.gold > 0) {
-          sellPriceArray.push(
-            newData.preview_item.sell_price.display_strings.gold + " Gold"
-          );
-        }
-        if (newData.preview_item.sell_price.display_strings.silver > 0) {
-          sellPriceArray.push(
-            " " +
-              newData.preview_item.sell_price.display_strings.silver +
-              " Silver"
-          );
-        }
-        if (newData.preview_item.sell_price.display_strings.copper > 0) {
-          sellPriceArray.push(
-            " " +
-              newData.preview_item.sell_price.display_strings.copper +
-              " Copper"
-          );
-        } else {
-          console.log("Atleast one demonination of currency null");
-        }
-        sellPriceArraydisplay = sellPriceArray.join();
-        sellPriceArraydisplayFinal = sellPriceArraydisplay.replace(
-          "Sell Price:,",
-          "Sell Price: "
-        );
-
-        const lines = [
-          `${newData.name}`,
-          `${newData.item_class.name}`,
-          `${newData.preview_item.crafting_reagent}`,
-          `${newData.item_subclass.name}`,
-          `${newData.level}`,
-          `${sellPriceArraydisplayFinal}`,
-        ];
-        document.getElementById("tooltip-row-1").appendChild(tooltipImage);
-
-        lines.forEach((cell) => {
-          let node = document.createElement("td");
-          node.innerHTML = cell;
-          node.className = "tooltip-linez";
-          if (cell === newData.name) {
-            document.getElementById("tooltip-row-1").appendChild(node);
-          } else if (cell === newData.item_class.name) {
-            document.getElementById("tooltip-row-2").appendChild(node);
-          } else if (cell === newData.preview_item.crafting_reagent) {
-            document.getElementById("tooltip-row-2").appendChild(node);
-          } else if (cell === newData.item_subclass.name) {
-            document.getElementById("tooltip-row-1").appendChild(node);
-          } else if (cell === newData.level) {
-            document.getElementById("tooltip-row-3").appendChild(node);
-          } else if (cell === sellPriceArraydisplayFinal) {
-            document.getElementById("tooltip-row-2").appendChild(node);
-          } else {
-            console.log("Failed to append");
+            document.getElementById(tooltipID).appendChild(tooltipTD3);
           }
-        });
 
-        //styleItemName();
-      } /* End of Tradeskill, Consumable, & Recipe Parsing */
+          if (i === numOfLines + 1 && newData.preview_item.sell_price) {
+            let sellPriceElement = document.getElementById(tooltipID);
+            sellPriceElement.innerText = "  Sell Price: ";
+            sellPriceElement.style.paddingLeft = "3px";
+            console.log(sellPriceElement);
+
+            let goldSpan = document.createElement("SPAN");
+            goldSpan.className = "gold";
+            goldSpan.innerText = "0";
+
+            let silverSpan = document.createElement("SPAN");
+            silverSpan.className = "silver";
+            silverSpan.innerText = "0";
+
+            let copperSpan = document.createElement("SPAN");
+            copperSpan.className = "copper";
+            copperSpan.innerText = "0";
+
+            sellPriceElement.appendChild(goldSpan);
+            sellPriceElement.appendChild(silverSpan);
+            sellPriceElement.appendChild(copperSpan);
+            console.log("Money amounts added to cell!!");
+          }
+        }
+
+        function appendDataToRows() {
+          // Determine number of rows dedicates to stats/on-equip bonuses
+          if (newData.preview_item.stats) {
+            numOfStats = newData.preview_item.stats.length;
+          }
+          if (newData.preview_item.spells) {
+            numOfEquipEffects = newData.preview_item.spells.length;
+          }
+          if (newData.preview_item.set) {
+            numOfItemsInSet = newData.preview_item.set.items.length;
+            numOfSetBonusEffects = newData.preview_item.set.effects.length;
+          }
+          //Variable keeps track of row
+          let counter = 1;
+
+          if (newData.preview_item.name) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+            cellToBeChanged.innerText = newData.preview_item.name;
+
+            let itemQuality = newData.preview_item.quality.name;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " item-name-" + itemQuality;
+
+            counter = counter + 1;
+          }
+          if (newData.level) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+            cellToBeChanged.innerText = "Item Level " + newData.level;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " item-level";
+
+            counter = counter + 1;
+          }
+          if (newData.preview_item.binding) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText = newData.preview_item.binding.name;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " bind-type";
+            counter = counter + 1;
+          }
+          if (newData.preview_item.unique_equipped) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText = newData.preview_item.unique_equipped;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " unique-equip";
+            counter = counter + 1;
+          }
+          if (newData.preview_item.inventory_type.name) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              newData.preview_item.inventory_type.name;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " inventory-type";
+          }
+          if (newData.preview_item.item_subclass.name) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[1];
+
+            cellToBeChanged.innerText = newData.preview_item.item_subclass.name;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " subclass-name";
+            cellToBeChanged.style.position = "absolute";
+            cellToBeChanged.style.right = "7%";
+
+            counter = counter + 1;
+          }
+
+          if (newData.preview_item.armor) {
+            console.log("Armour on item detected");
+
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              newData.preview_item.armor.display.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " armor-quantity";
+
+            counter = counter + 1;
+          }
+
+          
+          if (numOfStats > 0) {
+            for (let i = 0; i < numOfStats; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+
+              cellToBeChanged.innerText =
+                newData.preview_item.stats[i].display.display_string;
+              cellToBeChanged.className = cellToBeChanged.className + " stat";
+
+              counter = counter + 1;
+            }
+          }
+
+          if (newData.preview_item.durability) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              newData.preview_item.durability.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " durability";
+
+            counter = counter + 1;
+          }
+
+          if (newData.required_level) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              "Requires Level " + newData.required_level;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " required-level";
+
+            counter = counter + 1;
+          }
+
+          //newData.preview_item.requirements.playable_classes.display_string
+
+          if (newData.preview_item.requirements.playable_classes) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              newData.preview_item.requirements.playable_classes.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " class-req";
+
+            counter = counter + 1;
+          }
+
+          if (numOfEquipEffects > 0) {
+            for (let i = 0; i < numOfEquipEffects; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+
+              cellToBeChanged.innerText =
+                newData.preview_item.spells[i].description;
+              cellToBeChanged.className =
+                cellToBeChanged.className + " equip-spell";
+
+              counter = counter + 1;
+            }
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////
+
+          if (numOfItemsInSet > 0) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+            cellToBeChanged.innerText = newData.preview_item.set.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " item-level";
+
+            counter = counter + 1;
+
+            for (let i = 0; i < numOfItemsInSet; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+              console.log(cellToBeChanged);
+                cellToBeChanged.innerText =
+                  " " + newData.preview_item.set.items[i].item.name;
+                cellToBeChanged.className = cellToBeChanged.className + " individual-item-of-set";
+                cellToBeChanged.style.color = "#9d9d9d";
+
+                counter = counter + 1;
+                if(i === numOfItemsInSet - 1) {
+                  counter = counter + 1;
+                }
+            }
+          }
+
+          if (numOfSetBonusEffects > 0) {
+            for (let i = 0; i < numOfSetBonusEffects; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+
+              cellToBeChanged.innerText =
+                newData.preview_item.set.effects[i].display_string;
+              cellToBeChanged.className = cellToBeChanged.className + " item-set-effect";
+              cellToBeChanged.style.color = "#9d9d9d";
+
+              counter = counter + 1;
+            }
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////
+
+          if (newData.preview_item.sell_price) {
+            let cellToBeChanged1 = document.getElementsByClassName("gold")[0];
+            let cellToBeChanged2 = document.getElementsByClassName("silver")[0];
+            let cellToBeChanged3 = document.getElementsByClassName("copper")[0];
+
+            cellToBeChanged1.innerText =
+              newData.preview_item.sell_price.display_strings.gold;
+            cellToBeChanged2.innerText =
+              newData.preview_item.sell_price.display_strings.silver;
+            cellToBeChanged3.innerText =
+              newData.preview_item.sell_price.display_strings.copper;
+          }
+        }
+
+        appendDataToRows();
+
+        let tooltipHeader = document.getElementById("element-to-append-image");
+
+        document
+          .getElementById("element-to-append-image")
+          .insertBefore(tooltipImage, tooltipHeader.childNodes[0]);
+      } else if (newData.item_class.name === "Container") {
+        /* This if statement is for low level Armour, with no stats or bind type */
+        //First wipe the slate clean by removing old tooltip
+        let elementsToDeleteLength =
+          document.getElementById("toolTipDisplay").children.length;
+
+        for (let i = 0; i < elementsToDeleteLength; i++) {
+          let rowToDeleteID = "tooltip-row-" + (i + 1).toString();
+          document.getElementById(rowToDeleteID).remove();
+        }
+
+        // start logic of new tooltip
+        let numOfLines = 0;
+        let numOfStats = 0;
+        let numOfEquipEffects = 0;
+        let numOfItemsInSet = 0;
+        let numOfSetBonusEffects = 0;
+        let rowNumberRightHandCell1;
+        let rowNumberRightHandCell2;
+
+        /* Below series of if statements determines number of 
+              rows the tooltip needs to have*/
+        if (newData.preview_item.name) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.level) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.binding) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.inventory_type.name) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.armor) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.durability) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.requirements) {
+          numOfLines = numOfLines + 1;
+        }
+        if (newData.preview_item.spells) {
+          numOfLines = numOfLines + newData.preview_item.spells.length;
+        }
+        if (newData.preview_item.sell_price.display_strings) {
+          numOfLines = numOfLines + 1;
+        }
+
+        console.log(numOfLines);
+
+        /* Now that the number of rows has been determined, start 
+              creating TR/TD Elements to later add data to*/
+
+        for (let i = 1; i < numOfLines + 2; i++) {
+          let firstHalfIDString = "tooltip-row-";
+          let secondHalfIDString = i.toString();
+          let tooltipID = firstHalfIDString.concat(secondHalfIDString);
+          let tooltipRow = document.createElement("TR");
+          let tooltipTD = document.createElement("TD");
+
+          tooltipRow.id = tooltipID;
+          tooltipRow.style.height = "10px";
+          tooltipRow.style.minWidth = "100%";
+
+          tooltipTD.style.paddingLeft = "0.3rem";
+          tooltipTD.style.paddingRight = "0.3rem";
+          tooltipTD.style.paddingBottom = "0.1rem";
+          tooltipTD.style.paddingTop = "0.1rem";
+          tooltipTD.style.borderTop = "0px solid #343a40";
+          tooltipTD.className = "tooltip-row-td " + "row-" + secondHalfIDString;
+
+          document.getElementById("toolTipDisplay").appendChild(tooltipRow);
+          document.getElementById(tooltipID).appendChild(tooltipTD);
+
+          if (i === rowNumberRightHandCell1) {
+            let tooltipTD2 = document.createElement("TD");
+            tooltipTD2.style.paddingLeft = "0.3rem";
+            tooltipTD2.style.paddingRight = "0.3rem";
+            tooltipTD2.style.paddingBottom = "0.1rem";
+            tooltipTD2.style.paddingTop = "0.1rem";
+            tooltipTD2.style.borderTop = "0px solid #343a40";
+            tooltipTD2.className =
+              "tooltip-row-td " + "row-" + secondHalfIDString;
+
+            document.getElementById(tooltipID).appendChild(tooltipTD2);
+          }
+
+          if (i === rowNumberRightHandCell2) {
+            let tooltipTD3 = document.createElement("TD");
+            tooltipTD3.style.paddingLeft = "0.3rem";
+            tooltipTD3.style.paddingRight = "0.3rem";
+            tooltipTD3.style.paddingBottom = "0.1rem";
+            tooltipTD3.style.paddingTop = "0.1rem";
+            tooltipTD3.style.borderTop = "0px solid #343a40";
+            tooltipTD3.className =
+              "tooltip-row-td " + "row-" + secondHalfIDString;
+
+            document.getElementById(tooltipID).appendChild(tooltipTD3);
+          }
+
+          if (i === numOfLines + 1 && newData.preview_item.sell_price) {
+            let sellPriceElement = document.getElementById(tooltipID);
+            sellPriceElement.innerText = "  Sell Price: ";
+            sellPriceElement.style.paddingLeft = "3px";
+            console.log(sellPriceElement);
+
+            let goldSpan = document.createElement("SPAN");
+            goldSpan.className = "gold";
+            goldSpan.innerText = "0";
+
+            let silverSpan = document.createElement("SPAN");
+            silverSpan.className = "silver";
+            silverSpan.innerText = "0";
+
+            let copperSpan = document.createElement("SPAN");
+            copperSpan.className = "copper";
+            copperSpan.innerText = "0";
+
+            sellPriceElement.appendChild(goldSpan);
+            sellPriceElement.appendChild(silverSpan);
+            sellPriceElement.appendChild(copperSpan);
+            console.log("Money amounts added to cell!!");
+          }
+        }
+
+        function appendDataToRows() {
+          // Determine number of rows dedicates to stats/on-equip bonuses
+          if (newData.preview_item.stats) {
+            numOfStats = newData.preview_item.stats.length;
+          }
+          if (newData.preview_item.spells) {
+            numOfEquipEffects = newData.preview_item.spells.length;
+          }
+          if (newData.preview_item.set) {
+            numOfItemsInSet = newData.preview_item.set.items.length;
+            numOfSetBonusEffects = newData.preview_item.set.effects.length;
+          }
+          //Variable keeps track of row
+          let counter = 1;
+
+          if (newData.preview_item.name) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+            cellToBeChanged.innerText = newData.preview_item.name;
+
+            let itemQuality = newData.preview_item.quality.name;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " item-name-" + itemQuality;
+
+            counter = counter + 1;
+          }
+          if (newData.level) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+            cellToBeChanged.innerText = "Item Level " + newData.level;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " item-level";
+
+            counter = counter + 1;
+          }
+          if (newData.preview_item.binding) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText = newData.preview_item.binding.name;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " bind-type";
+            counter = counter + 1;
+          }
+          if (newData.preview_item.unique_equipped) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText = newData.preview_item.unique_equipped;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " unique-equip";
+            counter = counter + 1;
+          }
+          if (newData.preview_item.container_slots) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText = newData.preview_item.container_slots.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " unique-equip";
+            counter = counter + 1;
+          }
+          if (newData.preview_item.inventory_type.name) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              newData.preview_item.inventory_type.name;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " inventory-type";
+          }
+          
+          if (numOfStats > 0) {
+            for (let i = 0; i < numOfStats; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+
+              cellToBeChanged.innerText =
+                newData.preview_item.stats[i].display.display_string;
+              cellToBeChanged.className = cellToBeChanged.className + " stat";
+
+              counter = counter + 1;
+            }
+          }
+
+          if (newData.preview_item.durability) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              newData.preview_item.durability.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " durability";
+
+            counter = counter + 1;
+          }
+
+          if (newData.required_level) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              "Requires Level " + newData.required_level;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " required-level";
+
+            counter = counter + 1;
+          }
+
+          //newData.preview_item.requirements.playable_classes.display_string
+
+          if (newData.preview_item.requirements) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+
+            cellToBeChanged.innerText =
+              newData.preview_item.requirements.playable_classes.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " class-req";
+
+            counter = counter + 1;
+          }
+
+          if (numOfEquipEffects > 0) {
+            for (let i = 0; i < numOfEquipEffects; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+
+              cellToBeChanged.innerText =
+                newData.preview_item.spells[i].description;
+              cellToBeChanged.className =
+                cellToBeChanged.className + " equip-spell";
+
+              counter = counter + 1;
+            }
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////
+
+          if (numOfItemsInSet > 0) {
+            let cellToBeChanged = document.getElementById(
+              "tooltip-row-" + counter.toString()
+            ).children[0];
+            cellToBeChanged.innerText = newData.preview_item.set.display_string;
+            cellToBeChanged.className =
+              cellToBeChanged.className + " item-level";
+
+            counter = counter + 1;
+
+            for (let i = 0; i < numOfItemsInSet; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+              console.log(cellToBeChanged);
+                cellToBeChanged.innerText =
+                  " " + newData.preview_item.set.items[i].item.name;
+                cellToBeChanged.className = cellToBeChanged.className + " individual-item-of-set";
+                cellToBeChanged.style.color = "#9d9d9d";
+
+                counter = counter + 1;
+                if(i === numOfItemsInSet - 1) {
+                  counter = counter + 1;
+                }
+            }
+          }
+
+          if (numOfSetBonusEffects > 0) {
+            for (let i = 0; i < numOfSetBonusEffects; i++) {
+              let cellToBeChanged = document.getElementById(
+                "tooltip-row-" + counter.toString()
+              ).children[0];
+
+              cellToBeChanged.innerText =
+                newData.preview_item.set.effects[i].display_string;
+              cellToBeChanged.className = cellToBeChanged.className + " item-set-effect";
+              cellToBeChanged.style.color = "#9d9d9d";
+
+              counter = counter + 1;
+            }
+          }
+
+          /////////////////////////////////////////////////////////////////////////////////////
+
+          if (newData.preview_item.sell_price) {
+            let cellToBeChanged1 = document.getElementsByClassName("gold")[0];
+            let cellToBeChanged2 = document.getElementsByClassName("silver")[0];
+            let cellToBeChanged3 = document.getElementsByClassName("copper")[0];
+
+            cellToBeChanged1.innerText =
+              newData.preview_item.sell_price.display_strings.gold;
+            cellToBeChanged2.innerText =
+              newData.preview_item.sell_price.display_strings.silver;
+            cellToBeChanged3.innerText =
+              newData.preview_item.sell_price.display_strings.copper;
+          }
+        }
+
+        appendDataToRows();
+
+        let tooltipHeader = document.getElementById("element-to-append-image");
+
+        document
+          .getElementById("element-to-append-image")
+          .insertBefore(tooltipImage, tooltipHeader.childNodes[0]);
+      } else if (newData.item_class.name === "Gem") {
+        
+      } else if (newData.item_class.name === "Key") {
+        
+      } else if (newData.item_class.name === "Miscellaneous") {
+        
+      } else if (newData.item_class.name === "Money") {
+        
+      } else if (newData.item_class.name === "Reagent") {
+        
+      } else if (newData.item_class.name === "Recipe") {
+        
+      } else if (newData.item_class.name === "Projectile") {
+        
+      } else if (newData.item_class.name === "Quest") {
+        
+      } else if (newData.item_class.name === "Quiver") {
+        
+      } else if (newData.item_class.name === "Trade Goods") {
+        
+      }
     });
 }
