@@ -861,7 +861,7 @@ function getToolTipItems() {
 
           //newData.preview_item.requirements.playable_classes.display_string
 
-          if (newData.preview_item.requirements.playable_classes) {
+          if (newData.preview_item.requirements && newData.preview_item.requirements.playable_classes) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
