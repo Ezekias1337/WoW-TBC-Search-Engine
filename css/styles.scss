@@ -88,6 +88,7 @@ th.input {
   color: #e1eef4;
 }
 
+
 input.search {
   padding: 5px;
   margin-top: 125px;
@@ -108,6 +109,11 @@ input.arena, input.arena-output {
   
 }
 
+input.arena-output {
+  background-image: url(../images/Arena_Points_Icon.png);
+  background-repeat: no-repeat;
+  background-position: right;
+}
 
 
 table.arena-table tr, table.arena-table td, table.arena-table th {

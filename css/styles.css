@@ -87,6 +87,11 @@ input.arena, input.arena-output {
   color: #b4d603;
   background: #364447; }
 
+input.arena-output {
+  background-image: url(../images/Arena_Points_Icon.png);
+  background-repeat: no-repeat;
+  background-position: right; }
+
 table.arena-table tr, table.arena-table td, table.arena-table th {
   border: 2px solid #ffffff; }
 

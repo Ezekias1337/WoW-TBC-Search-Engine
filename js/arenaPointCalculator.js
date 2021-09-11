@@ -69,9 +69,7 @@ function submitAll(){
     threes = document.getElementById("3s").value;
     fives = document.getElementById("5s").value;
     
-    if (twos === "" && threes === "" && fives === ""){
-        alert("Enter a rating into one of the fields");
-    } if (!(twos === "")) {
+    if (!(twos === "")) {
         calculatePoints2s();
     } if (!(threes === "")) {
         calculatePoints3s();
@@ -113,6 +111,7 @@ function resetArenaCalculator() {
     document.getElementById("3s-output").value = "";
     document.getElementById("5s").value = "";
     document.getElementById("5s-output").value = "";
+    document.getElementById("total-output").value = "";
 }
 
 
@@ -129,7 +128,7 @@ document.getElementById("2s").addEventListener("keyup", function(event) {
         
         // Trigger the button element with a click
         
-        document.getElementById("submitArenaPoints").click();
+        submitAll();
 }});
 
 document.getElementById("3s").addEventListener("keyup", function(event) {
@@ -140,7 +139,7 @@ document.getElementById("3s").addEventListener("keyup", function(event) {
         
         // Trigger the button element with a click
         
-        document.getElementById("submitArenaPoints").click();
+        submitAll();
 }});
 
 document.getElementById("5s").addEventListener("keyup", function(event) {
@@ -151,10 +150,9 @@ document.getElementById("5s").addEventListener("keyup", function(event) {
         
         // Trigger the button element with a click
         
-        document.getElementById("submitArenaPoints").click();
+        submitAll();
 }});
 
 
-document.getElementById("submitArenaPoints").addEventListener("click", submitAll);
 
 document.getElementById("resetArenaPoints").addEventListener("click", resetArenaCalculator);
