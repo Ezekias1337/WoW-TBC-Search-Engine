@@ -194,7 +194,7 @@ function getToolTipItems() {
         if (newData.preview_item.stats) {
           numOfLines = numOfLines + newData.preview_item.stats.length;
         }
-        if (newData.preview_item.durability.display_string) {
+        if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
           numOfLines = numOfLines + 1;
         }
         if (
@@ -273,7 +273,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            sellPriceElement.style.textAlign = "left"
+            sellPriceElement.style.textAlign = "left";
             
 
             let goldSpan = document.createElement("SPAN");
@@ -431,7 +431,7 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item.durability.display_string) {
+          if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -685,6 +685,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
+            sellPriceElement.style.textAlign = "left";
             
 
             let goldSpan = document.createElement("SPAN");
@@ -816,7 +817,7 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item.durability) {
+          if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -1015,6 +1016,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
+            sellPriceElement.style.textAlign = "left";
             
 
             let goldSpan = document.createElement("SPAN");
@@ -1133,7 +1135,7 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item.durability) {
+          if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -1363,6 +1365,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
+            sellPriceElement.style.textAlign = "left";
             
 
             let goldSpan = document.createElement("SPAN");
@@ -1466,7 +1469,7 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item.durability) {
+          if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -1690,6 +1693,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
+            sellPriceElement.style.textAlign = "left";
             
 
             let goldSpan = document.createElement("SPAN");
@@ -1906,7 +1910,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            
+            sellPriceElement.style.textAlign = "left";
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2111,7 +2115,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            
+            sellPriceElement.style.textAlign = "left";
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2248,7 +2252,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            
+            sellPriceElement.style.textAlign = "left";
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2453,7 +2457,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            
+            sellPriceElement.style.textAlign = "left";
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2682,7 +2686,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            
+            sellPriceElement.style.textAlign = "left";
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2935,7 +2939,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            
+            sellPriceElement.style.textAlign = "left";
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -3169,7 +3173,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            
+            sellPriceElement.style.textAlign = "left";
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";

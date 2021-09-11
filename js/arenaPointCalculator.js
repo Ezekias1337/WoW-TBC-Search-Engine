@@ -15,7 +15,7 @@ function calculatePoints2s () {
         document.getElementById("2s-output").value = ""
     }
     else {
-        document.getElementById("2s-output").value = "Enter Value > 200"
+        document.getElementById("2s-output").value = "Enter Value > 200";
     }
 }
 
@@ -64,11 +64,8 @@ function submitAll(){
     let threes = 0;
     let fives = 0;
     
-    if(document.getElementById("2s").value !== "Enter Value > 200"){
-        twos = document.getElementById("2s").value;
-    }
     
-
+    twos = document.getElementById("2s").value;
     threes = document.getElementById("3s").value;
     fives = document.getElementById("5s").value;
     
@@ -87,14 +84,23 @@ function submitAll(){
 }
 
 function displayTotal() {
-    let twos;
-    let threes;
-    let fives;
+    let twos = 0;
+    let threes = 0;
+    let fives = 0;
     let sum;
 
-    twos = Number(document.getElementById("2s-output").value);
-    threes = Number(document.getElementById("3s-output").value);
-    fives = Number(document.getElementById("5s-output").value);
+    if(!(document.getElementById("2s-output").value === "Enter Value > 200")) {
+        twos = Number(document.getElementById("2s-output").value);
+    }
+    
+    if(!(document.getElementById("3s-output").value === "Enter Value > 200")) {
+        threes = Number(document.getElementById("3s-output").value);
+    }
+
+    if(!(document.getElementById("5s-output").value === "Enter Value > 200")) {
+        fives = Number(document.getElementById("5s-output").value);
+    }
+
 
     sum = twos + threes + fives;
     document.getElementById("total-output").value = sum;
