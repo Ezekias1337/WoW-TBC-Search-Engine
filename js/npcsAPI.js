@@ -68,7 +68,6 @@ function getToolTipNPCs() {
   tooltipImage = event.currentTarget.children[2].cloneNode(true);
   tooltipImage.id = "tooltipImageStyleNPC";
   tooltipImage.className = "d-block";
-  console.log(ID, ID2);
   fetch(
     `https://us.api.blizzard.com/data/wow/creature/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`
   )

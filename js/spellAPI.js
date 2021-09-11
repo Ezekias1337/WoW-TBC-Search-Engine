@@ -62,7 +62,6 @@ function searchExecuteSpells() {
   let test = search();
   fetchSpells(test);
   setTimeout(toolTipSpells, 1000);
-  console.log("Searched for Spells");
 }
 
 function getToolTipSpells() {
@@ -75,7 +74,6 @@ function getToolTipSpells() {
   tooltipImage = event.currentTarget.children[2].cloneNode(true);
   tooltipImage.id = "tooltipImageStyleSpell";
   tooltipImage.style.verticalAlign = "top"
-  console.log(ID, ID2);
   fetch(
     `https://us.api.blizzard.com/data/wow/spell/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`
   )

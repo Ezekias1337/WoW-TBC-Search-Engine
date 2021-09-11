@@ -117,8 +117,6 @@ function getToolTipItems() {
         epic = "#a335ee";
         legendary = "#ff8000";
 
-        console.log(newData.quality.name, "newData.quality.name");
-
         tooltipTitle = document.getElementById("tooltip-row-1");
         if (newData.quality.name === "Poor") {
           tooltipTitle.style.color = poor;
@@ -178,8 +176,8 @@ function getToolTipItems() {
         }
         if (newData.preview_item.item_subclass.name) {
           rowNumberRightHandCell1 = numOfLines;
-          console.log(rowNumberRightHandCell1, "rowNumberRightHandCell1");
-          console.log(numOfLines);
+          
+          
         }
 
         if (newData.preview_item.weapon.damage.display_string) {
@@ -187,8 +185,8 @@ function getToolTipItems() {
         }
         if (newData.preview_item.weapon.attack_speed.display_string) {
           rowNumberRightHandCell2 = numOfLines;
-          console.log(rowNumberRightHandCell2, "rowNumberRightHandCell2");
-          console.log(numOfLines);
+          
+          
         }
         if (newData.preview_item.weapon.dps.display_string) {
           numOfLines = numOfLines + 1;
@@ -219,7 +217,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
                 creating TR/TD Elements to later add data to*/
@@ -275,7 +273,8 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            sellPriceElement.style.textAlign = "left"
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -292,7 +291,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -397,7 +396,7 @@ function getToolTipItems() {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[1];
-            console.log("cellToBeChanged", cellToBeChanged);
+            
             cellToBeChanged.innerText =
               newData.preview_item.weapon.attack_speed.display_string;
             cellToBeChanged.className =
@@ -489,7 +488,7 @@ function getToolTipItems() {
           }
 
           /////////////////////////////////////////////////////////////////////////////////////
-          console.log(numOfItemsInSet);
+          
           if (numOfItemsInSet > 0) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
@@ -504,7 +503,7 @@ function getToolTipItems() {
               let cellToBeChanged = document.getElementById(
                 "tooltip-row-" + counter.toString()
               ).children[0];
-              console.log(cellToBeChanged);
+              
               cellToBeChanged.innerText =
                 " " + newData.preview_item.set.items[i].item.name;
               cellToBeChanged.className =
@@ -630,7 +629,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -686,7 +685,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -703,7 +702,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -789,7 +788,7 @@ function getToolTipItems() {
           }
 
           if (newData.preview_item.armor) {
-            console.log("Armour on item detected");
+            
 
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
@@ -892,7 +891,7 @@ function getToolTipItems() {
               let cellToBeChanged = document.getElementById(
                 "tooltip-row-" + counter.toString()
               ).children[0];
-              console.log(cellToBeChanged);
+              
               cellToBeChanged.innerText =
                 " " + newData.preview_item.set.items[i].item.name;
               cellToBeChanged.className =
@@ -986,7 +985,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -1016,7 +1015,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -1033,7 +1032,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -1106,7 +1105,7 @@ function getToolTipItems() {
           }
 
           if (newData.preview_item.armor) {
-            console.log("Armour on item detected");
+            
 
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
@@ -1208,7 +1207,7 @@ function getToolTipItems() {
               let cellToBeChanged = document.getElementById(
                 "tooltip-row-" + counter.toString()
               ).children[0];
-              console.log(cellToBeChanged);
+              
               cellToBeChanged.innerText =
                 " " + newData.preview_item.set.items[i].item.name;
               cellToBeChanged.className =
@@ -1308,7 +1307,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -1364,7 +1363,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -1381,7 +1380,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -1539,7 +1538,7 @@ function getToolTipItems() {
               let cellToBeChanged = document.getElementById(
                 "tooltip-row-" + counter.toString()
               ).children[0];
-              console.log(cellToBeChanged);
+              
               cellToBeChanged.innerText =
                 " " + newData.preview_item.set.items[i].item.name;
               cellToBeChanged.className =
@@ -1635,7 +1634,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
                 creating TR/TD Elements to later add data to*/
@@ -1691,7 +1690,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -1708,7 +1707,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -1851,7 +1850,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -1907,7 +1906,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -1924,7 +1923,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -2056,7 +2055,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -2112,7 +2111,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2129,7 +2128,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -2219,7 +2218,7 @@ function getToolTipItems() {
         if (newData.preview_item.recipe) {
           numOfLines = numOfLines + 1;
         }
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -2249,7 +2248,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2266,7 +2265,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -2395,8 +2394,8 @@ function getToolTipItems() {
         }
         if (newData.preview_item.item_subclass.name) {
           rowNumberRightHandCell1 = numOfLines;
-          console.log(rowNumberRightHandCell1, "rowNumberRightHandCell1");
-          console.log(numOfLines);
+          
+          
         }
         if (newData.preview_item.weapon.damage.display_string) {
           numOfLines = numOfLines + 1;
@@ -2411,7 +2410,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines, "numOfLines");
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -2454,7 +2453,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2471,7 +2470,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -2571,7 +2570,7 @@ function getToolTipItems() {
             newData.preview_item.requirements.reputation &&
             newData.preview_item.requirements.reputation.display_string
           ) {
-            console.log("Reputation block entered");
+            
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -2653,7 +2652,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -2683,7 +2682,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2700,7 +2699,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -2906,7 +2905,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -2936,7 +2935,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -2953,7 +2952,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
@@ -3140,7 +3139,7 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        console.log(numOfLines);
+        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -3170,7 +3169,7 @@ function getToolTipItems() {
             let sellPriceElement = document.getElementById(tooltipID);
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
-            console.log(sellPriceElement);
+            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -3187,7 +3186,7 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            console.log("Money amounts added to cell!!");
+            
           }
         }
 
