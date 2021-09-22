@@ -274,7 +274,7 @@ function toolTipNPCs() {
 function searchExecuteNPCs() {
   let test = search();
   fetchNPCs(test);
-  setTimeout(toolTipNPCs, 1000);
+  setTimeout(toolTipNPCs, 1500);
 }
 
 document

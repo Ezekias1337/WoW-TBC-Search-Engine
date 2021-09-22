@@ -61,7 +61,7 @@ function fetchSpells(searchTerm) {
 function searchExecuteSpells() {
   let test = search();
   fetchSpells(test);
-  setTimeout(toolTipSpells, 1000);
+  setTimeout(toolTipSpells, 1500);
 }
 
 function getToolTipSpells() {

@@ -70,11 +70,7 @@ function toolTipItems() {
 function searchExecuteItems() {
   let test = search();
   fetchItems(test)
-  .then((result) => {
-    toolTipItems();
-  })
-
-  //setTimeout(toolTipItems, 1000);
+  setTimeout(toolTipItems, 1500);
 }
 
 document
