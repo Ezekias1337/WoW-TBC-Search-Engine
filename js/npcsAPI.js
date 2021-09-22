@@ -143,8 +143,10 @@ function fetchNPCs(searchTerm) {
     
     function searchExecuteNPCs() {
         let test = search();
-        fetchNPCs(test);
-        setTimeout(toolTipNPCs, 1000);
+        fetchNPCs(test)
+        .then((result) => {
+            toolTipNPCs();
+        })
     }
 
     document.getElementById("searchBar").addEventListener("submit", searchExecuteNPCs);

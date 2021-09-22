@@ -69,8 +69,12 @@ function toolTipItems() {
 
 function searchExecuteItems() {
   let test = search();
-  fetchItems(test);
-  setTimeout(toolTipItems, 1000);
+  fetchItems(test)
+  .then((result) => {
+    toolTipItems();
+  })
+
+  //setTimeout(toolTipItems, 1000);
 }
 
 document
@@ -151,6 +155,7 @@ function getToolTipItems() {
       Quiver 
       Trade Goods
       Weapon
+      Shield (possibly)
       */
 
       /* Start of Weapon Parsing */

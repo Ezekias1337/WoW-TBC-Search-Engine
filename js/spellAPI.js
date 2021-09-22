@@ -58,9 +58,10 @@ function fetchSpells(searchTerm) {
 
   function searchExecuteSpells() {
     let test = search();
-    fetchSpells(test);
-    setTimeout(toolTipSpells, 1000);
-    console.log("Searched for Spells")
+    fetchSpells(test)
+    .then((result) => {
+        toolTipSpells();
+    })
 }
 
   function getToolTipSpells(){
