@@ -5,14 +5,17 @@ function calculatePoints2s () {
 
     if (points >= 1500) {
         pointOutput2s = Math.floor(((1511.26/(1+1639.28*Math.pow(2.71828, -0.00412*points))) * 0.76))
-        console.log(pointOutput2s);
+        
         document.getElementById("2s-output").value = pointOutput2s;
     } else if (points >= 200) {
         pointOutput2s = Math.floor((162 + ((points-200) * 0.0761538461538462)))
-        console.log(pointOutput2s);
+        
         document.getElementById("2s-output").value = pointOutput2s;
-    } else {
-        console.log("Enter a rating higher than 200!")
+    } else if (document.getElementById("2s").value === "") {
+        document.getElementById("2s-output").value = ""
+    }
+    else {
+        document.getElementById("2s-output").value = "Enter Value > 200";
     }
 }
 
@@ -23,14 +26,16 @@ function calculatePoints3s () {
 
     if (points >= 1500) {
         pointOutput3s = Math.floor(((1511.26/(1+1639.28*Math.pow(2.71828, -0.00412*points))) * 0.88))
-        console.log(pointOutput3s);
+       
         document.getElementById("3s-output").value = pointOutput3s;
     } else if (points >= 200) {
         pointOutput3s = Math.floor((188 + ((points-200) * 0.0876923076923077)))
-        console.log(pointOutput3s);
+        
         document.getElementById("3s-output").value = pointOutput3s;
+    } else if (document.getElementById("3s").value === "") {
+        document.getElementById("3s-output").value = ""
     } else {
-        console.log("Enter a rating higher than 200!")
+        document.getElementById("3s-output").value = "Enter Value > 200"
     }
 }
 
@@ -41,30 +46,30 @@ function calculatePoints5s () {
 
     if (points >= 1500) {
         pointOutput5s = Math.floor((1511.26/(1+1639.28*Math.pow(2.71828, -0.00412*points))))
-        console.log(pointOutput5s);
+        
         document.getElementById("5s-output").value = pointOutput5s;
     } else if (points >= 200) {
         pointOutput5s = Math.floor((214 + ((points-200) * 0.1)))
-        console.log(pointOutput5s);
+        
         document.getElementById("5s-output").value = pointOutput5s;
+    } else if (document.getElementById("5s").value === "") {
+        document.getElementById("5s-output").value = ""
     } else {
-        console.log("Enter a rating higher than 200!")
+        document.getElementById("5s-output").value = "Enter Value > 200"
     }
 }
 
 function submitAll(){
-    let twos;
-    let threes;
-    let fives;
+    let twos = 0;
+    let threes = 0;
+    let fives = 0;
     
-
+    
     twos = document.getElementById("2s").value;
     threes = document.getElementById("3s").value;
     fives = document.getElementById("5s").value;
     
-    if (twos === "" && threes === "" && fives === ""){
-        alert("Enter a rating into one of the fields");
-    } if (!(twos === "")) {
+    if (!(twos === "")) {
         calculatePoints2s();
     } if (!(threes === "")) {
         calculatePoints3s();
@@ -77,14 +82,23 @@ function submitAll(){
 }
 
 function displayTotal() {
-    let twos;
-    let threes;
-    let fives;
+    let twos = 0;
+    let threes = 0;
+    let fives = 0;
     let sum;
 
-    twos = Number(document.getElementById("2s-output").value);
-    threes = Number(document.getElementById("3s-output").value);
-    fives = Number(document.getElementById("5s-output").value);
+    if(!(document.getElementById("2s-output").value === "Enter Value > 200")) {
+        twos = Number(document.getElementById("2s-output").value);
+    }
+    
+    if(!(document.getElementById("3s-output").value === "Enter Value > 200")) {
+        threes = Number(document.getElementById("3s-output").value);
+    }
+
+    if(!(document.getElementById("5s-output").value === "Enter Value > 200")) {
+        fives = Number(document.getElementById("5s-output").value);
+    }
+
 
     sum = twos + threes + fives;
     document.getElementById("total-output").value = sum;
@@ -97,7 +111,14 @@ function resetArenaCalculator() {
     document.getElementById("3s-output").value = "";
     document.getElementById("5s").value = "";
     document.getElementById("5s-output").value = "";
+    document.getElementById("total-output").value = "";
 }
+
+
+document.getElementById("2s").addEventListener("keyup", submitAll)
+document.getElementById("3s").addEventListener("keyup", submitAll)
+document.getElementById("5s").addEventListener("keyup", submitAll)
+
 
 document.getElementById("2s").addEventListener("keyup", function(event) {
     var x = event.key;
@@ -107,7 +128,7 @@ document.getElementById("2s").addEventListener("keyup", function(event) {
         
         // Trigger the button element with a click
         
-        document.getElementById("submitArenaPoints").click();
+        submitAll();
 }});
 
 document.getElementById("3s").addEventListener("keyup", function(event) {
@@ -118,7 +139,7 @@ document.getElementById("3s").addEventListener("keyup", function(event) {
         
         // Trigger the button element with a click
         
-        document.getElementById("submitArenaPoints").click();
+        submitAll();
 }});
 
 document.getElementById("5s").addEventListener("keyup", function(event) {
@@ -129,10 +150,9 @@ document.getElementById("5s").addEventListener("keyup", function(event) {
         
         // Trigger the button element with a click
         
-        document.getElementById("submitArenaPoints").click();
+        submitAll();
 }});
 
 
-document.getElementById("submitArenaPoints").addEventListener("click", submitAll);
 
 document.getElementById("resetArenaPoints").addEventListener("click", resetArenaCalculator);

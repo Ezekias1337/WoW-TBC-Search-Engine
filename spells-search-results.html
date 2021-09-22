@@ -101,7 +101,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h3 class="modal-title">Login</h3>
+              <h3 class="modal-title header-under-logo">Login</h3>
               <button type="button" class="close" data-dismiss="modal">
                 &times;
               </button>
@@ -170,15 +170,31 @@
             <div class="modal-body">
               <div class="container-fluid">
                 <div class="col col-xs-2" id="fullToolTip">
-                  <table class="table table-dark table-hover">
-                    <thead align="center" class="thead-light">
-                      <tr id="tooltip-row-1"></tr>
-                      <tr id="tooltip-row-2"></tr>
-                      <tr id="tooltip-row-3"></tr>
-                      <tr id="tooltip-row-4"></tr>
-                    </thead>
-                    <tbody class="" id="toolTipDisplay"></tbody>
-                  </table>
+                  <div id="element-to-append-image" style="margin-top: 10px">
+                    
+                    <table
+                      class="table table-dark"
+                      id="outline-of-table"
+                      style="
+                        box-sizing: border-box;
+                        border-radius: 7px;
+                        border: 1px solid #fff;
+                        max-width: 310px;
+                        display: inline-block;
+                        font-size: 12px;
+                      "
+                    >
+                      <tbody
+                        class=""
+                        id="toolTipDisplay"
+                        style="
+                          display: table;
+                          margin-right: 0px;
+                          min-width: 100%;
+                        "
+                      ></tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -220,31 +236,6 @@
             </h5>
           </div>
 
-          <!--    <div class="col col-xs-2" id="fullToolTip">
-                                <table class="table table-dark table-hover">
-                                    <thead align="center" class="thead-light">
-                                        <tr>
-                                            <th colspan="6">ToolTip</th>
-                                        </tr>
-                                        <tr id="tooltip-row-1">
-                                            
-                                        </tr>
-                                        <tr id="tooltip-row-2">
-                                            
-                                        </tr>
-                                        <tr id="tooltip-row-3">
-                                            
-                                        </tr>
-                                        <tr id="tooltip-row-4">
-                                            
-                                        </tr>
-                                        
-                                    </thead>
-                                    <tbody class="" id="toolTipDisplay">
-                                    </tbody>
-                                  </table>
-                            </div>
-                        -->
 
           <div class="table-responsive">
             <div class="col col-xs-4 col-sm-6" id="resultsTable">

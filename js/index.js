@@ -17,7 +17,7 @@ function updateFormAction (){
            document.getElementById("searchForm").setAttribute("action", "quests-search-results.html");
             break;
         default:
-            console.log("User didn't select category");
+            break;
     }
 }
     let searchCategory;

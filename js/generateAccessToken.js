@@ -16,7 +16,6 @@
          blizzardResponse = xhr.responseText
          oAuthTokenFullString = blizzardResponse;
          oAuthToken = oAuthTokenFullString.slice(17,51);
-         console.log(oAuthToken)
          if ( document.URL.includes("item-search-results.html") ) {
                searchExecuteItems(); 
                return xhr.responseText;

@@ -100,7 +100,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h3 class="modal-title">Login</h3>
+              <h3 class="modal-title header-under-logo">Login</h3>
               <button type="button" class="close" data-dismiss="modal">
                 &times;
               </button>
@@ -180,83 +180,115 @@
         class="Wallpaper_Belf_Draenei img-fluid img-thumbnail"
         id="arena-point-module"
       >
-        <div class="row">
-          <div class="col-sm-12 mx-auto">
-            <h3 class="header-under-logo">Arena Point Calculator</h3>
-            <div class="row arena-field arena-wrapper">
-              <div class="col col-sm-12">
-                <span class="header-under-logo"
-                  >Brackets                    </span
-                >
-                <span class="header-under-logo">          Point Output </span>
-              </div>
-              <div class="col">
-                <h2></h2>
-              </div>
-
-              <div class="col col-12">
-                <span class="header-under-logo">2s</span>
-                <input
-                  id="2s"
-                  type="text"
-                  placeholder="Enter 2s rating here: "
-                  class="groove arena"
-                  style="height: 30 px"
-                />
-                <input
-                  tabindex="-1"
-                  readonly
-                  id="2s-output"
-                  type="text"
-                  class="groove arena"
-                  style="height: 30 px"
-                />
-              </div>
-              <div class="col col-12">
-                <span class="header-under-logo">3s</span>
-                <input
-                  id="3s"
-                  type="text"
-                  placeholder="Enter 3s rating here: "
-                  class="groove arena"
-                  style="height: 30 px"
-                />
-                <input
-                  tabindex="-1"
-                  readonly
-                  id="3s-output"
-                  type="text"
-                  class="groove arena"
-                  style="height: 30 px"
-                />
-              </div>
-              <div class="col col-12">
-                <span class="header-under-logo">5s</span>
-                <input
-                  id="5s"
-                  type="text"
-                  placeholder="Enter 5s rating here: "
-                  class="groove arena"
-                  style="height: 30 px"
-                />
-                <input
-                  tabindex="-1"
-                  readonly
-                  id="5s-output"
-                  type="text"
-                  class="groove arena"
-                  style="height: 30 px"
-                />
-              </div>
+        <div class="container">
+          <div class="row">
+            <div class="col col-xs-12">
+              <table class="table table-dark arena-table">
+                <thead>
+                  <tr>
+                    <th class="bracket" style="vertical-align: middle;">Bracket</th>
+                    <th class="input" style="vertical-align: middle;">Rating</th>
+                    <th class="output" style="vertical-align: middle;">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="vertical-align: middle;">2s</td>
+                    <td style="vertical-align: middle;">
+                      <input
+                        id="2s"
+                        type="text"
+                        placeholder="2s rating here: "
+                        class="groove arena"
+                        style="height: 30 px"
+                      />
+                    </td>
+                    <td style="vertical-align: middle;">
+                      <input
+                        tabindex="-1"
+                        readonly
+                        id="2s-output"
+                        type="text"
+                        class="groove arena-output"
+                        style="
+                          height: 30 px;                         
+                        "
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;">3s</td>
+                    <td style="vertical-align: middle;">
+                      <input
+                        id="3s"
+                        type="text"
+                        placeholder="3s rating here: "
+                        class="groove arena"
+                        style="height: 30 px"
+                      />
+                    </td>
+                    <td style="vertical-align: middle;">
+                      <input
+                        tabindex="-1"
+                        readonly
+                        id="3s-output"
+                        type="text"
+                        class="groove arena-output"
+                        style="
+                          height: 30 px;
+                        "
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;">5s</td>
+                    <td style="vertical-align: middle;">
+                      <input
+                        id="5s"
+                        type="text"
+                        placeholder="5s rating here: "
+                        class="groove arena"
+                        style="height: 30 px"
+                      />
+                    </td>
+                    <td style="vertical-align: middle;">
+                      <input
+                        tabindex="-1"
+                        readonly
+                        id="5s-output"
+                        type="text"
+                        class="groove arena-output"
+                        style="
+                          height: 30 px;         
+                        "
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="vertical-align: middle;">
+                      Total Points
+                    </td>
+                    <td colspan="2" style="vertical-align: middle;">
+                      <input
+                        tabindex="-1"
+                        readonly
+                        id="total-output"
+                        type="text"
+                        class="groove arena-output"
+                        style="
+                          height: 30 px;
+                          min-width: 150px;        
+                        "
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-
-            <div class="col col-12 mt-2">
-              <span>   </span>
-              <button
-                id="submitArenaPoints"
-                class="groove search fa fa-calculator execute_search"
-                style="height: 34px; width: 60px"
-              ></button>
+          </div>
+          <div class="row">
+            <div class="col col-sm-3"></div>
+            <div class="col col-sm-6">
               <button
                 id="resetArenaPoints"
                 class="groove search fa execute_search arena-field"
@@ -265,18 +297,7 @@
                 Reset
               </button>
             </div>
-
-            <div class="col col-12 mt-2">
-              <h5 class="header-under-logo">Total Points</h5>
-              <input
-                tabindex="-1"
-                readonly
-                id="total-output"
-                type="text"
-                class="groove arena arena-field"
-                style="height: 30 px"
-              />
-            </div>
+            <div class="col col-sm-3"></div>
           </div>
         </div>
       </div>
