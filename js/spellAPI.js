@@ -156,12 +156,11 @@ function getToolTipSpells() {
     });
 }
 
-  function searchExecuteSpells() {
-    let test = search();
-    fetchSpells(test)
-    .then((result) => {
-        toolTipSpells();
-    })
+function toolTipSpells() {
+  document.querySelectorAll(".Items").forEach((item) => {
+    item.addEventListener("click", getToolTipSpells);
+    item.addEventListener("mouseleave", clearToolTip);
+  });
 }
 
 document

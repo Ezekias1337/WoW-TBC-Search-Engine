@@ -69,7 +69,7 @@ function toolTipItems() {
 
 function searchExecuteItems() {
   let test = search();
-  fetchItems(test)
+  fetchItems(test);
   setTimeout(toolTipItems, 1500);
 }
 
