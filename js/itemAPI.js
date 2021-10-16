@@ -2,21 +2,23 @@
 
 function fetchItems(searchTerm) {
   fetch(
-    `https://us.api.blizzard.com/data/wow/search/item?namespace=static-classic-us&locale=en_US&id=&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
+    `https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&id=&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
   )
     .then((response) => {
       if (!response.ok) {
         throw Error("ERROR");
       }
+      
       return response.json();
     })
     .then((data) => {
+      console.log(data, "data")
       const statsItems = document.getElementById("userSearchResults");
-
+     
       Promise.all(
         data.results.map((user) => {
           return fetch(
-            `https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-classic-us&locale=en_US&access_token=${oAuthToken}`
+            `https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`
           )
             .then((innerRes) => innerRes.json())
             .then((innerResData) => {
@@ -70,6 +72,7 @@ function toolTipItems() {
 function searchExecuteItems() {
   let test = search();
   fetchItems(test);
+  console.log("Test")
   setTimeout(toolTipItems, 1500);
 }
 
@@ -96,7 +99,7 @@ function getToolTipItems() {
   ID = event.currentTarget.children[2].innerText.replace("ID: ", "");
   ID2 = event.currentTarget;
   fetch(
-    `https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-classic-us&locale=en_US&access_token=${oAuthToken}`
+    `https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`
   )
     .then((response) => response.json())
     .then((data) => (responseFromFetch = data))
