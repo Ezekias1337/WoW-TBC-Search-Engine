@@ -77,32 +77,8 @@ function submitAll(){
         calculatePoints5s();
     }
 
-    displayTotal();
-
 }
 
-function displayTotal() {
-    let twos = 0;
-    let threes = 0;
-    let fives = 0;
-    let sum;
-
-    if(!(document.getElementById("2s-output").value === "Enter Value > 200")) {
-        twos = Number(document.getElementById("2s-output").value);
-    }
-    
-    if(!(document.getElementById("3s-output").value === "Enter Value > 200")) {
-        threes = Number(document.getElementById("3s-output").value);
-    }
-
-    if(!(document.getElementById("5s-output").value === "Enter Value > 200")) {
-        fives = Number(document.getElementById("5s-output").value);
-    }
-
-
-    sum = twos + threes + fives;
-    document.getElementById("total-output").value = sum;
-}
 
 function resetArenaCalculator() {
     document.getElementById("2s").value = "";
@@ -111,7 +87,6 @@ function resetArenaCalculator() {
     document.getElementById("3s-output").value = "";
     document.getElementById("5s").value = "";
     document.getElementById("5s-output").value = "";
-    document.getElementById("total-output").value = "";
 }
 
 
