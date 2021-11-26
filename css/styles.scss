@@ -3,6 +3,10 @@
   src: url(../fonts/Warcraft.ttf);
 }
 
+body {
+  overflow-x: hidden;
+}
+
 h1,
 h2,
 h3,
@@ -445,9 +449,14 @@ select:-webkit-autofill:focus {
 }
 
 .modal-content {
-  border-radius: 5px;
-  padding: 3.5px;
+  border-radius: 1px;
+  padding: 2px;
   color: #e1eef4;
+}
+
+#dismissModal {
+  color: #e1eef4;
+  text-shadow: 0 1px 0 #000;
 }
 
 #tooltipImageStyleNPC,

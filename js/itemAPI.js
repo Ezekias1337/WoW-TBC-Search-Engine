@@ -2,23 +2,23 @@
 
 function fetchItems(searchTerm) {
   fetch(
-    `https://us.api.blizzard.com/data/wow/search/item?namespace=static-us&locale=en_US&id=&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
+    `https://us.api.blizzard.com/data/wow/search/item?namespace=static-classic-us&locale=en_US&id=&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
   )
     .then((response) => {
       if (!response.ok) {
         throw Error("ERROR");
       }
-      
+
       return response.json();
     })
     .then((data) => {
-      console.log(data, "data")
+      console.log(data, "data");
       const statsItems = document.getElementById("userSearchResults");
-     
+
       Promise.all(
         data.results.map((user) => {
           return fetch(
-            `https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`
+            `https://us.api.blizzard.com/data/wow/media/item/${user.data.id}?namespace=static-classic-us&locale=en_US&access_token=${oAuthToken}`
           )
             .then((innerRes) => innerRes.json())
             .then((innerResData) => {
@@ -72,7 +72,6 @@ function toolTipItems() {
 function searchExecuteItems() {
   let test = search();
   fetchItems(test);
-  console.log("Test")
   setTimeout(toolTipItems, 1500);
 }
 
@@ -99,7 +98,7 @@ function getToolTipItems() {
   ID = event.currentTarget.children[2].innerText.replace("ID: ", "");
   ID2 = event.currentTarget;
   fetch(
-    `https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`
+    `https://us.api.blizzard.com/data/wow/item/${ID}?namespace=static-classic-us&locale=en_US&access_token=${oAuthToken}`
   )
     .then((response) => response.json())
     .then((data) => (responseFromFetch = data))
@@ -198,8 +197,6 @@ function getToolTipItems() {
         }
         if (newData.preview_item.item_subclass.name) {
           rowNumberRightHandCell1 = numOfLines;
-          
-          
         }
 
         if (newData.preview_item.weapon.damage.display_string) {
@@ -207,8 +204,6 @@ function getToolTipItems() {
         }
         if (newData.preview_item.weapon.attack_speed.display_string) {
           rowNumberRightHandCell2 = numOfLines;
-          
-          
         }
         if (newData.preview_item.weapon.dps.display_string) {
           numOfLines = numOfLines + 1;
@@ -216,7 +211,11 @@ function getToolTipItems() {
         if (newData.preview_item.stats) {
           numOfLines = numOfLines + newData.preview_item.stats.length;
         }
-        if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
+        if (
+          newData.preview_item &&
+          newData.preview_item.durability &&
+          newData.preview_item.durability.display_string
+        ) {
           numOfLines = numOfLines + 1;
         }
         if (
@@ -238,8 +237,6 @@ function getToolTipItems() {
         if (newData.preview_item.sell_price) {
           numOfLines = numOfLines + 1;
         }
-
-        
 
         /* Now that the number of rows has been determined, start 
                 creating TR/TD Elements to later add data to*/
@@ -296,7 +293,6 @@ function getToolTipItems() {
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
             sellPriceElement.style.textAlign = "left";
-            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -313,7 +309,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -418,7 +413,7 @@ function getToolTipItems() {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[1];
-            
+
             cellToBeChanged.innerText =
               newData.preview_item.weapon.attack_speed.display_string;
             cellToBeChanged.className =
@@ -453,7 +448,11 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
+          if (
+            newData.preview_item &&
+            newData.preview_item.durability &&
+            newData.preview_item.durability.display_string
+          ) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -510,7 +509,7 @@ function getToolTipItems() {
           }
 
           /////////////////////////////////////////////////////////////////////////////////////
-          
+
           if (numOfItemsInSet > 0) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
@@ -525,7 +524,7 @@ function getToolTipItems() {
               let cellToBeChanged = document.getElementById(
                 "tooltip-row-" + counter.toString()
               ).children[0];
-              
+
               cellToBeChanged.innerText =
                 " " + newData.preview_item.set.items[i].item.name;
               cellToBeChanged.className =
@@ -651,8 +650,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
 
@@ -708,7 +705,6 @@ function getToolTipItems() {
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
             sellPriceElement.style.textAlign = "left";
-            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -725,7 +721,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -811,8 +806,6 @@ function getToolTipItems() {
           }
 
           if (newData.preview_item.armor) {
-            
-
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -839,7 +832,11 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
+          if (
+            newData.preview_item &&
+            newData.preview_item.durability &&
+            newData.preview_item.durability.display_string
+          ) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -914,7 +911,7 @@ function getToolTipItems() {
               let cellToBeChanged = document.getElementById(
                 "tooltip-row-" + counter.toString()
               ).children[0];
-              
+
               cellToBeChanged.innerText =
                 " " + newData.preview_item.set.items[i].item.name;
               cellToBeChanged.className =
@@ -1008,8 +1005,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
 
@@ -1039,7 +1034,6 @@ function getToolTipItems() {
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
             sellPriceElement.style.textAlign = "left";
-            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -1056,7 +1050,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -1129,8 +1122,6 @@ function getToolTipItems() {
           }
 
           if (newData.preview_item.armor) {
-            
-
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -1157,7 +1148,11 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
+          if (
+            newData.preview_item &&
+            newData.preview_item.durability &&
+            newData.preview_item.durability.display_string
+          ) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -1231,7 +1226,7 @@ function getToolTipItems() {
               let cellToBeChanged = document.getElementById(
                 "tooltip-row-" + counter.toString()
               ).children[0];
-              
+
               cellToBeChanged.innerText =
                 " " + newData.preview_item.set.items[i].item.name;
               cellToBeChanged.className =
@@ -1331,8 +1326,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
 
@@ -1388,7 +1381,6 @@ function getToolTipItems() {
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
             sellPriceElement.style.textAlign = "left";
-            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -1405,7 +1397,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -1491,7 +1482,11 @@ function getToolTipItems() {
             }
           }
 
-          if (newData.preview_item && newData.preview_item.durability && newData.preview_item.durability.display_string) {
+          if (
+            newData.preview_item &&
+            newData.preview_item.durability &&
+            newData.preview_item.durability.display_string
+          ) {
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -1563,7 +1558,7 @@ function getToolTipItems() {
               let cellToBeChanged = document.getElementById(
                 "tooltip-row-" + counter.toString()
               ).children[0];
-              
+
               cellToBeChanged.innerText =
                 " " + newData.preview_item.set.items[i].item.name;
               cellToBeChanged.className =
@@ -1659,8 +1654,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
                 creating TR/TD Elements to later add data to*/
 
@@ -1716,7 +1709,6 @@ function getToolTipItems() {
             sellPriceElement.innerText = "  Sell Price: ";
             sellPriceElement.style.paddingLeft = "3px";
             sellPriceElement.style.textAlign = "left";
-            
 
             let goldSpan = document.createElement("SPAN");
             goldSpan.className = "gold";
@@ -1733,7 +1725,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -1876,8 +1867,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
 
@@ -1949,7 +1938,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -2081,8 +2069,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
 
@@ -2154,7 +2140,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -2244,7 +2229,6 @@ function getToolTipItems() {
         if (newData.preview_item.recipe) {
           numOfLines = numOfLines + 1;
         }
-        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -2291,7 +2275,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -2420,8 +2403,6 @@ function getToolTipItems() {
         }
         if (newData.preview_item.item_subclass.name) {
           rowNumberRightHandCell1 = numOfLines;
-          
-          
         }
         if (newData.preview_item.weapon.damage.display_string) {
           numOfLines = numOfLines + 1;
@@ -2435,8 +2416,6 @@ function getToolTipItems() {
         if (newData.preview_item.sell_price) {
           numOfLines = numOfLines + 1;
         }
-
-        
 
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
@@ -2496,7 +2475,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -2596,7 +2574,6 @@ function getToolTipItems() {
             newData.preview_item.requirements.reputation &&
             newData.preview_item.requirements.reputation.display_string
           ) {
-            
             let cellToBeChanged = document.getElementById(
               "tooltip-row-" + counter.toString()
             ).children[0];
@@ -2678,8 +2655,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
 
@@ -2725,7 +2700,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -2931,8 +2905,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
 
@@ -2978,7 +2950,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 
@@ -3165,8 +3136,6 @@ function getToolTipItems() {
           numOfLines = numOfLines + 1;
         }
 
-        
-
         /* Now that the number of rows has been determined, start 
               creating TR/TD Elements to later add data to*/
 
@@ -3212,7 +3181,6 @@ function getToolTipItems() {
             sellPriceElement.appendChild(goldSpan);
             sellPriceElement.appendChild(silverSpan);
             sellPriceElement.appendChild(copperSpan);
-            
           }
         }
 

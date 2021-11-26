@@ -83,86 +83,9 @@
                 >
               </li>
             </ul>
-            <span class="navbar-text ml-auto">
-              <a
-                role="button"
-                class="navIconTextHover loginStyling"
-                data-toggle="modal"
-                data-target="#loginModal"
-              >
-                <i class="fa fa-sign-in"></i> Login
-              </a>
-            </span>
           </div>
         </div>
       </nav>
-
-      <div id="loginModal" class="modal fade" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title header-under-logo">Login</h3>
-              <button type="button" class="close" data-dismiss="modal">
-                &times;
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="container-fluid">
-                <form>
-                  <div class="form-row">
-                    <div class="form-group col-12">
-                      <label class="sr-only" for="loginEmail"
-                        >Email Address</label
-                      >
-                      <input
-                        type="email"
-                        class="form-control form-control-sm"
-                        id="loginEmail"
-                        placeholder="Enter email"
-                      />
-                    </div>
-                    <div class="form-group col-12">
-                      <label class="sr-only" for="loginPassword"
-                        >Password</label
-                      >
-                      <input
-                        type="password"
-                        class="form-control form-control-sm"
-                        id="loginPassword"
-                        placeholder="Password"
-                      />
-                    </div>
-                    <div class="col">
-                      <div class="myTest custom-control custom-checkbox">
-                        <input
-                          type="checkbox"
-                          class="custom-control-input"
-                          id="customCheck1"
-                        />
-                        <label class="custom-control-label" for="customCheck1"
-                          >Remember Me</label
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <button
-                      type="button"
-                      class="btn btn-secondary btn-sm ml-auto"
-                      data-dismiss="modal"
-                    >
-                      Cancel
-                    </button>
-                    <button type="submit" class="btn btn-sml ml-1 signIn">
-                      Sign in
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div id="toolTipModal" class="modal fade" role="dialog">
         <div class="modal-dialog" role="document">
@@ -170,8 +93,10 @@
             <div class="modal-body">
               <div class="container-fluid">
                 <div class="col col-xs-2" id="fullToolTip">
+                  <button id="dismissModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                   <div id="element-to-append-image" style="margin-top: 10px">
-                    
                     <table
                       class="table table-dark"
                       id="outline-of-table"
@@ -236,11 +161,9 @@
             </h5>
           </div>
 
-
           <div class="table-responsive">
             <div class="col col-xs-4 col-sm-6" id="resultsTable">
               <table class="table table-dark table-hover">
-                
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Spell Name</th>
