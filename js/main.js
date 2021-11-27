@@ -1,69 +1,59 @@
-'use strict';
+"use strict";
 
-function search(){
-    let input = document.getElementById("searchBar").value 
-        if (input.length > 1) {
-            return input;
-        }
-        
-    }
+function search() {
+  let input = document.getElementById("searchBar").value;
+  if (input.length > 1) {
+    return input;
+  }
+}
 
-    function addEventListenerToSearchBar(){
-        document.getElementById("searchBar").addEventListener("keyup", function(event) {
-            var x = event.key;
-            // Number 13 is the "Enter" key on the keyboard
-            if (x === "Enter") {
-    
-              
-              // Trigger the button element with a click
-              
-              document.getElementById("searchButtonItems").click();
-            }
-          });
-    }
+function addEventListenerToSearchBar() {
+  document
+    .getElementById("searchBar")
+    .addEventListener("keyup", function (event) {
+      var x = event.key;
+      // Number 13 is the "Enter" key on the keyboard
+      if (x === "Enter") {
+        // Trigger the button element with a click
 
-    function clearSearchItems(){
-        document.getElementById("userSearchResults").innerHTML = "";
-    }
+        document.getElementById("searchButtonItems").click();
+      }
+    });
+}
 
-    function clearToolTip(){
-        let tooltipLinezArray;
-        tooltipLinezArray = document.getElementsByClassName("tooltip-linez");
-        let z;
-        let tooltipLinezClassLength;
-        tooltipLinezClassLength = Object.keys(tooltipLinezArray).length;
-        
-        if(document.getElementById("tooltipImageStyleNPC")){
-            document.getElementById("tooltipImageStyleNPC").remove();
-        } else if(document.getElementById("tooltipImageStyleItem")){
-            document.getElementById("tooltipImageStyleItem").remove();
-        } else if(document.getElementById("tooltipImageStyleSpell")){
-            document.getElementById("tooltipImageStyleSpell").remove();
-        }
-        
-        
+function clearSearchItems() {
+  document.getElementById("userSearchResults").innerHTML = "";
+}
 
+function clearToolTip() {
+  let tooltipLinezArray;
+  tooltipLinezArray = document.getElementsByClassName("tooltip-linez");
+  let z;
+  let tooltipLinezClassLength;
+  tooltipLinezClassLength = Object.keys(tooltipLinezArray).length;
 
+  if (document.getElementById("tooltipImageStyleNPC")) {
+    document.getElementById("tooltipImageStyleNPC").remove();
+  } else if (document.getElementById("tooltipImageStyleItem")) {
+    document.getElementById("tooltipImageStyleItem").remove();
+  } else if (document.getElementById("tooltipImageStyleSpell")) {
+    document.getElementById("tooltipImageStyleSpell").remove();
+  }
 
-        for (z = 0; z < tooltipLinezClassLength; z++){
-            tooltipLinezArray[z].innerHTML = "";
-            
-        }
-       document.querySelectorAll('.tooltip-linez').forEach(e => e.remove());
-       
-    }
-    
-     function displayModal () {
-        document.getElementById("loginModal").modal("show");
-    }
-    
-    function loginModalListener() {
-        let el = document.getElementById("loginButton");
-        if(el){
-            el.addEventListener("click", displayModal);
-        }
-        
-    }
-    setTimeout(loginModalListener, 1000);
+  for (z = 0; z < tooltipLinezClassLength; z++) {
+    tooltipLinezArray[z].innerHTML = "";
+  }
+  document.querySelectorAll(".tooltip-linez").forEach((e) => e.remove());
+}
 
-    
+function displayModal() {
+  document.getElementById("loginModal").modal("show");
+}
+
+function loginModalListener() {
+  let el = document.getElementById("loginButton");
+  if (el) {
+    el.addEventListener("click", displayModal);
+  }
+}
+setTimeout(loginModalListener, 1000);

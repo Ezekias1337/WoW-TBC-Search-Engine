@@ -1,6 +1,151 @@
 "use strict";
 
+/* 
+
+Need to handle adding event listener for modal upon pagination switch
+
+*/
+
+let currentPage;
+let rowLength;
+let resultsHoistedScope;
+let numberOfArrayChunksHoistedScope;
+
+function addPaginationDOMAndEventListener() {
+  let paginationButtons = document.getElementsByClassName("number-pagination");
+
+  for (const item of paginationButtons) {
+    item.addEventListener("click", changePagePagination);
+  }
+
+  const reverseButton = document.getElementById("reverse-page-pagination");
+  const forwardButton = document.getElementById("forward-page-pagination");
+
+  reverseButton.addEventListener("click", reverseOnePage);
+  forwardButton.addEventListener("click", forwardOnePage);
+}
+
+function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
+  if (
+    numberOfArrayChunksHoistedScope <= 1 ||
+    numberOfArrayChunksHoistedScope === undefined
+  ) {
+    console.log("No need for pagination, 1 or less array chunks");
+    return;
+  }
+
+  function applyAttributesToButton(button) {
+    button.className = "btn btn-dark pagination-button";
+  }
+
+  function removePaginationFromDOM() {
+    let arrayOfPaginationElements = document.getElementById(
+      "pagination-container"
+    ).children;
+    arrayOfPaginationElements = Array.from(arrayOfPaginationElements);
+    for (const item of arrayOfPaginationElements) {
+      item.remove();
+    }
+  }
+
+  removePaginationFromDOM();
+
+  const paginationContainer = document.getElementById("pagination-container");
+  const reversePagePagination = document.createElement("BUTTON");
+  const forwardPagePagination = document.createElement("BUTTON");
+
+  reversePagePagination.id = "reverse-page-pagination";
+  forwardPagePagination.id = "forward-page-pagination";
+  reversePagePagination.innerText = "<<";
+  forwardPagePagination.innerText = ">>";
+  applyAttributesToButton(reversePagePagination);
+  applyAttributesToButton(forwardPagePagination);
+
+  paginationContainer.appendChild(reversePagePagination);
+
+  for (let i = 0; i < numberOfArrayChunksHoistedScope; i++) {
+    const numericalPaginationButton = document.createElement("BUTTON");
+
+    applyAttributesToButton(numericalPaginationButton);
+    numericalPaginationButton.classList.add("number-pagination");
+    numericalPaginationButton.innerText = i + 1;
+    paginationContainer.appendChild(numericalPaginationButton);
+  }
+
+  paginationContainer.appendChild(forwardPagePagination);
+}
+
+function changePagePagination() {
+  clearSearchItems();
+  currentPage = event.currentTarget.innerText;
+  renderResults(resultsHoistedScope, currentPage - 1);
+}
+
+function reverseOnePage() {
+  clearSearchItems();
+  currentPage = currentPage - 1;
+  renderResults(resultsHoistedScope, currentPage);
+}
+
+function forwardOnePage() {
+  clearSearchItems();
+  currentPage = currentPage + 1;
+  renderResults(resultsHoistedScope, currentPage);
+}
+
+function renderResults(results, indexToRender) {
+  const statsItems = document.getElementById("userSearchResults");
+  const numberOfArrayChunks = results.length / rowLength;
+  numberOfArrayChunksHoistedScope = numberOfArrayChunks;
+  const chunkedArray = chunkResultsArray(
+    results,
+    numberOfArrayChunks,
+    rowLength
+  );
+  let chunkedArrayIndexToDisplay = chunkedArray[indexToRender];
+
+  chunkedArrayIndexToDisplay.forEach((user) => {
+    const div = document.createElement("tr");
+    div.className = "Items";
+    div.setAttribute("data-toggle", "modal");
+    div.setAttribute("data-target", "#toolTipModal");
+    const lines = [
+      `${user.data.name.en_US}`,
+      `Item Class: ${user.data.item_class.name.en_US}`,
+      `ID: ${user.data.id}`,
+    ];
+    for (let line of lines) {
+      const p = document.createElement("td");
+      p.innerText = line;
+      div.appendChild(p);
+    }
+
+    if (user.assets) {
+      for (let asset of user.assets) {
+        const i = document.createElement("img");
+        i.src = asset.value;
+        div.appendChild(i);
+      }
+    }
+    statsItems.appendChild(div);
+  });
+  resultsHoistedScope = results;
+}
+
+function chunkResultsArray(results, numberOfArrayChunks, rowLength) {
+  let masterArray = [];
+  for (let i = 0; i < numberOfArrayChunks; i++) {
+    const sliceFirstParameter = i * rowLength;
+    const sliceSecondParameter = sliceFirstParameter + rowLength;
+    const arrayChunk = results.slice(sliceFirstParameter, sliceSecondParameter);
+    masterArray.push(arrayChunk);
+  }
+  return masterArray;
+}
+
 function fetchItems(searchTerm) {
+  currentPage = 1;
+  rowLength = 15;
   fetch(
     `https://us.api.blizzard.com/data/wow/search/item?namespace=static-classic-us&locale=en_US&id=&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
   )
@@ -12,9 +157,6 @@ function fetchItems(searchTerm) {
       return response.json();
     })
     .then((data) => {
-      console.log(data, "data");
-      const statsItems = document.getElementById("userSearchResults");
-
       Promise.all(
         data.results.map((user) => {
           return fetch(
@@ -30,31 +172,9 @@ function fetchItems(searchTerm) {
             });
         })
       ).then((results) => {
-        results.forEach((user) => {
-          const div = document.createElement("tr");
-          div.className = "Items";
-          div.setAttribute("data-toggle", "modal");
-          div.setAttribute("data-target", "#toolTipModal");
-          const lines = [
-            `${user.data.name.en_US}`,
-            `Item Class: ${user.data.item_class.name.en_US}`,
-            `ID: ${user.data.id}`,
-          ];
-          for (let line of lines) {
-            const p = document.createElement("td");
-            p.innerText = line;
-            div.appendChild(p);
-          }
-
-          if (user.assets) {
-            for (let asset of user.assets) {
-              const i = document.createElement("img");
-              i.src = asset.value;
-              div.appendChild(i);
-            }
-          }
-          statsItems.appendChild(div);
-        });
+        renderResults(results, 0);
+        appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope);
+        addPaginationDOMAndEventListener();
       });
     })
     .catch((error) => {
@@ -151,7 +271,7 @@ function getToolTipItems() {
       Quiver 
       Trade Goods
       Weapon
-      Shield (possibly)
+      Shield
       */
 
       /* Start of Weapon Parsing */

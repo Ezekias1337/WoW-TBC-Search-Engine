@@ -52,6 +52,9 @@ th.input {
   width: 60%;
   /* Not necessary, since only 70% width remains */ }
 
+.pagination-button {
+  border: 1px solid #e1eef4; }
+
 .bkground {
   padding: 30px;
   background-image: linear-gradient(#b4d603, #364447);
