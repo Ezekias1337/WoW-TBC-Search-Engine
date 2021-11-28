@@ -122,54 +122,6 @@ function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
   paginationContainer.appendChild(forwardPagePagination);
 }
 
-function changePagePagination() {
-  clearSearchItems();
-  currentPage = event.currentTarget.innerText;
-
-  document
-    .getElementsByClassName("pagination-active")[0]
-    .classList.remove("pagination-active");
-  document
-    .getElementsByClassName("number-pagination")
-    [currentPage - 1].classList.add("pagination-active");
-  renderResults(resultsHoistedScope, currentPage - 1);
-  toolTipItems();
-}
-
-function reverseOnePage() {
-  currentPage = currentPage - 1;
-  if (currentPage < 1) {
-    console.log("Can't go back a page, already at page one");
-  } else {
-    clearSearchItems();
-    document
-      .getElementsByClassName("pagination-active")[0]
-      .classList.remove("pagination-active");
-    document
-      .getElementsByClassName("number-pagination")
-      [currentPage - 1].classList.add("pagination-active");
-    renderResults(resultsHoistedScope, currentPage - 1);
-    toolTipItems();
-  }
-}
-
-function forwardOnePage() {
-  if (parseInt(currentPage) === Math.round(numberOfArrayChunksHoistedScope)) {
-    console.log(`Can't go forward a page, already at page ${currentPage}`);
-    return;
-  } else {
-    clearSearchItems();
-    document
-      .getElementsByClassName("pagination-active")[0]
-      .classList.remove("pagination-active");
-    document
-      .getElementsByClassName("number-pagination")
-      [currentPage].classList.add("pagination-active");
-    renderResults(resultsHoistedScope, currentPage);
-    currentPage = parseInt(currentPage) + 1;
-    toolTipItems();
-  }
-}
 
 function chunkResultsArray(results, numberOfArrayChunks, rowLength) {
   let masterArray = [];

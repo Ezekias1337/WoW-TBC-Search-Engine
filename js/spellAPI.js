@@ -1,10 +1,102 @@
 "use strict";
 
-function renderResultsSpells() {
+function renderResultsSpells(results, indexToRender) {
+  const statsItems = document.getElementById("userSearchResults");
+  const numberOfArrayChunks =  Math.ceil(results.length / rowLength);
+  numberOfArrayChunksHoistedScope = numberOfArrayChunks;
+  const chunkedArray = chunkResultsArray(
+    results,
+    numberOfArrayChunks,
+    rowLength
+  );
+  let chunkedArrayIndexToDisplay = chunkedArray[indexToRender];
 
+  chunkedArrayIndexToDisplay.forEach((user) => {
+    const div = document.createElement("tr");
+    div.className = "Items";
+    div.setAttribute("data-toggle", "modal");
+    div.setAttribute("data-target", "#toolTipModal");
+    /*  div.onclick="toolTip(this)"; */
+    const lines = [`${user.data.name.en_US}`, `ID: ${user.data.id}`];
+    for (let line of lines) {
+      const p = document.createElement("td");
+      p.style = "text-align:center vertical-align:center";
+      p.innerText = line;
+      p.style = "vertical-align: middle;"
+      div.appendChild(p);
+    }
+
+    if (user.assets) {
+      for (let asset of user.assets) {
+        const i = document.createElement("img");
+        i.src = asset.value;
+
+        const p = document.createElement("td");
+        p.style = "padding: 0px";
+
+        div.appendChild(p);
+        p.appendChild(i);
+      }
+    }
+    statsItems.appendChild(div);
+  })
+  toolTipSpells();
+}
+
+function changePagePagination() {
+  clearSearchItems();
+  currentPage = event.currentTarget.innerText;
+
+  document
+    .getElementsByClassName("pagination-active")[0]
+    .classList.remove("pagination-active");
+  document
+    .getElementsByClassName("number-pagination")
+    [currentPage - 1].classList.add("pagination-active");
+  renderResultsSpells(resultsHoistedScope, currentPage - 1);
+  toolTipItems();
+}
+
+function reverseOnePage() {
+  currentPage = currentPage - 1;
+  if (currentPage < 1) {
+    console.log("Can't go back a page, already at page one");
+  } else {
+    clearSearchItems();
+    document
+      .getElementsByClassName("pagination-active")[0]
+      .classList.remove("pagination-active");
+    document
+      .getElementsByClassName("number-pagination")
+      [currentPage - 1].classList.add("pagination-active");
+    renderResultsSpells(resultsHoistedScope, currentPage - 1);
+    toolTipItems();
+  }
+}
+
+function forwardOnePage() {
+  if (parseInt(currentPage) === Math.round(numberOfArrayChunksHoistedScope)) {
+    console.log(`Can't go forward a page, already at page ${currentPage}`);
+    return;
+  } else {
+    clearSearchItems();
+    document
+      .getElementsByClassName("pagination-active")[0]
+      .classList.remove("pagination-active");
+    document
+      .getElementsByClassName("number-pagination")
+      [currentPage].classList.add("pagination-active");
+    
+    renderResultsSpells(resultsHoistedScope, currentPage);
+    currentPage = parseInt(currentPage) + 1;
+    toolTipItems();
+  }
 }
 
 function fetchSpells(searchTerm) {
+  currentPage = 1;
+  rowLength = 10;
+  
   fetch(
     `https://us.api.blizzard.com/data/wow/search/spell?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
   )
@@ -32,42 +124,18 @@ function fetchSpells(searchTerm) {
             });
         })
       ).then((results) => {
-        results.forEach((user) => {
-          const div = document.createElement("tr");
-          div.className = "Items";
-          div.setAttribute("data-toggle", "modal");
-          div.setAttribute("data-target", "#toolTipModal");
-          /*  div.onclick="toolTip(this)"; */
-          const lines = [`${user.data.name.en_US}`, `ID: ${user.data.id}`];
-          for (let line of lines) {
-            const p = document.createElement("td");
-            p.style = "text-align:center vertical-align:center";
-            p.innerText = line;
-            p.style = "vertical-align: middle;"
-            div.appendChild(p);
-          }
-
-          if (user.assets) {
-            for (let asset of user.assets) {
-              const i = document.createElement("img");
-              i.src = asset.value;
-
-              const p = document.createElement("td");
-              p.style = "padding: 0px";
-
-              div.appendChild(p);
-              p.appendChild(i);
-            }
-          }
-          statsItems.appendChild(div);
-        });
-      }).then((piece) => {
+        renderResultsSpells(results, 0);
+        appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope);
+        addPaginationDOMAndEventListener();
+        resultsHoistedScope = results
+      }).then(() => {
         toolTipSpells();
       })
     })
     .catch((error) => {
       console.error(error);
     });
+    
 }
 
 function searchExecuteSpells() {
@@ -82,7 +150,7 @@ function getToolTipSpells() {
   let tooltipImage;
   ID = event.currentTarget.children[1].innerText.replace("ID: ", "");
   ID2 = event.currentTarget;
-  tooltipImage = event.currentTarget.children[2].cloneNode(true);
+  tooltipImage = event.currentTarget.children[2].children[0].cloneNode(true);
   tooltipImage.id = "tooltipImageStyleSpell";
   tooltipImage.style.verticalAlign = "top"
   fetch(

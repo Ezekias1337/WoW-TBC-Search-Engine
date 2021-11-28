@@ -6,9 +6,9 @@ Need to handle adding event listener for modal upon pagination switch
 
 */
 
-function renderResults(results, indexToRender) {
+function renderResultsItems(results, indexToRender) {
   const statsItems = document.getElementById("userSearchResults");
-  const numberOfArrayChunks = results.length / rowLength;
+  const numberOfArrayChunks =  Math.ceil(results.length / rowLength);
   numberOfArrayChunksHoistedScope = numberOfArrayChunks;
   const chunkedArray = chunkResultsArray(
     results,
@@ -52,6 +52,54 @@ function renderResults(results, indexToRender) {
   toolTipItems();
 }
 
+function changePagePagination() {
+  clearSearchItems();
+  currentPage = event.currentTarget.innerText;
+
+  document
+    .getElementsByClassName("pagination-active")[0]
+    .classList.remove("pagination-active");
+  document
+    .getElementsByClassName("number-pagination")
+    [currentPage - 1].classList.add("pagination-active");
+  renderResultsItems(resultsHoistedScope, currentPage - 1);
+  toolTipItems();
+}
+
+function reverseOnePage() {
+  currentPage = currentPage - 1;
+  if (currentPage < 1) {
+    console.log("Can't go back a page, already at page one");
+  } else {
+    clearSearchItems();
+    document
+      .getElementsByClassName("pagination-active")[0]
+      .classList.remove("pagination-active");
+    document
+      .getElementsByClassName("number-pagination")
+      [currentPage - 1].classList.add("pagination-active");
+    renderResultsItems(resultsHoistedScope, currentPage - 1);
+    toolTipItems();
+  }
+}
+
+function forwardOnePage() {
+  if (parseInt(currentPage) === numberOfArrayChunksHoistedScope) {
+    console.log(`Can't go forward a page, already at page ${currentPage}`);
+    return;
+  } else {
+    clearSearchItems();
+    document
+      .getElementsByClassName("pagination-active")[0]
+      .classList.remove("pagination-active");
+    document
+      .getElementsByClassName("number-pagination")
+      [currentPage].classList.add("pagination-active");
+    renderResultsItems(resultsHoistedScope, currentPage);
+    currentPage = parseInt(currentPage) + 1;
+    toolTipItems();
+  }
+}
 
 function fetchItems(searchTerm) {
   currentPage = 1;
@@ -82,7 +130,7 @@ function fetchItems(searchTerm) {
             });
         })
       ).then((results) => {
-        renderResults(results, 0);
+        renderResultsItems(results, 0);
         appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope);
         addPaginationDOMAndEventListener();
         
