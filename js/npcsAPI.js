@@ -38,6 +38,7 @@ function fetchNPCs(searchTerm) {
           for (let line of lines) {
             const p = document.createElement("td");
             p.innerText = line;
+            p.style = "vertical-align: middle;"
             div.appendChild(p);
           }
 

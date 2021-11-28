@@ -39,6 +39,7 @@ function fetchSpells(searchTerm) {
             const p = document.createElement("td");
             p.style = "text-align:center vertical-align:center";
             p.innerText = line;
+            p.style = "vertical-align: middle;"
             div.appendChild(p);
           }
 

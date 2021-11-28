@@ -30,6 +30,7 @@ function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
     numberOfArrayChunksHoistedScope <= 1 ||
     numberOfArrayChunksHoistedScope === undefined
   ) {
+    removePaginationFromDOM();
     console.log("No need for pagination, 1 or less array chunks");
     return;
   }
@@ -61,6 +62,9 @@ function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
   applyAttributesToButton(reversePagePagination);
   applyAttributesToButton(forwardPagePagination);
 
+  reversePagePagination.classList.add("mr-1")
+  forwardPagePagination.classList.add("ml-1")
+
   paginationContainer.appendChild(reversePagePagination);
 
   for (let i = 0; i < numberOfArrayChunksHoistedScope; i++) {
@@ -69,6 +73,9 @@ function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
     applyAttributesToButton(numericalPaginationButton);
     numericalPaginationButton.classList.add("number-pagination");
     numericalPaginationButton.innerText = i + 1;
+    if(i === 0) {
+      numericalPaginationButton.classList.add("pagination-active");
+    }
     paginationContainer.appendChild(numericalPaginationButton);
   }
 
@@ -78,19 +85,35 @@ function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
 function changePagePagination() {
   clearSearchItems();
   currentPage = event.currentTarget.innerText;
+
+  document.getElementsByClassName("pagination-active")[0].classList.remove("pagination-active")
+  document.getElementsByClassName("number-pagination")[currentPage - 1].classList.add("pagination-active")
   renderResults(resultsHoistedScope, currentPage - 1);
 }
 
 function reverseOnePage() {
-  clearSearchItems();
   currentPage = currentPage - 1;
-  renderResults(resultsHoistedScope, currentPage);
+  if (currentPage < 1) {
+    console.log("Can't go back a page, already at page one");
+  } else {
+    clearSearchItems();
+    document.getElementsByClassName("pagination-active")[0].classList.remove("pagination-active");
+    document.getElementsByClassName("number-pagination")[currentPage - 1].classList.add("pagination-active");
+    renderResults(resultsHoistedScope, currentPage - 1);
+  }
 }
 
 function forwardOnePage() {
-  clearSearchItems();
-  currentPage = currentPage + 1;
-  renderResults(resultsHoistedScope, currentPage);
+  if(parseInt(currentPage) === Math.round(numberOfArrayChunksHoistedScope)) {
+    console.log(`Can't go forward a page, already at page ${currentPage}`);
+    return
+  } else {
+    clearSearchItems();
+    document.getElementsByClassName("pagination-active")[0].classList.remove("pagination-active");
+    document.getElementsByClassName("number-pagination")[currentPage].classList.add("pagination-active");
+    renderResults(resultsHoistedScope, currentPage);
+    currentPage = parseInt(currentPage) + 1;
+  }
 }
 
 function renderResults(results, indexToRender) {
@@ -117,6 +140,7 @@ function renderResults(results, indexToRender) {
     for (let line of lines) {
       const p = document.createElement("td");
       p.innerText = line;
+      p.style = "vertical-align: middle;"
       div.appendChild(p);
     }
 
@@ -124,7 +148,12 @@ function renderResults(results, indexToRender) {
       for (let asset of user.assets) {
         const i = document.createElement("img");
         i.src = asset.value;
-        div.appendChild(i);
+
+        const p = document.createElement("td");
+        p.style = "padding: 0px;"
+
+        div.appendChild(p);
+        p.appendChild(i);
       }
     }
     statsItems.appendChild(div);
@@ -145,7 +174,7 @@ function chunkResultsArray(results, numberOfArrayChunks, rowLength) {
 
 function fetchItems(searchTerm) {
   currentPage = 1;
-  rowLength = 15;
+  rowLength = 10;
   fetch(
     `https://us.api.blizzard.com/data/wow/search/item?namespace=static-classic-us&locale=en_US&id=&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
   )
