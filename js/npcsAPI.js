@@ -47,7 +47,12 @@ function fetchNPCs(searchTerm) {
               const i = document.createElement("img");
               i.src = asset.value;
               i.className = "npcImage";
-              div.appendChild(i);
+
+              const p = document.createElement("td");
+              p.style = "padding: 0px";
+              div.appendChild(p)
+
+              p.appendChild(i);
             }
           }
           statsItems.appendChild(div);
@@ -66,7 +71,7 @@ function getToolTipNPCs() {
   let tooltipImage;
   ID = event.currentTarget.children[1].innerText.replace("ID: ", "");
   ID2 = event.currentTarget;
-  tooltipImage = event.currentTarget.children[2].cloneNode(true);
+  tooltipImage = event.currentTarget.children[2].children[0].cloneNode(true);
   tooltipImage.id = "tooltipImageStyleNPC";
   tooltipImage.className = "d-block";
   fetch(

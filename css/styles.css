@@ -90,8 +90,14 @@ input.search {
   color: #b4d603;
   background: #364447; }
 
-#searchBar, #searchButtonItems, #searchButton {
+#searchBar, #searchButtonItems, #searchButton, #filterChoice {
   border-radius: 10px; }
+
+#searchBar, .execute_search {
+  border: 1.5px solid #e1eef4 !important; }
+
+#searchBar:focus {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(180, 214, 3, 0.6); }
 
 .item-search-bar {
   margin-top: 5px !important; }
@@ -257,7 +263,7 @@ tr.Items {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px; }
 
-#item-name-col {
+#item-name-col, #spell-name-col, #npc-name-col {
   border-top-left-radius: 20px; }
 
 #image-col {

@@ -1,5 +1,9 @@
 "use strict";
 
+function renderResultsSpells() {
+
+}
+
 function fetchSpells(searchTerm) {
   fetch(
     `https://us.api.blizzard.com/data/wow/search/spell?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
@@ -47,12 +51,19 @@ function fetchSpells(searchTerm) {
             for (let asset of user.assets) {
               const i = document.createElement("img");
               i.src = asset.value;
-              div.appendChild(i);
+
+              const p = document.createElement("td");
+              p.style = "padding: 0px";
+
+              div.appendChild(p);
+              p.appendChild(i);
             }
           }
           statsItems.appendChild(div);
         });
-      });
+      }).then((piece) => {
+        toolTipSpells();
+      })
     })
     .catch((error) => {
       console.error(error);
@@ -62,7 +73,6 @@ function fetchSpells(searchTerm) {
 function searchExecuteSpells() {
   let test = search();
   fetchSpells(test);
-  setTimeout(toolTipSpells, 1500);
 }
 
 function getToolTipSpells() {
