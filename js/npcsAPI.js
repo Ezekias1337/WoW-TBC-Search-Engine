@@ -41,6 +41,7 @@ function renderResultsNPCs(results, indexToRender) {
     statsItems.appendChild(div);
   });
   toolTipNPCs();
+  hideLoader();
 }
 
 function changePagePagination() {
@@ -105,6 +106,7 @@ function fetchNPCs(searchTerm) {
       if (!response.ok) {
         throw Error("ERROR");
       }
+      showLoader()
       return response.json();
     })
     .then((data) => {
@@ -131,6 +133,7 @@ function fetchNPCs(searchTerm) {
         })
         .then(() => {
           getToolTipNPCs();
+          hideLoader();
         });
     })
     .catch((error) => {
@@ -360,8 +363,11 @@ function toolTipNPCs() {
 
 function searchExecuteNPCs() {
   let test = search();
-  fetchNPCs(test);
-  setTimeout(toolTipNPCs, 1500);
+  const searchBarInnerText = document.getElementById("searchBar").value;
+  if (searchBarInnerText === "") {
+  } else {
+    fetchNPCs(test);
+  }
 }
 
 document

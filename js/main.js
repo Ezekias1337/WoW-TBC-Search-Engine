@@ -7,6 +7,16 @@ function search() {
   }
 }
 
+function hideLoader() {
+  const spinner = document.getElementsByClassName("loader")[0];
+  spinner.classList.add("hide-loader");
+}
+
+function showLoader() {
+  const spinner = document.getElementsByClassName("loader")[0];
+  spinner.classList.remove("hide-loader");
+}
+
 function addEventListenerToSearchBar() {
   document
     .getElementById("searchBar")
@@ -121,7 +131,6 @@ function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
 
   paginationContainer.appendChild(forwardPagePagination);
 }
-
 
 function chunkResultsArray(results, numberOfArrayChunks, rowLength) {
   let masterArray = [];

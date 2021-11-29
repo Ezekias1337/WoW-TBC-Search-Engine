@@ -41,6 +41,7 @@ function renderResultsSpells(results, indexToRender) {
     statsItems.appendChild(div);
   })
   toolTipSpells();
+  hideLoader();
 }
 
 function changePagePagination() {
@@ -104,6 +105,7 @@ function fetchSpells(searchTerm) {
       if (!response.ok) {
         throw Error("ERROR");
       }
+      showLoader()
       return response.json();
     })
     .then((data) => {
@@ -130,6 +132,7 @@ function fetchSpells(searchTerm) {
         resultsHoistedScope = results
       }).then(() => {
         toolTipSpells();
+        
       })
     })
     .catch((error) => {
@@ -140,7 +143,11 @@ function fetchSpells(searchTerm) {
 
 function searchExecuteSpells() {
   let test = search();
-  fetchSpells(test);
+  const searchBarInnerText = document.getElementById("searchBar").value;
+  if (searchBarInnerText === "") {
+  } else {
+    fetchSpells(test);
+  }
 }
 
 function getToolTipSpells() {

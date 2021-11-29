@@ -8,7 +8,7 @@ Need to handle adding event listener for modal upon pagination switch
 
 function renderResultsItems(results, indexToRender) {
   const statsItems = document.getElementById("userSearchResults");
-  const numberOfArrayChunks =  Math.ceil(results.length / rowLength);
+  const numberOfArrayChunks = Math.ceil(results.length / rowLength);
   numberOfArrayChunksHoistedScope = numberOfArrayChunks;
   const chunkedArray = chunkResultsArray(
     results,
@@ -30,7 +30,7 @@ function renderResultsItems(results, indexToRender) {
     for (let line of lines) {
       const p = document.createElement("td");
       p.innerText = line;
-      p.style = "vertical-align: middle;"
+      p.style = "vertical-align: middle;";
       div.appendChild(p);
     }
 
@@ -40,7 +40,7 @@ function renderResultsItems(results, indexToRender) {
         i.src = asset.value;
 
         const p = document.createElement("td");
-        p.style = "padding: 0px;"
+        p.style = "padding: 0px;";
 
         div.appendChild(p);
         p.appendChild(i);
@@ -50,6 +50,7 @@ function renderResultsItems(results, indexToRender) {
   });
   resultsHoistedScope = results;
   toolTipItems();
+  hideLoader();
 }
 
 function changePagePagination() {
@@ -104,6 +105,7 @@ function forwardOnePage() {
 function fetchItems(searchTerm) {
   currentPage = 1;
   rowLength = 10;
+
   fetch(
     `https://us.api.blizzard.com/data/wow/search/item?namespace=static-classic-us&locale=en_US&id=&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
   )
@@ -111,7 +113,7 @@ function fetchItems(searchTerm) {
       if (!response.ok) {
         throw Error("ERROR");
       }
-
+      showLoader();
       return response.json();
     })
     .then((data) => {
@@ -129,14 +131,16 @@ function fetchItems(searchTerm) {
               return user;
             });
         })
-      ).then((results) => {
-        renderResultsItems(results, 0);
-        appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope);
-        addPaginationDOMAndEventListener();
-        
-      }).then((piece) => {
-        toolTipItems();
-      })
+      )
+        .then((results) => {
+          renderResultsItems(results, 0);
+          appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope);
+          addPaginationDOMAndEventListener();
+        })
+        .then((piece) => {
+          toolTipItems();
+          hideLoader();
+        });
     })
     .catch((error) => {
       console.error(error);
@@ -152,7 +156,11 @@ function toolTipItems() {
 
 function searchExecuteItems() {
   let test = search();
-  fetchItems(test)
+  const searchBarInnerText = document.getElementById("searchBar").value;
+  if (searchBarInnerText === "") {
+  } else {
+    fetchItems(test);
+  }
 }
 
 document
