@@ -32,7 +32,7 @@ function renderResultsSpells(results, indexToRender) {
         const p = document.createElement("td");
         p.style = "text-align:center vertical-align:center";
         p.innerText = line;
-        p.style = "vertical-align: middle;";
+        p.style = "vertical-align: middle; padding: 0px;";
         div.appendChild(p);
       }
 
@@ -212,6 +212,7 @@ function getToolTipSpells() {
   tooltipImage = event.currentTarget.children[2].children[0].cloneNode(true);
   tooltipImage.id = "tooltipImageStyleSpell";
   tooltipImage.style.verticalAlign = "top";
+  tooltipImage.style.marginBottom = "5px";
   fetch(
     `https://us.api.blizzard.com/data/wow/spell/${ID}?namespace=static-us&locale=en_US&access_token=${oAuthToken}`
   )

@@ -42,7 +42,7 @@ function renderResultsNPCs(results, indexToRender) {
           i.className = "npcImage";
 
           const p = document.createElement("td");
-          p.style = "padding: 0px";
+          p.style = "vertical-align: middle; padding: 0px;";
           div.appendChild(p);
 
           p.appendChild(i);

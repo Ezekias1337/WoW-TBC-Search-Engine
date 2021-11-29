@@ -1,5 +1,10 @@
 "use strict";
 
+/* 
+Need to fix bug for mobile when clicking modal, it deletes image
+
+*/
+
 function renderResultsItems(results, indexToRender) {
   if (results.length === 0 || results === undefined) {
     const statsItems = document.getElementById("userSearchResults");
@@ -44,7 +49,7 @@ function renderResultsItems(results, indexToRender) {
           i.src = asset.value;
 
           const p = document.createElement("td");
-          p.style = "padding: 0px;";
+          p.style = "vertical-align: middle; padding: 0px;";
 
           div.appendChild(p);
           p.appendChild(i);
@@ -181,12 +186,13 @@ function getToolTipItems() {
   let ID2;
   let tooltipImage;
 
-  tooltipImage = event.currentTarget.children[3].cloneNode(true);
+  tooltipImage = event.currentTarget.children[3].children[0].cloneNode(true);
   tooltipImage.id = "tooltipImageStyleItem";
   tooltipImage.style.verticalAlign = "top";
   tooltipImage.style.display = "inline-block";
   tooltipImage.style.marginLeft = "5px";
   tooltipImage.style.marginRight = "5px";
+  tooltipImage.style.marginBottom = "5px";
 
   ID = event.currentTarget.children[2].innerText.replace("ID: ", "");
   ID2 = event.currentTarget;
