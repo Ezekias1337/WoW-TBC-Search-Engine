@@ -1,6 +1,103 @@
 "use strict";
 
+function renderResultsNPCs(results, indexToRender) {
+  const statsItems = document.getElementById("userSearchResults");
+  const numberOfArrayChunks = Math.ceil(results.length / rowLength);
+  numberOfArrayChunksHoistedScope = numberOfArrayChunks;
+  const chunkedArray = chunkResultsArray(
+    results,
+    numberOfArrayChunks,
+    rowLength
+  );
+  let chunkedArrayIndexToDisplay = chunkedArray[indexToRender];
+
+  chunkedArrayIndexToDisplay.forEach((user) => {
+    const div = document.createElement("tr");
+    div.className = "Items";
+    div.setAttribute("data-toggle", "modal");
+    div.setAttribute("data-target", "#toolTipModal");
+    const lines = [`${user.data.name.en_US}`, `ID: ${user.data.id}`];
+    for (let line of lines) {
+      const p = document.createElement("td");
+      p.innerText = line;
+      p.style = "vertical-align: middle;";
+      div.appendChild(p);
+    }
+
+    if (user.assets) {
+      for (let asset of user.assets) {
+        const i = document.createElement("img");
+
+        i.src = asset.value;
+        i.className = "npcImage";
+
+        const p = document.createElement("td");
+        p.style = "padding: 0px";
+        div.appendChild(p);
+
+        p.appendChild(i);
+      }
+    }
+    statsItems.appendChild(div);
+  });
+  toolTipNPCs();
+}
+
+function changePagePagination() {
+  clearSearchItems();
+  currentPage = event.currentTarget.innerText;
+
+  document
+    .getElementsByClassName("pagination-active")[0]
+    .classList.remove("pagination-active");
+  document
+    .getElementsByClassName("number-pagination")
+    [currentPage - 1].classList.add("pagination-active");
+  renderResultsNPCs(resultsHoistedScope, currentPage - 1);
+
+  getToolTipNPCs();
+}
+
+function reverseOnePage() {
+  currentPage = currentPage - 1;
+  if (currentPage < 1) {
+    console.log("Can't go back a page, already at page one");
+  } else {
+    clearSearchItems();
+    document
+      .getElementsByClassName("pagination-active")[0]
+      .classList.remove("pagination-active");
+    document
+      .getElementsByClassName("number-pagination")
+      [currentPage - 1].classList.add("pagination-active");
+    renderResultsNPCs(resultsHoistedScope, currentPage - 1);
+    getToolTipNPCs();
+  }
+}
+
+function forwardOnePage() {
+  if (parseInt(currentPage) === Math.round(numberOfArrayChunksHoistedScope)) {
+    console.log(`Can't go forward a page, already at page ${currentPage}`);
+    return;
+  } else {
+    clearSearchItems();
+    document
+      .getElementsByClassName("pagination-active")[0]
+      .classList.remove("pagination-active");
+    document
+      .getElementsByClassName("number-pagination")
+      [currentPage].classList.add("pagination-active");
+    console.log("okay");
+    renderResultsNPCs(resultsHoistedScope, currentPage);
+    currentPage = parseInt(currentPage) + 1;
+    getToolTipNPCs();
+  }
+}
+
 function fetchNPCs(searchTerm) {
+  currentPage = 1;
+  rowLength = 10;
+
   fetch(
     `https://us.api.blizzard.com/data/wow/search/creature?namespace=static-us&locale=en_US&name.en_US=${searchTerm}&orderby=id&_page=1&str=&access_token=${oAuthToken}`
   )
@@ -8,12 +105,9 @@ function fetchNPCs(searchTerm) {
       if (!response.ok) {
         throw Error("ERROR");
       }
-
       return response.json();
     })
     .then((data) => {
-      const statsItems = document.getElementById("userSearchResults");
-
       Promise.all(
         data.results.map((user) => {
           return fetch(
@@ -28,36 +122,16 @@ function fetchNPCs(searchTerm) {
               return user;
             });
         })
-      ).then((results) => {
-        results.forEach((user) => {
-          const div = document.createElement("tr");
-          div.className = "Items";
-          div.setAttribute("data-toggle", "modal");
-          div.setAttribute("data-target", "#toolTipModal");
-          const lines = [`${user.data.name.en_US}`, `ID: ${user.data.id}`];
-          for (let line of lines) {
-            const p = document.createElement("td");
-            p.innerText = line;
-            p.style = "vertical-align: middle;"
-            div.appendChild(p);
-          }
-
-          if (user.assets) {
-            for (let asset of user.assets) {
-              const i = document.createElement("img");
-              i.src = asset.value;
-              i.className = "npcImage";
-
-              const p = document.createElement("td");
-              p.style = "padding: 0px";
-              div.appendChild(p)
-
-              p.appendChild(i);
-            }
-          }
-          statsItems.appendChild(div);
+      )
+        .then((results) => {
+          renderResultsNPCs(results, 0);
+          appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope);
+          addPaginationDOMAndEventListener();
+          resultsHoistedScope = results;
+        })
+        .then(() => {
+          getToolTipNPCs();
         });
-      });
     })
     .catch((error) => {
       console.error(error);
@@ -146,7 +220,7 @@ function getToolTipNPCs() {
       // start logic of new tooltip
       let numOfLines = 3;
 
-      if(newData.is_tameable) {
+      if (newData.is_tameable) {
         numOfLines = 4;
       }
 
@@ -184,68 +258,75 @@ function getToolTipNPCs() {
             "tooltip-row-" + counter.toString()
           ).children[0];
           cellToBeChanged.innerText = newData.name;
-          cellToBeChanged.className =
-            cellToBeChanged.className + " durability";
+          cellToBeChanged.className = cellToBeChanged.className + " durability";
 
           counter = counter + 1;
         }
 
         if (newData.type && newData.type.name) {
-          
-            let familyDecider = "";
-  
+          let familyDecider = "";
+
           if (newData.type.name === "Beast") {
-              familyDecider = "Beast";
-          } if (newData.type.name === "Dragonkin") {
-              familyDecider = "Dragonkin";
-          } if (newData.type.name === "Demon") {
-              familyDecider = "Demon";
-          } if (newData.type.name === "Elemental") {
-              familyDecider = "Elemental"; 
-          } if (newData.type.name === "Giant") {
-              familyDecider = "Giant";
-          } if (newData.type.name === "Undead") {
-              familyDecider = "Undead";
-          } if (newData.type.name === "Humanoid") {
-              familyDecider = "Humanoid";
-          } if (newData.type.name === "Critter") {
-              familyDecider = "Critter";
-          } if (newData.type.name === "Mechanical") {
-              familyDecider = "Mechanical";
-          } if (newData.type.name === "Not specified") {
-              familyDecider = "Not-specified";
-          } if (newData.type.name === "Totem") {
-              familyDecider = "Totem";
-          } if (newData.type.name === "Non-combat Pet") {
-              familyDecider = "Non-combat-Pet";
-          } if (newData.type.name === "Gas Cloud") {
-              familyDecider = "Gas-Cloud";
+            familyDecider = "Beast";
           }
-  
-              let cellToBeChanged = document.getElementById(
-              "tooltip-row-" + counter.toString()
-            ).children[0];
-            cellToBeChanged.innerText = newData.type.name;
-            cellToBeChanged.className = cellToBeChanged.className + " " +  familyDecider;
-  
-            counter = counter + 1;
+          if (newData.type.name === "Dragonkin") {
+            familyDecider = "Dragonkin";
           }
+          if (newData.type.name === "Demon") {
+            familyDecider = "Demon";
+          }
+          if (newData.type.name === "Elemental") {
+            familyDecider = "Elemental";
+          }
+          if (newData.type.name === "Giant") {
+            familyDecider = "Giant";
+          }
+          if (newData.type.name === "Undead") {
+            familyDecider = "Undead";
+          }
+          if (newData.type.name === "Humanoid") {
+            familyDecider = "Humanoid";
+          }
+          if (newData.type.name === "Critter") {
+            familyDecider = "Critter";
+          }
+          if (newData.type.name === "Mechanical") {
+            familyDecider = "Mechanical";
+          }
+          if (newData.type.name === "Not specified") {
+            familyDecider = "Not-specified";
+          }
+          if (newData.type.name === "Totem") {
+            familyDecider = "Totem";
+          }
+          if (newData.type.name === "Non-combat Pet") {
+            familyDecider = "Non-combat-Pet";
+          }
+          if (newData.type.name === "Gas Cloud") {
+            familyDecider = "Gas-Cloud";
+          }
+
+          let cellToBeChanged = document.getElementById(
+            "tooltip-row-" + counter.toString()
+          ).children[0];
+          cellToBeChanged.innerText = newData.type.name;
+          cellToBeChanged.className =
+            cellToBeChanged.className + " " + familyDecider;
+
+          counter = counter + 1;
+        }
 
         if (newData.family && newData.family.name) {
-            let cellToBeChanged = document.getElementById(
-              "tooltip-row-" + counter.toString()
-            ).children[0];
-            cellToBeChanged.innerText = newData.family.name;
-            cellToBeChanged.className = cellToBeChanged.className + " durability";
-  
-            counter = counter + 1;
-          }
+          let cellToBeChanged = document.getElementById(
+            "tooltip-row-" + counter.toString()
+          ).children[0];
+          cellToBeChanged.innerText = newData.family.name;
+          cellToBeChanged.className = cellToBeChanged.className + " durability";
 
-        
+          counter = counter + 1;
+        }
 
         //////////////////////////////////////////
-
-        
 
         if (newData.is_tameable) {
           let cellToBeChanged = document.getElementById(
