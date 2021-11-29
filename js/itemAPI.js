@@ -1,56 +1,61 @@
 "use strict";
 
-/* 
-
-Need to handle adding event listener for modal upon pagination switch
-
-*/
-
 function renderResultsItems(results, indexToRender) {
-  const statsItems = document.getElementById("userSearchResults");
-  const numberOfArrayChunks = Math.ceil(results.length / rowLength);
-  numberOfArrayChunksHoistedScope = numberOfArrayChunks;
-  const chunkedArray = chunkResultsArray(
-    results,
-    numberOfArrayChunks,
-    rowLength
-  );
-  let chunkedArrayIndexToDisplay = chunkedArray[indexToRender];
-
-  chunkedArrayIndexToDisplay.forEach((user) => {
+  if (results.length === 0 || results === undefined) {
+    const statsItems = document.getElementById("userSearchResults");
     const div = document.createElement("tr");
     div.className = "Items";
-    div.setAttribute("data-toggle", "modal");
-    div.setAttribute("data-target", "#toolTipModal");
-    const lines = [
-      `${user.data.name.en_US}`,
-      `Item Class: ${user.data.item_class.name.en_US}`,
-      `ID: ${user.data.id}`,
-    ];
-    for (let line of lines) {
-      const p = document.createElement("td");
-      p.innerText = line;
-      p.style = "vertical-align: middle;";
-      div.appendChild(p);
-    }
-
-    if (user.assets) {
-      for (let asset of user.assets) {
-        const i = document.createElement("img");
-        i.src = asset.value;
-
-        const p = document.createElement("td");
-        p.style = "padding: 0px;";
-
-        div.appendChild(p);
-        p.appendChild(i);
-      }
-    }
+    div.innerText = "No results found";
     statsItems.appendChild(div);
-  });
-  resultsHoistedScope = results;
-  toolTipItems();
-  hideLoader();
+    removePaginationFromDOM();
+    document.getElementById("pagination-container").style = "display: none;";
+    hideLoader();
+  } else {
+    const statsItems = document.getElementById("userSearchResults");
+    const numberOfArrayChunks = Math.ceil(results.length / rowLength);
+    numberOfArrayChunksHoistedScope = numberOfArrayChunks;
+    const chunkedArray = chunkResultsArray(
+      results,
+      numberOfArrayChunks,
+      rowLength
+    );
+    let chunkedArrayIndexToDisplay = chunkedArray[indexToRender];
+    document.getElementById("pagination-container").style = "";
+    chunkedArrayIndexToDisplay.forEach((user) => {
+      const div = document.createElement("tr");
+      div.className = "Items";
+      div.setAttribute("data-toggle", "modal");
+      div.setAttribute("data-target", "#toolTipModal");
+      const lines = [
+        `${user.data.name.en_US}`,
+        `Item Class: ${user.data.item_class.name.en_US}`,
+        `ID: ${user.data.id}`,
+      ];
+      for (let line of lines) {
+        const p = document.createElement("td");
+        p.innerText = line;
+        p.style = "vertical-align: middle;";
+        div.appendChild(p);
+      }
+
+      if (user.assets) {
+        for (let asset of user.assets) {
+          const i = document.createElement("img");
+          i.src = asset.value;
+
+          const p = document.createElement("td");
+          p.style = "padding: 0px;";
+
+          div.appendChild(p);
+          p.appendChild(i);
+        }
+      }
+      statsItems.appendChild(div);
+    });
+    resultsHoistedScope = results;
+    toolTipItems();
+    hideLoader();
+  }
 }
 
 function changePagePagination() {

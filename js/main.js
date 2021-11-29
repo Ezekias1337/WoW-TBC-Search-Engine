@@ -75,6 +75,16 @@ function addPaginationDOMAndEventListener() {
   forwardButton.addEventListener("click", forwardOnePage);
 }
 
+function removePaginationFromDOM() {
+  let arrayOfPaginationElements = document.getElementById(
+    "pagination-container"
+  ).children;
+  arrayOfPaginationElements = Array.from(arrayOfPaginationElements);
+  for (const item of arrayOfPaginationElements) {
+    item.remove();
+  }
+}
+
 function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
   if (
     numberOfArrayChunksHoistedScope <= 1 ||
@@ -87,16 +97,6 @@ function appendPaginationButtonsToDOM(numberOfArrayChunksHoistedScope) {
 
   function applyAttributesToButton(button) {
     button.className = "btn btn-dark pagination-button";
-  }
-
-  function removePaginationFromDOM() {
-    let arrayOfPaginationElements = document.getElementById(
-      "pagination-container"
-    ).children;
-    arrayOfPaginationElements = Array.from(arrayOfPaginationElements);
-    for (const item of arrayOfPaginationElements) {
-      item.remove();
-    }
   }
 
   removePaginationFromDOM();
