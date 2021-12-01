@@ -16,7 +16,7 @@ function calculatePoints2s() {
   } else if (document.getElementById("2s").value === "") {
     document.getElementById("2s-output").value = "";
   } else {
-    document.getElementById("2s-output").value = "Enter Value > 200";
+    document.getElementById("2s-output").value = 0;
   }
 }
 
@@ -38,7 +38,7 @@ function calculatePoints3s() {
   } else if (document.getElementById("3s").value === "") {
     document.getElementById("3s-output").value = "";
   } else {
-    document.getElementById("3s-output").value = "Enter Value > 200";
+    document.getElementById("3s-output").value = 0;
   }
 }
 
@@ -60,27 +60,7 @@ function calculatePoints5s() {
   } else if (document.getElementById("5s").value === "") {
     document.getElementById("5s-output").value = "";
   } else {
-    document.getElementById("5s-output").value = "Enter Value > 200";
-  }
-}
-
-function submitAll() {
-  let twos = 0;
-  let threes = 0;
-  let fives = 0;
-
-  twos = document.getElementById("2s").value;
-  threes = document.getElementById("3s").value;
-  fives = document.getElementById("5s").value;
-
-  if (!(twos === "")) {
-    calculatePoints2s();
-  }
-  if (!(threes === "")) {
-    calculatePoints3s();
-  }
-  if (!(fives === "")) {
-    calculatePoints5s();
+    document.getElementById("5s-output").value = 0;
   }
 }
 
@@ -93,9 +73,9 @@ function resetArenaCalculator() {
   document.getElementById("5s-output").value = "";
 }
 
-document.getElementById("2s").addEventListener("keyup", submitAll);
-document.getElementById("3s").addEventListener("keyup", submitAll);
-document.getElementById("5s").addEventListener("keyup", submitAll);
+document.getElementById("2s").addEventListener("keyup", calculatePoints2s);
+document.getElementById("3s").addEventListener("keyup", calculatePoints3s);
+document.getElementById("5s").addEventListener("keyup", calculatePoints5s);
 
 document.getElementById("2s").addEventListener("keyup", function (event) {
   var x = event.key;
@@ -103,7 +83,7 @@ document.getElementById("2s").addEventListener("keyup", function (event) {
   if (x === "Enter") {
     // Trigger the button element with a click
 
-    submitAll();
+    calculatePoints2s();
   }
 });
 
@@ -113,7 +93,7 @@ document.getElementById("3s").addEventListener("keyup", function (event) {
   if (x === "Enter") {
     // Trigger the button element with a click
 
-    submitAll();
+    calculatePoints3s();
   }
 });
 
@@ -123,7 +103,7 @@ document.getElementById("5s").addEventListener("keyup", function (event) {
   if (x === "Enter") {
     // Trigger the button element with a click
 
-    submitAll();
+    calculatePoints5s();
   }
 });
 

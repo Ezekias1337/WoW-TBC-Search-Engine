@@ -125,7 +125,8 @@ table.arena-table th {
   input.arena {
     max-width: 35vw; }
   input.arena-output {
-    max-width: 20vw; } }
+    max-width: 20vw;
+    background-size: 5vw; } }
 
 #filterChoice,
 #customBreadCrumb {
