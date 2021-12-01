@@ -232,16 +232,22 @@ function getToolTipNPCs() {
       }
 
       // start logic of new tooltip
-      let numOfLines = 3;
-
-      if (newData.is_tameable) {
-        numOfLines = 4;
+      //decide number of tooltip Lines
+      let numOfLines = 1;
+      if (newData.name) {
+        numOfLines = numOfLines + 1;
+      }
+      if (newData.type && newData.type.name) {
+        numOfLines = numOfLines + 1;
+      }
+      if (newData.family && newData.family.name) {
+        numOfLines = numOfLines + 1;
       }
 
       /* Now that the number of rows has been determined, start 
             creating TR/TD Elements to later add data to*/
 
-      for (let i = 1; i < numOfLines + 2; i++) {
+      for (let i = 1; i < numOfLines + 1; i++) {
         let firstHalfIDString = "tooltip-row-";
         let secondHalfIDString = i.toString();
         let tooltipID = firstHalfIDString.concat(secondHalfIDString);
@@ -319,6 +325,9 @@ function getToolTipNPCs() {
           if (newData.type.name === "Gas Cloud") {
             familyDecider = "Gas-Cloud";
           }
+          if (newData.type.name === "Wild Pet") {
+            familyDecider = "Wild-Pet";
+          }
 
           let cellToBeChanged = document.getElementById(
             "tooltip-row-" + counter.toString()
@@ -342,11 +351,28 @@ function getToolTipNPCs() {
 
         //////////////////////////////////////////
 
+        function capitalizeFirstLetter(string) {
+          return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
         if (newData.is_tameable) {
           let cellToBeChanged = document.getElementById(
             "tooltip-row-" + counter.toString()
           ).children[0];
-          cellToBeChanged.innerText = "Tameable: " + newData.is_tameable;
+
+          let capitalizedBoolean = capitalizeFirstLetter(
+            newData.is_tameable.toString()
+          );
+          cellToBeChanged.innerText = "Tameable: " + capitalizedBoolean;
+          cellToBeChanged.className = cellToBeChanged.className + " item-level";
+
+          counter = counter + 1;
+        } else {
+          let cellToBeChanged = document.getElementById(
+            "tooltip-row-" + counter.toString()
+          ).children[0];
+          let capitalizedBoolean = "False";
+          cellToBeChanged.innerText = "Tameable: " + capitalizedBoolean;
           cellToBeChanged.className = cellToBeChanged.className + " item-level";
 
           counter = counter + 1;

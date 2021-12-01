@@ -500,8 +500,8 @@ select:-webkit-autofill:focus {
 }
 
 .modal-content {
-  border-radius: 1px;
-  padding: 2px;
+  border-radius: 5px;
+  padding: 1.75px;
   color: #e1eef4;
 }
 
@@ -703,7 +703,7 @@ select:-webkit-autofill:focus {
   text-align: left;
 }
 
-.Non-combat-Pet {
+.Non-combat-Pet, .Wild-Pet {
   padding: 0.1rem;
   color: #bd777d;
   text-align: left;
