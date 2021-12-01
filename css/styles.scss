@@ -10,10 +10,6 @@ html,
   overflow-x: hidden;
 }
 
-body {
-  width: 99.95% !important;
-}
-
 h1,
 h2,
 h3,
@@ -269,7 +265,10 @@ table.arena-table th {
 .buttonColoring,
 .navbariconstyling {
   color: #b4d603;
-  border: 1px solid #b4d603;
+  border-top: 1px solid #b4d603;
+  border-bottom: 1px solid #b4d603;
+  border-left: 1px solid #b4d603;
+  border-right: 2px solid #b4d603;
 }
 
 .fa {
