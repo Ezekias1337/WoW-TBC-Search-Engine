@@ -493,7 +493,7 @@ function getToolTipItems() {
             cellToBeChanged.className =
               cellToBeChanged.className + " subclass-name";
             cellToBeChanged.style.position = "absolute";
-            cellToBeChanged.style.right = "7%";
+            cellToBeChanged.style.right = "8.5%";
 
             counter = counter + 1;
           }
@@ -518,7 +518,7 @@ function getToolTipItems() {
             cellToBeChanged.className =
               cellToBeChanged.className + " weapon-speed";
             cellToBeChanged.style.position = "absolute";
-            cellToBeChanged.style.right = "7%";
+            cellToBeChanged.style.right = "8.5%";
 
             counter = counter + 1;
           }
@@ -899,7 +899,7 @@ function getToolTipItems() {
             cellToBeChanged.className =
               cellToBeChanged.className + " subclass-name";
             cellToBeChanged.style.position = "absolute";
-            cellToBeChanged.style.right = "7%";
+            cellToBeChanged.style.right = "8.5%";
 
             counter = counter + 1;
           }
@@ -2638,7 +2638,7 @@ function getToolTipItems() {
             cellToBeChanged.className =
               cellToBeChanged.className + " subclass-name";
             cellToBeChanged.style.position = "absolute";
-            cellToBeChanged.style.right = "7%";
+            cellToBeChanged.style.right = "8.5%";
 
             counter = counter + 1;
           }

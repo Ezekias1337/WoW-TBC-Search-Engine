@@ -2,8 +2,14 @@
   font-family: Warcraft;
   src: url(../fonts/Warcraft.ttf); }
 
-body, html, .table-responsive, .loader {
+body,
+html,
+.table-responsive,
+.loader {
   overflow-x: hidden; }
+
+body {
+  width: 99.95% !important; }
 
 h1,
 h2,
@@ -90,10 +96,14 @@ input.search {
   color: #b4d603;
   background: #364447; }
 
-#searchBar, #searchButtonItems, #searchButton, #filterChoice {
+#searchBar,
+#searchButtonItems,
+#searchButton,
+#filterChoice {
   border-radius: 10px; }
 
-#searchBar, .execute_search {
+#searchBar,
+.execute_search {
   border: 1.5px solid #e1eef4 !important; }
 
 #searchBar:focus {
@@ -264,7 +274,9 @@ tr.Items {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px; }
 
-#item-name-col, #spell-name-col, #npc-name-col {
+#item-name-col,
+#spell-name-col,
+#npc-name-col {
   border-top-left-radius: 20px; }
 
 #image-col {
@@ -528,7 +540,7 @@ select:-webkit-autofill:focus {
 
 .subclass-name,
 .weapon-speed {
-  padding: 0.1rem;
+  padding: 0.5rem;
   color: #ffffff;
   text-align: right; }
 
@@ -592,7 +604,8 @@ select:-webkit-autofill:focus {
   color: #0744a7;
   text-align: left; }
 
-.Non-combat-Pet, .Wild-Pet {
+.Non-combat-Pet,
+.Wild-Pet {
   padding: 0.1rem;
   color: #bd777d;
   text-align: left; }

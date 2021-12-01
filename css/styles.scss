@@ -3,8 +3,15 @@
   src: url(../fonts/Warcraft.ttf);
 }
 
-body, html, .table-responsive, .loader {
+body,
+html,
+.table-responsive,
+.loader {
   overflow-x: hidden;
+}
+
+body {
+  width: 99.95% !important;
 }
 
 h1,
@@ -107,20 +114,22 @@ input.search {
   background: #364447;
 }
 
-#searchBar, #searchButtonItems, #searchButton, #filterChoice {
+#searchBar,
+#searchButtonItems,
+#searchButton,
+#filterChoice {
   border-radius: 10px;
 }
 
-#searchBar, .execute_search {
+#searchBar,
+.execute_search {
   border: 1.5px solid #e1eef4 !important;
 }
 
 #searchBar:focus {
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(180, 214, 3, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(180, 214, 3, 0.6);
 }
-
-
-
 
 .item-search-bar {
   margin-top: 5px !important;
@@ -157,7 +166,6 @@ table.arena-table th {
     background-size: 5vw;
   }
 }
-
 
 #filterChoice,
 #customBreadCrumb {
@@ -313,15 +321,17 @@ tr.Items {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 #userSearchResults:last-child {
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
-#item-name-col, #spell-name-col, #npc-name-col {
+#item-name-col,
+#spell-name-col,
+#npc-name-col {
   border-top-left-radius: 20px;
 }
 
@@ -334,8 +344,8 @@ tr.Items {
   border-top:double #e1eef4 1.5px;
 } */
 
-tr.Items{
-  border-top:solid #e1eef4 1px;
+tr.Items {
+  border-top: solid #e1eef4 1px;
 }
 
 @media (max-width: 576px) {
@@ -627,7 +637,7 @@ select:-webkit-autofill:focus {
 
 .subclass-name,
 .weapon-speed {
-  padding: 0.1rem;
+  padding: 0.5rem;
   color: #ffffff;
   text-align: right;
 }
@@ -704,7 +714,8 @@ select:-webkit-autofill:focus {
   text-align: left;
 }
 
-.Non-combat-Pet, .Wild-Pet {
+.Non-combat-Pet,
+.Wild-Pet {
   padding: 0.1rem;
   color: #bd777d;
   text-align: left;
@@ -763,9 +774,9 @@ select:-webkit-autofill:focus {
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
-  border-top: 1.1em solid rgba(180,214,3, 0.2);
-  border-right: 1.1em solid rgba(180,214,3, 0.2);
-  border-bottom: 1.1em solid rgba(180,214,3, 0.2);
+  border-top: 1.1em solid rgba(180, 214, 3, 0.2);
+  border-right: 1.1em solid rgba(180, 214, 3, 0.2);
+  border-bottom: 1.1em solid rgba(180, 214, 3, 0.2);
   border-left: 1.1em solid #b4d603;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
