@@ -33,8 +33,8 @@ function renderResultsItems(results, indexToRender) {
       div.setAttribute("data-target", "#toolTipModal");
       const lines = [
         `${user.data.name.en_US}`,
-        `Item Class: ${user.data.item_class.name.en_US}`,
-        `ID: ${user.data.id}`,
+        `${user.data.item_class.name.en_US}`,
+        `${user.data.id}`,
       ];
       for (let line of lines) {
         const p = document.createElement("td");
