@@ -24,8 +24,8 @@ a.navIconTextHover.loginStyling {
 }
 
 .header-under-logo {
-  color: black;
-  -webkit-text-fill-color: #e1eef4;
+  color: #b4d603;
+  -webkit-text-fill-color: #b4d603;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 }
@@ -77,7 +77,6 @@ th.input {
 
 .bkground {
   padding: 30px;
-  background-image: linear-gradient(#b3d6036e, #364447);
   color: #364447;
   margin-bottom: 0px;
   min-height: 275px;
@@ -115,6 +114,7 @@ input.search {
 #searchButton,
 #filterChoice {
   border-radius: 10px;
+  border: 1.5px solid #e1eef4;
 }
 
 #searchBar,
