@@ -609,3 +609,15 @@ select:-webkit-autofill:focus {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+.animated-select, .animated-search-bar, .animated-search-button {
+  animation-name: opacity-fade-in;
+  animation-duration: 4s; }
+
+@keyframes opacity-fade-in {
+  from {
+    opacity: 0%;
+    top: 100px; }
+  to {
+    opacity: 100%;
+    top: 0px; } }

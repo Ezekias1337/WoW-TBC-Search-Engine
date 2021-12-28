@@ -692,6 +692,7 @@ select:-webkit-autofill:focus {
   width: 5em;
   height: 5em;
 }
+
 .loader {
   margin: 60px auto;
   font-size: 10px;
@@ -719,5 +720,20 @@ select:-webkit-autofill:focus {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.animated-select, .animated-search-bar, .animated-search-button {
+  animation-name: opacity-fade-in;
+  animation-duration: 4s;
+}
+
+@keyframes opacity-fade-in {
+  from {
+    opacity: 0%;
+    top: 100px;
+  } to {
+    opacity: 100%;
+    top: 0px
   }
 }
