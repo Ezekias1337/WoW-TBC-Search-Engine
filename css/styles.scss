@@ -723,17 +723,36 @@ select:-webkit-autofill:focus {
   }
 }
 
-.animated-select, .animated-search-bar, .animated-search-button {
+.animated-select,
+.animated-search-bar,
+.animated-search-button {
+  -webkit-animation-name: opacity-fade-in;
   animation-name: opacity-fade-in;
+  -webkit-animation-duration: 4s;
   animation-duration: 4s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  opacity: 0%;
+}
+
+@-webkit-keyframes opacity-fade-in {
+  from {
+    opacity: 0%;
+    top: 100px;
+  }
+  to {
+    opacity: 1;
+    top: 0px;
+  }
 }
 
 @keyframes opacity-fade-in {
   from {
     opacity: 0%;
     top: 100px;
-  } to {
-    opacity: 100%;
-    top: 0px
+  }
+  to {
+    opacity: 1;
+    top: 0px;
   }
 }
