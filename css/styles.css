@@ -20,9 +20,7 @@ h1,
 h2,
 h3,
 h4,
-h5,
-.arena-field,
-.dropdown {
+h5 {
   font-family: Warcraft; }
 
 body,
@@ -82,7 +80,8 @@ th.input {
   padding: 30px;
   color: #364447;
   margin-bottom: 0px;
-  min-height: 275px; }
+  min-height: 275px;
+  padding-bottom: 0px !important; }
 
 .modal-header {
   background-image: linear-gradient(#b4d603, #364447); }
@@ -113,6 +112,9 @@ input.arena-output:focus-visible {
   outline: none !important;
   border-color: #e1eef4 !important; }
 
+table.arena-table {
+  opacity: 95%; }
+
 table.arena-table td {
   color: #b4d603;
   font-weight: bold; }
@@ -134,7 +136,8 @@ input.arena-output,
 
 #searchBar,
 .execute_search {
-  border: 1.5px solid #e1eef4 !important; }
+  border: 1.5px solid #e1eef4 !important;
+  opacity: 80% !important; }
 
 #searchBar:focus,
 input.arena:focus,
@@ -165,10 +168,17 @@ table.arena-table th {
 
 @media only screen and (max-width: 576px) {
   input.arena {
-    max-width: 35vw; }
+    max-width: 30vw; }
   input.arena-output {
     max-width: 20vw;
-    background-size: 5vw; } }
+    background-size: 6vw;
+    background-position: 80% 50%; }
+  input#searchBar {
+    width: 80% !important;
+    left: 4% !important; }
+  button#searchButton {
+    left: 85% !important;
+    width: 10% !important; } }
 
 #filterChoice,
 #customBreadCrumb {
@@ -177,7 +187,8 @@ table.arena-table th {
   background: #364447; }
 
 #filterChoice {
-  font-size: 18px; }
+  font-size: 18px;
+  height: 45px; }
 
 #customActiveBreadCrumb {
   color: #e1eef4; }
@@ -192,7 +203,7 @@ table.arena-table th {
 .execute_search {
   padding-bottom: 4px;
   height: 60px;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   opacity: 0.8;
   color: #b4d603;
   background: #364447; }
@@ -216,7 +227,7 @@ table.arena-table th {
   background-attachment: fixed; }
 
 .TBC_Logo {
-  padding: 75px;
+  padding: 65px;
   background-image: url(../images/BC_Logo.png);
   background-size: contain;
   background-position: center;

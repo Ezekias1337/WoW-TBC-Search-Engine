@@ -22,9 +22,7 @@ h1,
 h2,
 h3,
 h4,
-h5,
-.arena-field,
-.dropdown {
+h5 {
   font-family: Warcraft;
 }
 
@@ -96,6 +94,7 @@ th.input {
   color: $secondary-color;
   margin-bottom: 0px;
   min-height: 275px;
+  padding-bottom: 0px !important;
 }
 
 .modal-header {
@@ -132,6 +131,10 @@ input.arena-output:focus-visible {
   border-color: $quarternary-color !important;
 }
 
+table.arena-table {
+  opacity: 95%;
+}
+
 table.arena-table td {
   color: $primary-color;
   font-weight: bold;
@@ -157,6 +160,7 @@ input.arena-output,
 #searchBar,
 .execute_search {
   border: 1.5px solid $quarternary-color !important;
+  opacity: 80% !important;
 }
 
 #searchBar:focus,
@@ -193,11 +197,20 @@ table.arena-table th {
 
 @media only screen and (max-width: 576px) {
   input.arena {
-    max-width: 35vw;
+    max-width: 30vw;
   }
   input.arena-output {
     max-width: 20vw;
-    background-size: 5vw;
+    background-size: 6vw;
+    background-position: 80% 50%;
+  }
+  input#searchBar {
+    width: 80% !important;
+    left: 4% !important;
+  }
+  button#searchButton {
+    left: 85% !important;
+    width: 10% !important;
   }
 }
 
@@ -210,6 +223,7 @@ table.arena-table th {
 
 #filterChoice {
   font-size: 18px;
+  height: 45px;
 }
 
 #customActiveBreadCrumb {
@@ -227,7 +241,7 @@ table.arena-table th {
 .execute_search {
   padding-bottom: 4px;
   height: 60px;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   opacity: 0.8;
   color: $primary-color;
   background: $secondary-color;
@@ -254,7 +268,7 @@ table.arena-table th {
 }
 
 .TBC_Logo {
-  padding: 75px;
+  padding: 65px;
   background-image: url(../images/BC_Logo.png);
   background-size: contain;
   background-position: center;
