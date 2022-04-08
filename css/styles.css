@@ -33,7 +33,9 @@ html,
   color: #b4d603;
   -webkit-text-fill-color: #b4d603;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black; }
+  -webkit-text-stroke-color: black;
+  margin-top: auto !important;
+  margin-bottom: auto !important; }
 
 ::-moz-selection {
   color: #e1eef4;
@@ -77,11 +79,9 @@ th.input {
   color: #b4d603 !important; }
 
 .bkground {
-  padding: 30px;
   color: #364447;
   margin-bottom: 0px;
-  min-height: 275px;
-  padding-bottom: 0px !important; }
+  padding-bottom: 5px !important; }
 
 .modal-header {
   background-image: linear-gradient(#b4d603, #364447); }
@@ -227,11 +227,7 @@ table.arena-table th {
   background-attachment: fixed; }
 
 .TBC_Logo {
-  padding: 65px;
-  background-image: url(../images/BC_Logo.png);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat; }
+  width: 100%; }
 
 .Bottom_Nav_of_Site {
   margin: 0px;

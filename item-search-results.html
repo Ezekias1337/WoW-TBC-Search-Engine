@@ -23,69 +23,61 @@
     onload="xhr.onreadystatechange(); addEventListenerToSearchBar()"
     class="bkground_dark"
   >
-    <center>
-      <header class="bkground" style="height: 150px">
-        <div class="container">
-          <div class="row">
-            <div class="col mx-auto">
-              <a class="nav-link" href="index.html">
-                <div class="TBC_Logo"></div>
-              </a>
-              <div class="col">
-                <h1 class="header-under-logo">Search Engine</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+  <center>
+    <header class="bkground">
 
-      <nav
-        class="navbar navbar-dark navbar-expand-sm navbariconstyling sticky-top"
-      >
-        <div class="container">
-          <a class="navbar-brand" href="index.html"
-            ><img src="images/BC_W_Logo.png" height="30" width="30"
-          /></a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#bcNavbar"
-          >
-            <span class="fa fa-bars"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="bcNavbar">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#"
-                  ><i class="fa fa-shield fa-lg fa-fw"></i>Items</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="spells-search-results.html"
-                  ><i class="fa fa-book fa-lg fa-fw"></i>Spells</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="NPCs-search-results.html"
-                  ><i class="fa fa-user fa-lg fa-fw"></i>NPCs</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="arena-point-calculator.html"
-                  ><i class="fa fa-shield fa-lg fa-fw"></i>Arena Calculator</a
-                >
-              </li>
-            </ul>
+        <div class="row">
+          <div class="col col-12" style="display: flex; align-items: center;">
+            <a class="nav-link" href="index.html" style="width: 20%;">
+              <img class="TBC_Logo" src="../images/BC_Logo.png"></img>
+            </a>
+            <h3 class="header-under-logo">World of Warcraft Database</h3>
           </div>
         </div>
-      </nav>
+
+    </header>
+
+    <nav
+      class="navbar navbar-dark navbar-expand-sm navbariconstyling sticky-top"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html"
+          ><img src="images/BC_W_Logo.png" height="30" width="30"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#bcNavbar"
+        >
+          <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="bcNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="item-search-results.html"
+                ><i class="fa fa-shield fa-lg fa-fw"></i>Items</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="spells-search-results.html"
+                ><i class="fa fa-book fa-lg fa-fw"></i>Spells</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="NPCs-search-results.html"
+                ><i class="fa fa-user fa-lg fa-fw"></i>NPCs</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="arena-point-calculator.html"
+                ><i class="fa fa-shield fa-lg fa-fw"></i>Arena Calculator</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
       <div id="toolTipModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">

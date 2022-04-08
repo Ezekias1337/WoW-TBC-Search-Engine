@@ -38,6 +38,8 @@ html,
   -webkit-text-fill-color: $primary-color;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
 }
 
 ::-moz-selection {
@@ -90,11 +92,9 @@ th.input {
 }
 
 .bkground {
-  padding: 30px;
   color: $secondary-color;
   margin-bottom: 0px;
-  min-height: 275px;
-  padding-bottom: 0px !important;
+  padding-bottom: 5px !important;
 }
 
 .modal-header {
@@ -268,11 +268,7 @@ table.arena-table th {
 }
 
 .TBC_Logo {
-  padding: 65px;
-  background-image: url(../images/BC_Logo.png);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%;
 }
 
 .Bottom_Nav_of_Site {
